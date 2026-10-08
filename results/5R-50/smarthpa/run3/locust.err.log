@@ -1,0 +1,76 @@
+[2026-10-05 08:44:55,789] DESKTOP-1G7ONFQ/INFO/locust.main: Starting Locust 2.46.6
+[2026-10-05 08:44:55,794] DESKTOP-1G7ONFQ/INFO/locust.main: Run time limit set to 900 seconds
+[2026-10-05 08:44:55,798] DESKTOP-1G7ONFQ/INFO/locust.runners: Ramping to 200 users at a rate of 0.67 per second
+[2026-10-05 08:49:53,986] DESKTOP-1G7ONFQ/INFO/locust.runners: All users spawned: {"WebsiteUser": 200} (200 total users)
+[2026-10-05 08:59:52,813] DESKTOP-1G7ONFQ/INFO/locust.main: --run-time limit reached, shutting down
+[2026-10-05 08:59:52,905] DESKTOP-1G7ONFQ/INFO/locust.main: Shutting down (exit code 1)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /                                                                              10931    12(0.11%) |    457       4   21031    330 |   12.18        0.01
+POST     /                                                                                  1   1(100.00%) |    279     279     279    279 |    0.00        0.00
+GET      /cart                                                                          10539    10(0.09%) |    234       4   21047    150 |   11.75        0.01
+POST     /cart                                                                          10855     6(0.06%) |    280       3   13055    200 |   12.10        0.01
+POST     /cart/checkout                                                                 10853     2(0.02%) |    281      17   20554    200 |   12.10        0.00
+GET      /product/0PUK6V6EV0                                                             1176     2(0.17%) |    213       8    8124    150 |    1.31        0.00
+GET      /product/1YMWWN1N4O                                                             1207     1(0.08%) |    204       8    6791    140 |    1.35        0.00
+GET      /product/2ZYFJ3GM2N                                                             1226     1(0.08%) |    293       7   14390    140 |    1.37        0.00
+GET      /product/66VCHSJNUP                                                             1208     0(0.00%) |    246      10   15187    150 |    1.35        0.00
+GET      /product/6E92ZMYYFZ                                                             1226     1(0.08%) |    246       3   11961    150 |    1.37        0.00
+GET      /product/9SIQT8TOJO                                                             1199     1(0.08%) |    255       5   14422    140 |    1.34        0.00
+GET      /product/L9ECAV7KIM                                                             1213     1(0.08%) |    286       9   21049    150 |    1.35        0.00
+GET      /product/LS4PSXUNUM                                                             1187     0(0.00%) |    268       8   12260    150 |    1.32        0.00
+GET      /product/OLJCESPC7Z                                                             1215     1(0.08%) |    289       9   21058    150 |    1.35        0.00
+POST     /setCurrency                                                                   10734     5(0.05%) |    483       9   21047    340 |   11.97        0.01
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                     64770    44(0.07%) |    332       3   21058    210 |   72.20        0.05
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+GET      /                                                                                     330    440    520    580    750    920   1500   4100  14000  16000  21000  10931
+POST     /                                                                                     280    280    280    280    280    280    280    280    280    280    280      1
+GET      /cart                                                                                 150    190    230    270    390    530    770    900   8300  21000  21000  10539
+POST     /cart                                                                                 200    280    320    370    480    590    780   1000   8000  13000  13000  10855
+POST     /cart/checkout                                                                        200    290    300    350    470    590    860   1200   8300  16000  21000  10853
+GET      /product/0PUK6V6EV0                                                                   150    210    260    290    390    500    760    940   6900   8100   8100   1176
+GET      /product/1YMWWN1N4O                                                                   140    200    250    280    420    540    770    920   6000   6800   6800   1207
+GET      /product/2ZYFJ3GM2N                                                                   140    200    260    290    430    570   1200   5000  14000  14000  14000   1226
+GET      /product/66VCHSJNUP                                                                   150    210    260    300    410    540    830   1200  14000  15000  15000   1208
+GET      /product/6E92ZMYYFZ                                                                   150    210    260    290    410    580    880   1100  12000  12000  12000   1226
+GET      /product/9SIQT8TOJO                                                                   140    210    260    290    390    570    850   1100  14000  14000  14000   1199
+GET      /product/L9ECAV7KIM                                                                   150    210    250    280    400    540    890   1700  15000  21000  21000   1213
+GET      /product/LS4PSXUNUM                                                                   150    210    260    300    430    640    970   1400  11000  12000  12000   1187
+GET      /product/OLJCESPC7Z                                                                   150    220    260    310    430    590    880   1300  14000  21000  21000   1215
+POST     /setCurrency                                                                          340    450    540    610    780    950   1600   4200  16000  21000  21000  10734
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                            210    300    370    410    590    760   1000   1600  12000  21000  21000  64770
+
+Error report
+# occurrences      Error                                                                                               
+------------------|---------------------------------------------------------------------------------------------------------------------------------------------
+10                 GET /: HTTPError('500 Server Error: Internal Server Error for url: /')                              
+2                  GET /product/0PUK6V6EV0: HTTPError('500 Server Error: Internal Server Error for url: /product/0PUK6V6EV0')
+1                  GET /product/2ZYFJ3GM2N: HTTPError('500 Server Error: Internal Server Error for url: /product/2ZYFJ3GM2N')
+4                  POST /cart: HTTPError('500 Server Error: Internal Server Error for url: /cart')                     
+1                  GET /product/6E92ZMYYFZ: HTTPError('500 Server Error: Internal Server Error for url: /product/6E92ZMYYFZ')
+3                  POST /setCurrency: HTTPError('500 Server Error: Internal Server Error for url: /setCurrency')       
+1                  GET /product/9SIQT8TOJO: HTTPError('500 Server Error: Internal Server Error for url: /product/9SIQT8TOJO')
+5                  GET /cart: RemoteDisconnected('Remote end closed connection without response')                      
+1                  GET /cart: ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)
+1                  POST /cart/checkout: RemoteDisconnected('Remote end closed connection without response')            
+1                  POST /cart: RemoteDisconnected('Remote end closed connection without response')                     
+2                  GET /cart: HTTPError('500 Server Error: Internal Server Error for url: /cart')                      
+1                  GET /product/1YMWWN1N4O: RemoteDisconnected('Remote end closed connection without response')        
+1                  GET /: RemoteDisconnected('Remote end closed connection without response')                          
+1                  POST /: RemoteDisconnected('Remote end closed connection without response')                         
+1                  POST /cart: ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)
+1                  POST /cart/checkout: ConnectTimeoutError(<HTTPConnection(host='192.168.161.10', port=80) at 0x27656aeecd0>, 'Connection to 192.168.161.10 timed out. (connect timeout=None)')
+1                  GET /cart: ConnectTimeoutError(<HTTPConnection(host='192.168.161.10', port=80) at 0x276547efad0>, 'Connection to 192.168.161.10 timed out. (connect timeout=None)')
+1                  GET /product/L9ECAV7KIM: ConnectTimeoutError(<HTTPConnection(host='192.168.161.10', port=80) at 0x276547e5f90>, 'Connection to 192.168.161.10 timed out. (connect timeout=None)')
+1                  POST /setCurrency: ConnectTimeoutError(<HTTPConnection(host='192.168.161.10', port=80) at 0x2765628ff90>, 'Connection to 192.168.161.10 timed out. (connect timeout=None)')
+1                  POST /setCurrency: ConnectTimeoutError(<HTTPConnection(host='192.168.161.10', port=80) at 0x27655e5dfd0>, 'Connection to 192.168.161.10 timed out. (connect timeout=None)')
+1                  GET /cart: ConnectTimeoutError(<HTTPConnection(host='192.168.161.10', port=80) at 0x27654ba3a50>, 'Connection to 192.168.161.10 timed out. (connect timeout=None)')
+1                  GET /product/OLJCESPC7Z: ConnectTimeoutError(<HTTPConnection(host='192.168.161.10', port=80) at 0x276547d3990>, 'Connection to 192.168.161.10 timed out. (connect timeout=None)')
+1                  GET /: ConnectTimeoutError(<HTTPConnection(host='192.168.161.10', port=80) at 0x276547c3350>, 'Connection to 192.168.161.10 timed out. (connect timeout=None)')
+------------------|---------------------------------------------------------------------------------------------------------------------------------------------
+

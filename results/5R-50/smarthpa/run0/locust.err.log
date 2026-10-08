@@ -1,0 +1,58 @@
+[2026-10-02 14:19:31,311] DESKTOP-1G7ONFQ/INFO/locust.main: Starting Locust 2.46.6
+[2026-10-02 14:19:31,319] DESKTOP-1G7ONFQ/INFO/locust.main: Run time limit set to 180 seconds
+[2026-10-02 14:19:31,323] DESKTOP-1G7ONFQ/INFO/locust.runners: Ramping to 100 users at a rate of 2.00 per second
+[2026-10-02 14:20:20,576] DESKTOP-1G7ONFQ/INFO/locust.runners: All users spawned: {"WebsiteUser": 100} (100 total users)
+[2026-10-02 14:22:26,259] DESKTOP-1G7ONFQ/INFO/locust.main: --run-time limit reached, shutting down
+[2026-10-02 14:22:26,323] DESKTOP-1G7ONFQ/INFO/locust.main: Shutting down (exit code 1)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /                                                                               1145     8(0.70%) |    623      17    5315    420 |    6.55        0.05
+GET      /cart                                                                           1022     2(0.20%) |    206      10    1343    160 |    5.84        0.01
+POST     /cart                                                                           1094     5(0.46%) |    300      14    1780    200 |    6.25        0.03
+POST     /cart/checkout                                                                  1094     1(0.09%) |    281      17    2002    200 |    6.25        0.01
+GET      /product/0PUK6V6EV0                                                              133     1(0.75%) |    194      12     814    120 |    0.76        0.01
+GET      /product/1YMWWN1N4O                                                              139     0(0.00%) |    181      11     984    120 |    0.79        0.00
+GET      /product/2ZYFJ3GM2N                                                              120     0(0.00%) |    201      12    1114    120 |    0.69        0.00
+GET      /product/66VCHSJNUP                                                              100     1(1.00%) |    191      12    1028    110 |    0.57        0.01
+GET      /product/6E92ZMYYFZ                                                              120     0(0.00%) |    179       8    1129    110 |    0.69        0.00
+GET      /product/9SIQT8TOJO                                                              119     0(0.00%) |    214      13    1212    130 |    0.68        0.00
+GET      /product/L9ECAV7KIM                                                              116     0(0.00%) |    206      17    1303    170 |    0.66        0.00
+GET      /product/LS4PSXUNUM                                                              120     0(0.00%) |    202       9    1222    120 |    0.69        0.00
+GET      /product/OLJCESPC7Z                                                              127     1(0.79%) |    196      15    1000    120 |    0.73        0.01
+POST     /setCurrency                                                                    1093    16(1.46%) |    579      14    4498    390 |    6.25        0.09
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                      6542    35(0.54%) |    368       8    5315    210 |   37.40        0.20
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+GET      /                                                                                     420    610    790    890   1300   1900   2500   3400   5300   5300   5300   1145
+GET      /cart                                                                                 160    190    230    290    390    510    670    810   1200   1300   1300   1022
+POST     /cart                                                                                 200    290    360    400    550    700    980   1400   1700   1800   1800   1094
+POST     /cart/checkout                                                                        200    240    300    300    490    620   1200   1700   2000   2000   2000   1094
+GET      /product/0PUK6V6EV0                                                                   120    230    270    320    470    520    730    810    810    810    810    133
+GET      /product/1YMWWN1N4O                                                                   120    190    240    310    410    510    710    780    980    980    980    139
+GET      /product/2ZYFJ3GM2N                                                                   120    210    260    310    440    710    850    910   1100   1100   1100    120
+GET      /product/66VCHSJNUP                                                                   110    180    260    310    450    610    920   1000   1000   1000   1000    100
+GET      /product/6E92ZMYYFZ                                                                   110    210    280    310    400    540    590    640   1100   1100   1100    120
+GET      /product/9SIQT8TOJO                                                                   130    230    290    330    460    580    940    950   1200   1200   1200    119
+GET      /product/L9ECAV7KIM                                                                   170    230    280    290    430    520    590    690   1300   1300   1300    116
+GET      /product/LS4PSXUNUM                                                                   120    180    210    290    460    860   1100   1100   1200   1200   1200    120
+GET      /product/OLJCESPC7Z                                                                   120    200    260    310    430    570    820    920   1000   1000   1000    127
+POST     /setCurrency                                                                          390    600    760    880   1200   1600   2100   2300   4300   4500   4500   1093
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                            210    320    420    500    800   1100   1700   2100   4300   5300   5300   6542
+
+Error report
+# occurrences      Error                                                                                               
+------------------|---------------------------------------------------------------------------------------------------------------------------------------------
+16                 POST /setCurrency: HTTPError('500 Server Error: Internal Server Error for url: /setCurrency')       
+5                  POST /cart: HTTPError('500 Server Error: Internal Server Error for url: /cart')                     
+2                  GET /cart: HTTPError('500 Server Error: Internal Server Error for url: /cart')                      
+8                  GET /: HTTPError('500 Server Error: Internal Server Error for url: /')                              
+1                  GET /product/0PUK6V6EV0: HTTPError('500 Server Error: Internal Server Error for url: /product/0PUK6V6EV0')
+1                  POST /cart/checkout: HTTPError('500 Server Error: Internal Server Error for url: /cart/checkout')   
+1                  GET /product/OLJCESPC7Z: HTTPError('500 Server Error: Internal Server Error for url: /product/OLJCESPC7Z')
+1                  GET /product/66VCHSJNUP: HTTPError('500 Server Error: Internal Server Error for url: /product/66VCHSJNUP')
+------------------|---------------------------------------------------------------------------------------------------------------------------------------------
+

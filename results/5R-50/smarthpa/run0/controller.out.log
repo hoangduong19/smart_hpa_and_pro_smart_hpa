@@ -1,0 +1,77 @@
+deployment.apps/frontend scaled
+deployment.apps/currencyservice scaled
+deployment.apps/currencyservice scaled
+deployment.apps/frontend scaled
+deployment.apps/currencyservice scaled
+deployment.apps/frontend scaled
+deployment.apps/productcatalogservice scaled
+deployment.apps/recommendationservice scaled
+deployment.apps/paymentservice scaled
+deployment.apps/currencyservice scaled
+deployment.apps/currencyservice scaled
+deployment.apps/currencyservice scaled
+deployment.apps/paymentservice scaled
+deployment.apps/frontend scaled
+deployment.apps/paymentservice scaled
+deployment.apps/currencyservice scaled
+deployment.apps/paymentservice scaled
+deployment.apps/paymentservice scaled
+deployment.apps/currencyservice scaled
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision [['currencyservice', 'scale up', 8, 8, 100], ['frontend', 'scale up', 4, 5, 100], ['redis-cart', 'no scale', 1, 5, 70], ['checkoutservice', 'no scale', 1, 5, 100], ['emailservice', 'no scale', 1, 5, 100], ['paymentservice', 'no scale', 1, 5, 100], ['shippingservice', 'no scale', 1, 5, 100], ['productcatalogservice', 'no scale', 1, 5, 100], ['recommendationservice', 'no scale', 1, 5, 100], ['adservice', 'no scale', 1, 5, 200], ['cartservice', 'no scale', 1, 1, 200]]
+ARM_decision [['cartservice', 'no scale', 1, 1, 200], ['currencyservice', 'no scale', 8, 8, 100], ['frontend', 'no scale', 4, 5, 100], ['redis-cart', 'no scale', 1, 5, 70], ['checkoutservice', 'no scale', 1, 5, 100], ['emailservice', 'no scale', 1, 5, 100], ['paymentservice', 'no scale', 1, 5, 100], ['shippingservice', 'no scale', 1, 5, 100], ['productcatalogservice', 'no scale', 1, 5, 100], ['recommendationservice', 'no scale', 1, 5, 100], ['adservice', 'no scale', 1, 5, 200]]
+ARM_decision [['cartservice', 'no scale', 1, 1, 200], ['currencyservice', 'no scale', 8, 8, 100], ['frontend', 'no scale', 4, 5, 100], ['redis-cart', 'no scale', 1, 5, 70], ['checkoutservice', 'no scale', 1, 5, 100], ['emailservice', 'no scale', 1, 5, 100], ['paymentservice', 'no scale', 1, 5, 100], ['shippingservice', 'no scale', 1, 5, 100], ['productcatalogservice', 'no scale', 1, 5, 100], ['recommendationservice', 'no scale', 1, 5, 100], ['adservice', 'no scale', 1, 5, 200]]
+ARM_decision [['cartservice', 'no scale', 1, 1, 200], ['currencyservice', 'no scale', 8, 8, 100], ['frontend', 'no scale', 4, 5, 100], ['redis-cart', 'no scale', 1, 5, 70], ['checkoutservice', 'no scale', 1, 5, 100], ['emailservice', 'no scale', 1, 5, 100], ['paymentservice', 'no scale', 1, 5, 100], ['shippingservice', 'no scale', 1, 5, 100], ['productcatalogservice', 'no scale', 1, 5, 100], ['recommendationservice', 'no scale', 1, 5, 100], ['adservice', 'no scale', 1, 5, 200]]
+ARM_decision [['cartservice', 'no scale', 1, 1, 200], ['currencyservice', 'no scale', 8, 8, 100], ['frontend', 'no scale', 4, 5, 100], ['redis-cart', 'no scale', 1, 5, 70], ['checkoutservice', 'no scale', 1, 5, 100], ['emailservice', 'no scale', 1, 5, 100], ['paymentservice', 'no scale', 1, 5, 100], ['shippingservice', 'no scale', 1, 5, 100], ['productcatalogservice', 'no scale', 1, 5, 100], ['recommendationservice', 'no scale', 1, 5, 100], ['adservice', 'no scale', 1, 5, 200]]
+ARM_decision [['cartservice', 'no scale', 1, 1, 200], ['currencyservice', 'no scale', 8, 8, 100], ['frontend', 'no scale', 4, 5, 100], ['redis-cart', 'no scale', 1, 5, 70], ['checkoutservice', 'no scale', 1, 5, 100], ['emailservice', 'no scale', 1, 5, 100], ['paymentservice', 'no scale', 1, 5, 100], ['shippingservice', 'no scale', 1, 5, 100], ['productcatalogservice', 'no scale', 1, 5, 100], ['recommendationservice', 'no scale', 1, 5, 100], ['adservice', 'no scale', 1, 5, 200]]
+ARM_decision [['currencyservice', 'scale up', 10, 10, 100], ['frontend', 'scale up', 5, 5, 100], ['cartservice', 'no scale', 1, 1, 200], ['redis-cart', 'no scale', 1, 5, 70], ['checkoutservice', 'no scale', 1, 5, 100], ['emailservice', 'no scale', 1, 5, 100], ['paymentservice', 'no scale', 1, 5, 100], ['shippingservice', 'no scale', 1, 5, 100], ['productcatalogservice', 'no scale', 1, 5, 100], ['recommendationservice', 'no scale', 1, 5, 100], ['adservice', 'no scale', 1, 1, 200]]
+ARM_decision [['frontend', 'no scale', 5, 5, 100], ['adservice', 'no scale', 1, 1, 200], ['cartservice', 'no scale', 1, 1, 200], ['currencyservice', 'no scale', 10, 10, 100], ['redis-cart', 'no scale', 1, 5, 70], ['productcatalogservice', 'scale up', 2, 5, 100], ['recommendationservice', 'scale up', 2, 5, 100], ['checkoutservice', 'no scale', 1, 5, 100], ['emailservice', 'no scale', 1, 5, 100], ['paymentservice', 'no scale', 1, 5, 100], ['shippingservice', 'no scale', 1, 5, 100]]
+ARM_decision [['frontend', 'no scale', 5, 5, 100], ['adservice', 'no scale', 1, 1, 200], ['cartservice', 'no scale', 1, 1, 200], ['currencyservice', 'no scale', 10, 10, 100], ['redis-cart', 'no scale', 1, 5, 70], ['productcatalogservice', 'no scale', 2, 5, 100], ['recommendationservice', 'no scale', 2, 5, 100], ['checkoutservice', 'no scale', 1, 5, 100], ['emailservice', 'no scale', 1, 5, 100], ['paymentservice', 'no scale', 1, 5, 100], ['shippingservice', 'no scale', 1, 5, 100]]
+ARM_decision [['frontend', 'no scale', 5, 5, 100], ['adservice', 'no scale', 1, 1, 200], ['cartservice', 'no scale', 1, 1, 200], ['currencyservice', 'no scale', 10, 10, 100], ['redis-cart', 'no scale', 1, 5, 70], ['productcatalogservice', 'no scale', 2, 5, 100], ['recommendationservice', 'no scale', 2, 5, 100], ['checkoutservice', 'no scale', 1, 5, 100], ['emailservice', 'no scale', 1, 5, 100], ['paymentservice', 'no scale', 1, 5, 100], ['shippingservice', 'no scale', 1, 5, 100]]
+ARM_decision [['frontend', 'no scale', 5, 5, 100], ['adservice', 'no scale', 1, 1, 200], ['cartservice', 'no scale', 1, 1, 200], ['redis-cart', 'no scale', 1, 5, 70], ['paymentservice', 'scale up', 2, 5, 100], ['productcatalogservice', 'no scale', 2, 5, 100], ['recommendationservice', 'no scale', 2, 5, 100], ['currencyservice', 'scale down', 6, 10, 100], ['checkoutservice', 'no scale', 1, 5, 100], ['emailservice', 'no scale', 1, 5, 100], ['shippingservice', 'no scale', 1, 5, 100]]
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision []
+ARM_decision [['currencyservice', 'scale up', 6, 6, 100], ['frontend', 'no scale', 4, 5, 100], ['redis-cart', 'no scale', 1, 5, 70], ['paymentservice', 'no scale', 2, 5, 100], ['productcatalogservice', 'no scale', 2, 5, 100], ['recommendationservice', 'no scale', 2, 5, 100], ['checkoutservice', 'no scale', 1, 5, 100], ['emailservice', 'no scale', 1, 5, 100], ['shippingservice', 'no scale', 1, 5, 100], ['adservice', 'no scale', 1, 5, 200], ['cartservice', 'no scale', 1, 1, 200]]

@@ -1,0 +1,141 @@
+scenario,autoscaler,microservice,metric,mean_over_runs
+2R-20%,smarthpa,frontend,supply_cpu_m,320.231
+2R-20%,smarthpa,currency,supply_cpu_m,1010.577
+2R-20%,smarthpa,cart,supply_cpu_m,200.0
+2R-20%,smarthpa,checkout,supply_cpu_m,100.0
+2R-20%,smarthpa,productcatalog,supply_cpu_m,100.0
+2R-20%,smarthpa,recommendation,supply_cpu_m,100.0
+2R-20%,smarthpa,adservice,supply_cpu_m,200.0
+2R-20%,smarthpa,other services,supply_cpu_m,413.986
+2R-20%,k8shpa,frontend,supply_cpu_m,193.066
+2R-20%,k8shpa,currency,supply_cpu_m,193.319
+2R-20%,k8shpa,cart,supply_cpu_m,377.765
+2R-20%,k8shpa,checkout,supply_cpu_m,191.052
+2R-20%,k8shpa,productcatalog,supply_cpu_m,192.193
+2R-20%,k8shpa,recommendation,supply_cpu_m,191.134
+2R-20%,k8shpa,adservice,supply_cpu_m,200.0
+2R-20%,k8shpa,other services,supply_cpu_m,542.631
+2R-20%,smarthpa,frontend,cpu_overutilization_pct,128.118
+2R-20%,smarthpa,currency,cpu_overutilization_pct,38.839
+2R-20%,smarthpa,cart,cpu_overutilization_pct,63.265
+2R-20%,smarthpa,checkout,cpu_overutilization_pct,67.735
+2R-20%,smarthpa,productcatalog,cpu_overutilization_pct,146.331
+2R-20%,smarthpa,recommendation,cpu_overutilization_pct,122.603
+2R-20%,smarthpa,adservice,cpu_overutilization_pct,3.138
+2R-20%,smarthpa,other services,cpu_overutilization_pct,103.994
+2R-20%,smarthpa,APPLICATION,overutilization_time_min,14.696
+2R-20%,k8shpa,frontend,cpu_overutilization_pct,154.716
+2R-20%,k8shpa,currency,cpu_overutilization_pct,97.163
+2R-20%,k8shpa,cart,cpu_overutilization_pct,25.708
+2R-20%,k8shpa,checkout,cpu_overutilization_pct,30.022
+2R-20%,k8shpa,productcatalog,cpu_overutilization_pct,66.798
+2R-20%,k8shpa,recommendation,cpu_overutilization_pct,56.67
+2R-20%,k8shpa,adservice,cpu_overutilization_pct,0.0
+2R-20%,k8shpa,other services,cpu_overutilization_pct,32.129
+2R-20%,k8shpa,APPLICATION,overutilization_time_min,14.641
+2R-20%,smarthpa,frontend,cpu_overprovision_m,3.953
+2R-20%,smarthpa,currency,cpu_overprovision_m,2.499
+2R-20%,smarthpa,cart,cpu_overprovision_m,7.181
+2R-20%,smarthpa,checkout,cpu_overprovision_m,5.128
+2R-20%,smarthpa,productcatalog,cpu_overprovision_m,4.436
+2R-20%,smarthpa,recommendation,cpu_overprovision_m,4.436
+2R-20%,smarthpa,adservice,cpu_overprovision_m,8.29
+2R-20%,smarthpa,other services,cpu_overprovision_m,39.834
+2R-20%,smarthpa,APPLICATION,overprovision_time_min,0.611
+2R-20%,k8shpa,frontend,cpu_overprovision_m,4.106
+2R-20%,k8shpa,currency,cpu_overprovision_m,3.267
+2R-20%,k8shpa,cart,cpu_overprovision_m,20.931
+2R-20%,k8shpa,checkout,cpu_overprovision_m,8.051
+2R-20%,k8shpa,productcatalog,cpu_overprovision_m,6.437
+2R-20%,k8shpa,recommendation,cpu_overprovision_m,7.631
+2R-20%,k8shpa,adservice,cpu_overprovision_m,201.335
+2R-20%,k8shpa,other services,cpu_overprovision_m,186.733
+2R-20%,k8shpa,APPLICATION,overprovision_time_min,0.331
+2R-20%,smarthpa,frontend,cpu_underprovision_m,1688.412
+2R-20%,smarthpa,currency,cpu_underprovision_m,945.126
+2R-20%,smarthpa,cart,cpu_underprovision_m,538.166
+2R-20%,smarthpa,checkout,cpu_underprovision_m,297.834
+2R-20%,smarthpa,productcatalog,cpu_underprovision_m,677.805
+2R-20%,smarthpa,recommendation,cpu_underprovision_m,564.792
+2R-20%,smarthpa,adservice,cpu_underprovision_m,16.351
+2R-20%,smarthpa,other services,cpu_underprovision_m,421.439
+2R-20%,smarthpa,APPLICATION,underprovision_time_min,14.375
+2R-20%,k8shpa,frontend,cpu_underprovision_m,1389.58
+2R-20%,k8shpa,currency,cpu_underprovision_m,828.004
+2R-20%,k8shpa,cart,cpu_underprovision_m,235.08
+2R-20%,k8shpa,checkout,cpu_underprovision_m,162.346
+2R-20%,k8shpa,productcatalog,cpu_underprovision_m,520.073
+2R-20%,k8shpa,recommendation,cpu_underprovision_m,421.079
+2R-20%,k8shpa,adservice,cpu_underprovision_m,0.0
+2R-20%,k8shpa,other services,cpu_underprovision_m,161.061
+2R-20%,k8shpa,APPLICATION,underprovision_time_min,14.641
+5R-50%,smarthpa,frontend,supply_cpu_m,863.557
+5R-50%,smarthpa,currency,supply_cpu_m,1223.793
+5R-50%,smarthpa,cart,supply_cpu_m,355.241
+5R-50%,smarthpa,checkout,supply_cpu_m,181.084
+5R-50%,smarthpa,productcatalog,supply_cpu_m,359.241
+5R-50%,smarthpa,recommendation,supply_cpu_m,262.353
+5R-50%,smarthpa,adservice,supply_cpu_m,200.0
+5R-50%,smarthpa,other services,supply_cpu_m,452.506
+5R-50%,k8shpa,frontend,supply_cpu_m,443.417
+5R-50%,k8shpa,currency,supply_cpu_m,433.612
+5R-50%,k8shpa,cart,supply_cpu_m,368.843
+5R-50%,k8shpa,checkout,supply_cpu_m,175.891
+5R-50%,k8shpa,productcatalog,supply_cpu_m,347.491
+5R-50%,k8shpa,recommendation,supply_cpu_m,283.393
+5R-50%,k8shpa,adservice,supply_cpu_m,215.44
+5R-50%,k8shpa,other services,supply_cpu_m,450.131
+5R-50%,smarthpa,frontend,cpu_overutilization_pct,47.787
+5R-50%,smarthpa,currency,cpu_overutilization_pct,35.903
+5R-50%,smarthpa,cart,cpu_overutilization_pct,6.952
+5R-50%,smarthpa,checkout,cpu_overutilization_pct,4.531
+5R-50%,smarthpa,productcatalog,cpu_overutilization_pct,18.174
+5R-50%,smarthpa,recommendation,cpu_overutilization_pct,40.186
+5R-50%,smarthpa,adservice,cpu_overutilization_pct,0.46
+5R-50%,smarthpa,other services,cpu_overutilization_pct,6.448
+5R-50%,smarthpa,APPLICATION,overutilization_time_min,14.226
+5R-50%,k8shpa,frontend,cpu_overutilization_pct,88.588
+5R-50%,k8shpa,currency,cpu_overutilization_pct,93.563
+5R-50%,k8shpa,cart,cpu_overutilization_pct,3.642
+5R-50%,k8shpa,checkout,cpu_overutilization_pct,3.421
+5R-50%,k8shpa,productcatalog,cpu_overutilization_pct,10.312
+5R-50%,k8shpa,recommendation,cpu_overutilization_pct,9.928
+5R-50%,k8shpa,adservice,cpu_overutilization_pct,0.25
+5R-50%,k8shpa,other services,cpu_overutilization_pct,2.87
+5R-50%,k8shpa,APPLICATION,overutilization_time_min,14.325
+5R-50%,smarthpa,frontend,cpu_overprovision_m,44.939
+5R-50%,smarthpa,currency,cpu_overprovision_m,34.199
+5R-50%,smarthpa,cart,cpu_overprovision_m,74.851
+5R-50%,smarthpa,checkout,cpu_overprovision_m,86.637
+5R-50%,smarthpa,productcatalog,cpu_overprovision_m,77.904
+5R-50%,smarthpa,recommendation,cpu_overprovision_m,70.241
+5R-50%,smarthpa,adservice,cpu_overprovision_m,96.068
+5R-50%,smarthpa,other services,cpu_overprovision_m,296.644
+5R-50%,smarthpa,APPLICATION,overprovision_time_min,4.733
+5R-50%,k8shpa,frontend,cpu_overprovision_m,47.038
+5R-50%,k8shpa,currency,cpu_overprovision_m,34.157
+5R-50%,k8shpa,cart,cpu_overprovision_m,649.411
+5R-50%,k8shpa,checkout,cpu_overprovision_m,320.025
+5R-50%,k8shpa,productcatalog,cpu_overprovision_m,138.966
+5R-50%,k8shpa,recommendation,cpu_overprovision_m,204.17
+5R-50%,k8shpa,adservice,cpu_overprovision_m,798.711
+5R-50%,k8shpa,other services,cpu_overprovision_m,1395.741
+5R-50%,k8shpa,APPLICATION,overprovision_time_min,1.807
+5R-50%,smarthpa,frontend,cpu_underprovision_m,172.3
+5R-50%,smarthpa,currency,cpu_underprovision_m,80.463
+5R-50%,smarthpa,cart,cpu_underprovision_m,17.845
+5R-50%,smarthpa,checkout,cpu_underprovision_m,7.671
+5R-50%,smarthpa,productcatalog,cpu_underprovision_m,32.044
+5R-50%,smarthpa,recommendation,cpu_underprovision_m,67.407
+5R-50%,smarthpa,adservice,cpu_underprovision_m,0.819
+5R-50%,smarthpa,other services,cpu_underprovision_m,10.361
+5R-50%,smarthpa,APPLICATION,underprovision_time_min,10.25
+5R-50%,k8shpa,frontend,cpu_underprovision_m,455.225
+5R-50%,k8shpa,currency,cpu_underprovision_m,460.508
+5R-50%,k8shpa,cart,cpu_underprovision_m,0.0
+5R-50%,k8shpa,checkout,cpu_underprovision_m,0.0
+5R-50%,k8shpa,productcatalog,cpu_underprovision_m,0.0
+5R-50%,k8shpa,recommendation,cpu_underprovision_m,0.0
+5R-50%,k8shpa,adservice,cpu_underprovision_m,0.0
+5R-50%,k8shpa,other services,cpu_underprovision_m,0.0
+5R-50%,k8shpa,APPLICATION,underprovision_time_min,13.174

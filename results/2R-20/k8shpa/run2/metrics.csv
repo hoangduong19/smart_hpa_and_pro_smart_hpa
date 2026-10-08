@@ -1,0 +1,13 @@
+autoscaler,scenario,run,microservice,supply_cpu_m,cpu_overutilization_pct,overutilization_time_min,cpu_overprovision_m,overprovision_time_min,cpu_underprovision_m,underprovision_time_min
+k8shpa,2R-20%,2,frontend,192.386,153.931,14.378,6.091,0.601,1390.609,14.378
+k8shpa,2R-20%,2,currencyservice,193.147,95.759,14.606,3.807,0.372,823.35,14.606
+k8shpa,2R-20%,2,cartservice,383.249,25.379,12.843,16.244,1.379,227.411,12.344
+k8shpa,2R-20%,2,adservice,200,0,0.0,202.538,14.978,0,0.0
+k8shpa,2R-20%,2,checkoutservice,191.371,29.668,13.107,8.122,1.373,158.122,12.604
+k8shpa,2R-20%,2,productcatalogservice,192.132,62.416,14.104,7.107,0.875,482.741,13.852
+k8shpa,2R-20%,2,recommendationservice,191.624,58.505,14.104,7.107,0.875,436.802,13.353
+k8shpa,2R-20%,2,paymentservice,191.878,30.19,13.349,7.868,1.127,163.198,13.102
+k8shpa,2R-20%,2,shippingservice,180.964,0.784,0.415,15.482,2.862,0,0.0
+k8shpa,2R-20%,2,emailservice,100,1.19,0.772,94.416,14.206,0,0.0
+k8shpa,2R-20%,2,redis-cart,70,0,0.0,70,14.978,0,0.0
+k8shpa,2R-20%,2,APPLICATION,2086.751,457.824,14.606,438.782,0.372,3682.234,14.606

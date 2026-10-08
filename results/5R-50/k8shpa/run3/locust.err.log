@@ -1,0 +1,71 @@
+[2026-10-02 16:13:50,936] DESKTOP-1G7ONFQ/INFO/locust.main: Starting Locust 2.46.6
+[2026-10-02 16:13:50,940] DESKTOP-1G7ONFQ/INFO/locust.main: Run time limit set to 900 seconds
+[2026-10-02 16:13:50,944] DESKTOP-1G7ONFQ/INFO/locust.runners: Ramping to 200 users at a rate of 0.67 per second
+[2026-10-02 16:18:49,217] DESKTOP-1G7ONFQ/INFO/locust.runners: All users spawned: {"WebsiteUser": 200} (200 total users)
+[2026-10-02 16:28:50,157] DESKTOP-1G7ONFQ/INFO/locust.main: --run-time limit reached, shutting down
+[2026-10-02 16:28:50,339] DESKTOP-1G7ONFQ/INFO/locust.main: Shutting down (exit code 1)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /                                                                               9769    31(0.32%) |    966      13   22531    720 |   10.86        0.03
+GET      /cart                                                                           9384    13(0.14%) |    472       9   22752    200 |   10.43        0.01
+POST     /cart                                                                           9659     3(0.03%) |    378      12   19184    290 |   10.74        0.00
+POST     /cart/checkout                                                                  9656     0(0.00%) |    441      18   22890    340 |   10.74        0.00
+GET      /product/0PUK6V6EV0                                                             1093     4(0.37%) |    507      10   22818    220 |    1.22        0.00
+GET      /product/1YMWWN1N4O                                                             1079     2(0.19%) |    418       9   19185    220 |    1.20        0.00
+GET      /product/2ZYFJ3GM2N                                                             1085     2(0.18%) |    421       9   19178    210 |    1.21        0.00
+GET      /product/66VCHSJNUP                                                             1052     3(0.29%) |    488       9   19172    230 |    1.17        0.00
+GET      /product/6E92ZMYYFZ                                                             1063     5(0.47%) |    556      11   22457    220 |    1.18        0.01
+GET      /product/9SIQT8TOJO                                                             1054     2(0.19%) |    523       9   22425    220 |    1.17        0.00
+GET      /product/L9ECAV7KIM                                                             1045     2(0.19%) |    481       9   21478    220 |    1.16        0.00
+GET      /product/LS4PSXUNUM                                                             1112     4(0.36%) |    409      10   21667    210 |    1.24        0.00
+GET      /product/OLJCESPC7Z                                                             1079     4(0.37%) |    491      10   22830    220 |    1.20        0.00
+POST     /setCurrency                                                                    9505    24(0.25%) |    981      14   22513    720 |   10.57        0.03
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                     57635    99(0.17%) |    620       9   22890    340 |   64.08        0.11
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+GET      /                                                                                     720    920   1100   1100   1400   1800   4600  11000  21000  23000  23000   9769
+GET      /cart                                                                                 200    280    350    390    550    750   2000  12000  20000  23000  23000   9384
+POST     /cart                                                                                 290    390    460    490    650    810   1200   1600   6900  19000  19000   9659
+POST     /cart/checkout                                                                        340    410    500    530    700    900   1300   1600  15000  23000  23000   9656
+GET      /product/0PUK6V6EV0                                                                   220    290    340    390    530    790   2700  14000  22000  23000  23000   1093
+GET      /product/1YMWWN1N4O                                                                   220    290    360    400    560    800   1300   5300  19000  19000  19000   1079
+GET      /product/2ZYFJ3GM2N                                                                   210    300    350    390    600    850   1200   6100  19000  19000  19000   1085
+GET      /product/66VCHSJNUP                                                                   230    310    380    420    560    900   1300   9600  19000  19000  19000   1052
+GET      /product/6E92ZMYYFZ                                                                   220    310    360    420    580    950   4500  14000  20000  22000  22000   1063
+GET      /product/9SIQT8TOJO                                                                   220    280    340    390    530    730   3900  14000  19000  22000  22000   1054
+GET      /product/L9ECAV7KIM                                                                   220    300    360    400    580    920   2500  12000  19000  21000  21000   1045
+GET      /product/LS4PSXUNUM                                                                   210    300    360    400    560    790   1200   3900  21000  22000  22000   1112
+GET      /product/OLJCESPC7Z                                                                   220    290    350    380    550    770   2800  12000  23000  23000  23000   1079
+POST     /setCurrency                                                                          720    920   1100   1100   1400   1800   4900  11000  19000  23000  23000   9505
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                            340    490    640    750   1100   1400   2200   6700  19000  23000  23000  57635
+
+Error report
+# occurrences      Error                                                                                               
+------------------|---------------------------------------------------------------------------------------------------------------------------------------------
+11                 POST /setCurrency: ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)
+13                 GET /cart: ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)
+2                  GET /product/1YMWWN1N4O: ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)
+1                  GET /product/9SIQT8TOJO: ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)
+13                 GET /: ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)
+3                  GET /product/6E92ZMYYFZ: ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)
+2                  GET /product/66VCHSJNUP: ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)
+2                  GET /product/OLJCESPC7Z: ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)
+2                  GET /product/2ZYFJ3GM2N: ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)
+2                  GET /product/OLJCESPC7Z: HTTPError('500 Server Error: Internal Server Error for url: /product/OLJCESPC7Z')
+13                 POST /setCurrency: HTTPError('500 Server Error: Internal Server Error for url: /setCurrency')       
+1                  GET /product/66VCHSJNUP: HTTPError('500 Server Error: Internal Server Error for url: /product/66VCHSJNUP')
+4                  GET /product/0PUK6V6EV0: HTTPError('500 Server Error: Internal Server Error for url: /product/0PUK6V6EV0')
+2                  GET /product/L9ECAV7KIM: HTTPError('500 Server Error: Internal Server Error for url: /product/L9ECAV7KIM')
+3                  GET /product/LS4PSXUNUM: HTTPError('500 Server Error: Internal Server Error for url: /product/LS4PSXUNUM')
+18                 GET /: HTTPError('500 Server Error: Internal Server Error for url: /')                              
+2                  GET /product/6E92ZMYYFZ: HTTPError('500 Server Error: Internal Server Error for url: /product/6E92ZMYYFZ')
+2                  POST /cart: HTTPError('500 Server Error: Internal Server Error for url: /cart')                     
+1                  GET /product/9SIQT8TOJO: HTTPError('500 Server Error: Internal Server Error for url: /product/9SIQT8TOJO')
+1                  POST /cart: ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)
+1                  GET /product/LS4PSXUNUM: ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)
+------------------|---------------------------------------------------------------------------------------------------------------------------------------------
+

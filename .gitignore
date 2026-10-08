@@ -1,0 +1,10 @@
+# Python
+__pycache__/
+*.pyc
+
+# Upstream clone with its own .git (https://github.com/HussainAhmad05/ProSmart_HPA,
+# commit 49a45c321f595338e62e3fd368bc02676383658e). Re-clone instead of tracking it here.
+Pro_Smart_HPA/
+
+# Runtime Knowledge Base: recreated from kb_template on every run, copies are kept in results/
+smarthpa/Knowledge Base/

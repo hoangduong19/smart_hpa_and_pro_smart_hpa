@@ -1,0 +1,16 @@
+{
+    "autoscaler":  "k8shpa",
+    "scenario":  "5R-50%",
+    "run":  0,
+    "max_replicas":  5,
+    "cpu_threshold":  50,
+    "users":  100,
+    "spawn_rate":  2,
+    "duration_sec":  180,
+    "cooldown_sec":  30,
+    "host":  "http://192.168.161.10",
+    "kube_context":  "k3s-lab",
+    "started_at":  "2026-10-02 14:23:51",
+    "finished_at":  "2026-10-02 14:27:21",
+    "controller_exit_code":  0
+}

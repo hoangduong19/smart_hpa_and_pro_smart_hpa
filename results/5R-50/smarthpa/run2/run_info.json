@@ -1,0 +1,16 @@
+{
+    "autoscaler":  "smarthpa",
+    "scenario":  "5R-50%",
+    "run":  2,
+    "max_replicas":  5,
+    "cpu_threshold":  50,
+    "users":  200,
+    "spawn_rate":  0.67,
+    "duration_sec":  900,
+    "cooldown_sec":  300,
+    "host":  "http://192.168.161.10",
+    "kube_context":  "k3s-lab",
+    "started_at":  "2026-10-02 15:53:02",
+    "finished_at":  "2026-10-02 16:08:32",
+    "controller_exit_code":  0
+}

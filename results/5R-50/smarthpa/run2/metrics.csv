@@ -1,0 +1,13 @@
+autoscaler,scenario,run,microservice,supply_cpu_m,cpu_overutilization_pct,overutilization_time_min,cpu_overprovision_m,overprovision_time_min,cpu_underprovision_m,underprovision_time_min
+smarthpa,5R-50%,2,frontend,851.935,56.065,13.223,37.419,1.835,246.129,10.408
+smarthpa,5R-50%,2,currencyservice,1359.032,52.152,13.688,31.935,2.031,140,10.657
+smarthpa,5R-50%,2,cartservice,356.774,12.371,3.13,66.452,0.839,34.839,2.363
+smarthpa,5R-50%,2,adservice,200,0,0.0,82.581,1.124,0,0.0
+smarthpa,5R-50%,2,checkoutservice,182.581,4.881,1.38,81.613,3.594,8.71,1.234
+smarthpa,5R-50%,2,productcatalogservice,350.323,31.987,8.515,70.323,4.127,57.742,8.102
+smarthpa,5R-50%,2,recommendationservice,263.871,40.858,10.636,71.29,3.353,70,9.892
+smarthpa,5R-50%,2,paymentservice,184.194,8.51,2.282,79.677,4.127,14.194,2.017
+smarthpa,5R-50%,2,shippingservice,100,2.648,0.792,61.935,2.319,5.161,0.792
+smarthpa,5R-50%,2,emailservice,100,0,0.0,70.968,3.118,0,0.0
+smarthpa,5R-50%,2,redis-cart,70,0,0.0,62.323,3.832,0,0.0
+smarthpa,5R-50%,2,APPLICATION,4018.71,209.471,14.28,716.516,4.127,576.774,10.866

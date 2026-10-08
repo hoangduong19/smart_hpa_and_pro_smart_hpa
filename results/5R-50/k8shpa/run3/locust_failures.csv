@@ -1,0 +1,22 @@
+Method,Name,Error,Occurrences,First Seen,Last Seen
+POST,/cart,"ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)",1,2026-10-02T09:25:52Z,2026-10-02T09:25:52Z
+GET,/product/1YMWWN1N4O,"ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)",2,2026-10-02T09:25:21Z,2026-10-02T09:25:24Z
+POST,/cart,HTTPError('500 Server Error: Internal Server Error for url: /cart'),2,2026-10-02T09:25:24Z,2026-10-02T09:25:24Z
+GET,/product/66VCHSJNUP,HTTPError('500 Server Error: Internal Server Error for url: /product/66VCHSJNUP'),1,2026-10-02T09:25:24Z,2026-10-02T09:25:24Z
+GET,/product/6E92ZMYYFZ,"ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)",3,2026-10-02T09:25:21Z,2026-10-02T09:25:52Z
+GET,/product/2ZYFJ3GM2N,"ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)",2,2026-10-02T09:25:24Z,2026-10-02T09:25:52Z
+GET,/cart,"ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)",13,2026-10-02T09:25:21Z,2026-10-02T09:25:52Z
+GET,/product/9SIQT8TOJO,"ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)",1,2026-10-02T09:25:21Z,2026-10-02T09:25:21Z
+GET,/product/66VCHSJNUP,"ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)",2,2026-10-02T09:25:21Z,2026-10-02T09:25:21Z
+GET,/product/LS4PSXUNUM,"ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)",1,2026-10-02T09:25:52Z,2026-10-02T09:25:52Z
+GET,/product/9SIQT8TOJO,HTTPError('500 Server Error: Internal Server Error for url: /product/9SIQT8TOJO'),1,2026-10-02T09:25:24Z,2026-10-02T09:25:24Z
+GET,/product/LS4PSXUNUM,HTTPError('500 Server Error: Internal Server Error for url: /product/LS4PSXUNUM'),3,2026-10-02T09:25:24Z,2026-10-02T09:25:24Z
+GET,/product/OLJCESPC7Z,HTTPError('500 Server Error: Internal Server Error for url: /product/OLJCESPC7Z'),2,2026-10-02T09:25:24Z,2026-10-02T09:25:24Z
+POST,/setCurrency,HTTPError('500 Server Error: Internal Server Error for url: /setCurrency'),13,2026-10-02T09:25:24Z,2026-10-02T09:25:24Z
+GET,/,HTTPError('500 Server Error: Internal Server Error for url: /'),18,2026-10-02T09:25:24Z,2026-10-02T09:25:24Z
+GET,/product/0PUK6V6EV0,HTTPError('500 Server Error: Internal Server Error for url: /product/0PUK6V6EV0'),4,2026-10-02T09:25:24Z,2026-10-02T09:25:24Z
+GET,/product/L9ECAV7KIM,HTTPError('500 Server Error: Internal Server Error for url: /product/L9ECAV7KIM'),2,2026-10-02T09:25:24Z,2026-10-02T09:25:24Z
+GET,/,"ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)",13,2026-10-02T09:25:21Z,2026-10-02T09:25:52Z
+POST,/setCurrency,"ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)",11,2026-10-02T09:25:21Z,2026-10-02T09:25:52Z
+GET,/product/OLJCESPC7Z,"ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)",2,2026-10-02T09:25:24Z,2026-10-02T09:25:52Z
+GET,/product/6E92ZMYYFZ,HTTPError('500 Server Error: Internal Server Error for url: /product/6E92ZMYYFZ'),2,2026-10-02T09:25:24Z,2026-10-02T09:25:24Z
