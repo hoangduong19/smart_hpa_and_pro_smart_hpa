@@ -181,6 +181,8 @@ finally {
             $compareArgs = @((Join-Path $CodeDir "make_comparison.py"), (Split-Path (Split-Path $OutDir)))
             if ($Run -eq 0) { $compareArgs += "--include-trials" }
             & $Python @compareArgs
+            # user-side metrics of the scenario (latency, SLO, throughput); trial runs are too short for its phases
+            & $Python (Join-Path $CodeDir "make_user_metrics.py") (Split-Path (Split-Path $OutDir))
         }
     }
 }

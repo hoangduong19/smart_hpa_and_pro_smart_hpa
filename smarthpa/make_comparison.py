@@ -4,7 +4,8 @@
 #   fig_runs.png        one panel per metric, x = run number, the autoscalers' points of the same run joined
 #                       by a line -> if every line tilts the same way, the trend is consistent across runs
 #   fig_means.png       mean of each metric per autoscaler (paper Fig. 6 style) with every run drawn as a dot
-#   comparison.md       per-run table + consistency table ("Smart HPA better in k/n runs") + mean +/- std
+#   comparison.md       per-run table + consistency table ("Smart HPA better in k/n runs", with the exact
+#                       Mann-Whitney U p-value of the two groups of runs) + mean +/- std
 #
 # Autoscalers without runs in the scenario are left out (ProSmart HPA only runs in 2R-20%).
 # Runs are paired by run number. Trial runs (run0) are skipped unless --include-trials is given.
@@ -13,6 +14,7 @@
 
 import csv
 import glob
+import itertools
 import os
 import re
 import statistics
@@ -45,20 +47,26 @@ COLOR = {"k8shpa": "#eb6834", "smarthpa": "#2a78d6", "prosmarthpa": "#1baf7a"}
 MARKER = {"k8shpa": "s", "smarthpa": "o", "prosmarthpa": "^"}   # shape as a second channel, so identity is not color alone
 
 
-def load_runs(scenario_dir, include_trials):
-    runs = {}                                            # (autoscaler, run) -> metrics dict
+def run_dirs(scenario_dir, include_trials):
+    """(autoscaler, run number, run directory) of every finished run of the scenario."""
     for a, _ in AUTOSCALERS:
         for path in glob.glob(os.path.join(scenario_dir, a, "run*", "metrics.csv")):
             run_dir = os.path.dirname(path)
             n = int(re.search(r"run(\d+)$", run_dir).group(1))
             if n == 0 and not include_trials:
                 continue
-            app = [r for r in csv.DictReader(open(path, newline="")) if r["microservice"] == "APPLICATION"][0]
-            m = {k: float(app[k]) for k, _, _ in METRICS if k in app}
-            total = [r for r in csv.DictReader(open(os.path.join(run_dir, "locust_stats.csv"), newline="")) if r["Name"] == "Aggregated"][0]
-            m["p95_ms"] = float(total["95%"])
-            m["failure_pct"] = 100 * float(total["Failure Count"]) / max(float(total["Request Count"]), 1)
-            runs[(a, n)] = m
+            yield a, n, run_dir
+
+
+def load_runs(scenario_dir, include_trials):
+    runs = {}                                            # (autoscaler, run) -> metrics dict
+    for a, n, run_dir in run_dirs(scenario_dir, include_trials):
+        app = [r for r in csv.DictReader(open(os.path.join(run_dir, "metrics.csv"), newline="")) if r["microservice"] == "APPLICATION"][0]
+        m = {k: float(app[k]) for k, _, _ in METRICS if k in app}
+        total = [r for r in csv.DictReader(open(os.path.join(run_dir, "locust_stats.csv"), newline="")) if r["Name"] == "Aggregated"][0]
+        m["p95_ms"] = float(total["95%"])
+        m["failure_pct"] = 100 * float(total["Failure Count"]) / max(float(total["Request Count"]), 1)
+        runs[(a, n)] = m
     return runs
 
 
@@ -83,11 +91,59 @@ def paired_runs(runs, a, b):
     return sorted(n for (aa, n) in runs if aa == a and (b, n) in runs)
 
 
-def fig_runs(runs, present, comparisons, scenario, out):
+def mann_whitney_p(x, y):
+    """Exact two-sided Mann-Whitney U p-value (rank-sum permutation test, mid-ranks for ties). With 5 runs per
+    autoscaler the smallest possible value is 2/252 = 0.008, reached when the two groups do not overlap."""
+    pooled = sorted(x + y)
+    if len(x) < 2 or len(y) < 2 or len(pooled) > 20 or pooled[0] == pooled[-1]:
+        return None
+    rank = {v: sum(i + 1 for i, p in enumerate(pooled) if p == v) / pooled.count(v) for v in set(pooled)}
+    ranks = [rank[v] for v in x + y]
+    expected = len(x) * (len(pooled) + 1) / 2
+    observed = abs(sum(ranks[:len(x)]) - expected)
+    sums = [abs(sum(c) - expected) for c in itertools.combinations(ranks, len(x))]
+    return sum(1 for d in sums if d >= observed - 1e-9) / len(sums)
+
+
+def consistency_lines(runs, comparisons, metrics):
+    lines = []
+    for a, b in comparisons:
+        paired = paired_runs(runs, a, b)
+        lines += ["", f"## Consistency ({NAME[a]} vs {NAME[b]}, same run number)", "",
+                  f"Paired runs: {paired or 'none yet'}. p = exact two-sided Mann-Whitney U over all runs of the two autoscalers.", "",
+                  f"| Metric | Better is | {NAME[a]} better in | p | Per run ({NAME[a]} vs {NAME[b]}) |", "|---|---|---|---|---|"]
+        for key, label, hib in metrics:
+            cells, wins = [], 0
+            for n in paired:
+                s, k = runs[(a, n)][key], runs[(b, n)][key]
+                w = better(key, hib, s, k)
+                wins += bool(w)
+                cells.append(f"run{n}: {s:,.1f} vs {k:,.1f} {'✅' if w else ('➖' if w is None else '❌')}")
+            p = mann_whitney_p(*[[m[key] for (aa, _), m in sorted(runs.items()) if aa == g] for g in (a, b)])
+            lines.append(f"| {label} | {'higher' if hib else 'lower'} | {wins}/{len(paired)} | "
+                         f"{'-' if p is None else f'{p:.3f}'} | {'; '.join(cells)} |")
+    return lines
+
+
+def means_lines(runs, present, metrics):
+    lines = ["", "## Mean ± standard deviation", "", "| Metric | " + " | ".join(NAME[a] for a in present) + " |",
+             "|---|" + "---|" * len(present)]
+    for key, label, _ in metrics:
+        row = []
+        for a in present:
+            vals = [m[key] for (aa, _), m in runs.items() if aa == a]
+            row.append(f"{statistics.mean(vals):,.2f}" + (f" ± {statistics.stdev(vals):,.2f}" if len(vals) > 1 else "") + f" (n={len(vals)})")
+        lines.append(f"| {label} | " + " | ".join(row) + " |")
+    return lines
+
+
+def fig_runs(runs, present, comparisons, scenario, out, metrics=METRICS):
     fig, axes = plt.subplots(3, 3, figsize=(15, 10.5), facecolor=SURFACE)
     fig.suptitle(f"{scenario}: every run, {' vs '.join(NAME[a] for a in present)} (same run joined)", x=0.01, ha="left",
                  fontsize=14, color=INK, fontweight="bold")
-    for ax, (key, label, hib) in zip(axes.flatten(), METRICS):
+    for ax in axes.flatten()[len(metrics):]:
+        ax.set_visible(False)
+    for ax, (key, label, hib) in zip(axes.flatten(), metrics):
         style_axis(ax)
         for n in sorted({n for (_, n) in runs}):
             vals = [runs[(a, n)][key] for a in present if (a, n) in runs]
@@ -162,27 +218,7 @@ def main():
 
     lines = [f"# Comparison: {scenario}", "",
              f"Runs found: {', '.join(f'{a} run{n}' for a, n in sorted(runs))}."]
-    for a, b in comparisons:
-        paired = paired_runs(runs, a, b)
-        lines += ["", f"## Consistency ({NAME[a]} vs {NAME[b]}, same run number)", "",
-                  f"Paired runs: {paired or 'none yet'}.", "",
-                  f"| Metric | Better is | {NAME[a]} better in | Per run ({NAME[a]} vs {NAME[b]}) |", "|---|---|---|---|"]
-        for key, label, hib in METRICS:
-            cells, wins = [], 0
-            for n in paired:
-                s, k = runs[(a, n)][key], runs[(b, n)][key]
-                w = better(key, hib, s, k)
-                wins += bool(w)
-                cells.append(f"run{n}: {s:,.1f} vs {k:,.1f} {'✅' if w else ('➖' if w is None else '❌')}")
-            lines.append(f"| {label} | {'higher' if hib else 'lower'} | {wins}/{len(paired)} | {'; '.join(cells)} |")
-    lines += ["", "## Mean ± standard deviation", "", "| Metric | " + " | ".join(NAME[a] for a in present) + " |",
-              "|---|" + "---|" * len(present)]
-    for key, label, _ in METRICS:
-        row = []
-        for a in present:
-            vals = [m[key] for (aa, _), m in runs.items() if aa == a]
-            row.append(f"{statistics.mean(vals):,.2f}" + (f" ± {statistics.stdev(vals):,.2f}" if len(vals) > 1 else "") + f" (n={len(vals)})")
-        lines.append(f"| {label} | " + " | ".join(row) + " |")
+    lines += consistency_lines(runs, comparisons, METRICS) + means_lines(runs, present, METRICS)
     lines += ["", "Figures: `fig_runs.png` (per run, consistency), `fig_means.png` (means, paper Fig. 6 style)."]
     with open(os.path.join(out_dir, "comparison.md"), "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")

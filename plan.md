@@ -3,7 +3,7 @@
 > **Bài báo:** H. Ahmad, C. Treude, M. Wagner, C. Szabo, *Towards resource-efficient reactive and proactive auto-scaling for microservice architectures*, Journal of Systems and Software 225 (2025) 112390. DOI: 10.1016/j.jss.2025.112390
 > **Người thực hiện:** Nhóm. **Hoàng Quốc Dương** phụ trách phần demo (hạ tầng, chạy hệ thống, chạy thí nghiệm, demo khi bảo vệ)
 > **Cập nhật lần cuối:** 12/10/2026
-> **Trạng thái tổng:** 🟡 Giai đoạn 1–6 xong (20/20 lần chạy hợp lệ: 2R-20% 5 cặp, 5R-50% 5 cặp; lần 4–5 của 2R-20% chạy 12/10). Giai đoạn 6b ProSmart HPA xong (5/5 lần 2R-20% hợp lệ, 08/10 và 12/10). Tiếp theo: Giai đoạn 7 (cải tiến) — cần chốt phương án ở mục 7 (Q6)
+> **Trạng thái tổng:** 🟡 Giai đoạn 1–6 xong (20/20 lần chạy hợp lệ: 2R-20% 5 cặp, 5R-50% 5 cặp; lần 4–5 của 2R-20% chạy 12/10). Giai đoạn 6b ProSmart HPA xong (5/5 lần 2R-20% hợp lệ, 08/10 và 12/10). Giai đoạn 7: C1 xong phần phân tích (12/10). Tiếp theo: chốt C2/C3 ở mục 7 (Q6)
 > **Yêu cầu của giảng viên:** chạy nhiều lần, mỗi lần ra con số khác nhau cũng được, nhưng **xu hướng phải giống nhau ở mọi lần chạy**.
 
 ---
@@ -291,7 +291,7 @@ Chú thích: ✅ xong · ⚠️ cần xác nhận · ⬜ chưa làm
 | 5. Chuẩn bị baseline K8s HPA + công cụ ghi metric | ✅ `k8shpa_observer.py`, `cluster_recorder.py`, `run_experiment.ps1`, `run_batch.ps1`, `check_run.py`, `make_run_report.py`, `make_comparison.py` |
 | 6. Chạy thí nghiệm tái hiện | ✅ 20/20 lần hợp lệ (5R-50% 5 cặp, xong 07/10; 2R-20% 5 cặp, xong 12/10), xem [ma trận chạy](#ma-trận-chạy-xen-kẽ-để-giảm-sai-lệch-theo-thời-gian) |
 | 6b. ProSmart HPA (2R-20%, window 25s) | ✅ 5/5 lần hợp lệ (08/10 và 12/10), xem [Giai đoạn 6b](#56b-giai-đoạn-6b-prosmart-hpa-2r-20-window-25s) |
-| 7. Cải tiến | ⬜ **← TIẾP THEO** |
+| 7. Cải tiến | 🟡 C1 xong phần phân tích (12/10); C2/C3 chưa làm **← TIẾP THEO** |
 | 8. Phân tích, báo cáo, slide | ⬜ |
 
 ---
@@ -726,10 +726,45 @@ results/
 - **Làm gì:** từ `locust_stats_history.csv`, lấy p50/p95/p99 latency, requests/s, failures/s theo thời gian.
 - **Chỉ số mới:**
   - p95 latency trung bình trong pha tải cao (phút 5–15).
-  - Tỉ lệ thời gian vi phạm SLO, ví dụ % thời gian p95 > 500ms (ngưỡng chốt sau khi chạy thử).
+  - Tỉ lệ thời gian vi phạm SLO, ví dụ % thời gian p95 > 500ms (ngưỡng chốt sau khi chạy thử; đã chốt 1000 ms, xem kết quả bên dưới).
   - Tổng số request lỗi.
 - **Giả thuyết:** Smart HPA giảm underprovision nên latency của `frontend` cũng thấp hơn.
 - **Công sức:** chỉ cần thêm phần phân tích, không phải chạy thêm thí nghiệm.
+
+##### Kết quả C1 (12/10, ✅ xong phần phân tích)
+
+Script `smarthpa\make_user_metrics.py`, tự chạy ở cuối `run_experiment.ps1`. Đầu ra ở `results\<kịch bản>\comparison\`: `user_metrics.md`, `user_metrics.csv`, `fig_user_runs.png` (từng lần chạy), `fig_user_timeline.png` (p95 và throughput theo thời gian).
+
+- **Cách tính:** Locust ghi mỗi giây một dòng, các cột percentile tính trên khoảng 10 giây gần nhất. Giá trị của một pha là trung bình các dòng trong pha đó. Pha tăng tải = phút 0–5, pha tải cao = phút 5–15.
+- **Ngưỡng SLO chốt là p95 ≤ 1000 ms.** Ngưỡng 500 ms dự kiến ban đầu không dùng được: gần như mọi lần chạy đều vi phạm 98–100% thời gian nên không phân biệt được autoscaler nào.
+- 9 chỉ số: median / p95 / p99 pha tải cao, p95 pha tăng tải, % thời gian vi phạm SLO, throughput, số request lỗi, p95 trang chủ (`GET /`), p95 checkout (`POST /cart/checkout`).
+- Cột **p** là kiểm định Mann-Whitney U chính xác, hai phía (giải quyết W6). Cột này cũng đã thêm vào `comparison.md` cho 7 chỉ số Table 1. Với 5 lần mỗi bên, p nhỏ nhất có thể là 0,008 (hai nhóm không chồng nhau).
+
+**2R-20%** (trung bình 5 lần; "x/5" là số lần tốt hơn K8s HPA):
+
+| Chỉ số (pha tải cao) | K8s HPA | Smart HPA | ProSmart HPA |
+|---|---|---|---|
+| Median (ms) | 456 | 364 (5/5, p = 0,016) | 227 (5/5, p = 0,008) |
+| p95 (ms) | 1.426 | 1.238 (4/5, p = 0,151) | 859 (5/5, p = 0,008) |
+| % thời gian p95 > 1000 ms | 97,3 | 46,7 (5/5, p = 0,008) | 11,6 (5/5, p = 0,008) |
+| Throughput (request/s) | 76,9 | 81,8 (5/5, p = 0,008) | 86,7 (5/5, p = 0,008) |
+| Request lỗi (tổng 5 lần) | 0 | 44 (chỉ ở run 4) | 0 |
+
+- Thứ tự ProSmart → Smart HPA → K8s HPA lặp lại ở cả 9 chỉ số trừ request lỗi. ProSmart tốt hơn Smart HPA 5/5 lần ở cả 8 chỉ số còn lại (p = 0,008).
+- Smart HPA tốt hơn K8s HPA về phía người dùng **dù kém hơn ở CPU Underprovision và CPU Overutilization** (mục 6). Chỉ số CPU của Table 1 và trải nghiệm người dùng không đi cùng hướng ở kịch bản này, đúng điểm yếu W1.
+- Lần ngược hướng của Smart HPA ở p95 là run 4, cũng là lần có 44 request lỗi 500.
+- Lợi thế của ProSmart không cùng mức tài nguyên: nó dùng vượt quota 16–23% (W8).
+
+**5R-50%** (K8s HPA so với Smart HPA, trung bình ± ĐLC):
+
+| Chỉ số (pha tải cao) | K8s HPA | Smart HPA | Smart tốt hơn | p |
+|---|---|---|---|---|
+| p95 (ms) | 1.397 ± 767 | 1.085 ± 151 | 3/5 | 0,841 |
+| % thời gian p95 > 1000 ms | 51,1 ± 40,3 | 30,7 ± 16,8 | 2/5 (1 lần bằng) | 0,595 |
+| Throughput (request/s) | 81,4 ± 6,0 | 84,7 ± 1,0 | 3/5 | 0,421 |
+
+- **Giả thuyết không được xác nhận ở 5R-50%:** không chỉ số phía người dùng nào nhất quán (cao nhất 3/5, mọi p ≥ 0,42), dù 6/7 chỉ số CPU nhất quán 5/5. Smart HPA chỉ ổn định hơn giữa các lần chạy (ĐLC p95 151 so với 767 ms).
+- Trung bình của K8s HPA bị kéo lên bởi run 3 (p95 2.664 ms, 99 request lỗi) và run 5 (1.543 ms). Chưa tìm nguyên nhân hai lần này; cả hai đã qua `check_run.py`.
 
 #### C2. Thử tải đột biến (giải quyết W2, độ khó ⭐⭐)
 - **Làm gì:** viết lớp `LoadTestShape` trong Locust, ví dụ:
@@ -957,7 +992,8 @@ Cần trả lời để chốt kế hoạch:
 | 12/10 10:17 | 3 VM đang tắt → bật bằng `vmrun ... nogui`. Thêm tham số `-Autoscalers` cho `run_batch.ps1` (mặc định vẫn `k8shpa,smarthpa`) để batch chạy được cả ProSmart | 3 node Ready sau vài giây |
 | 12/10 10:23–12:30 | `run_batch.ps1 -Pairs "2R-20%:4,2R-20%:5" -Autoscalers "k8shpa,smarthpa,prosmarthpa"`: 6 lần xen kẽ cùng ngày, ghi ping mỗi giây vào `results\ping_20261012.csv`. ProSmart dùng nguyên 22 model train từ run1–3 | ✅ Cả 6 lần hợp lệ ngay lần thử đầu, 0 pod `Unschedulable`, 0/7542 ping mất trên mỗi node. Smart HPA run4 có 44/61.781 request lỗi 500 (0,07%) trong 2 giây lúc 11:01, không phải do mạng → giữ. Kết luận không đổi so với n=3; run 4 ngược hướng ở Supply / Overprovision Time / Underprovision Time (mục 6). p95 của Smart HPA và K8s HPA hôm nay cao hơn 05/10 (1200 và 1400 ms so với 930–1000 và 1300 ms) |
 | 12/10 | Đối chiếu lại plan với `results\` và code sau đợt chạy 12/10 | Số liệu khớp; sửa `currency` ở run 4 (so với 855–1129m, không phải ~1058m), cập nhật mục 4, ma trận chạy, W8. `run_batch.ps1`: `-PairMinutes` mặc định tính theo số autoscaler (21 phút mỗi cái). `train_prophet.py`: mặc định `--mode reg` để train lại không vô tình ghi đè bằng model chỉ theo thời gian |
-| | *(tiếp theo)* Giai đoạn 7 (cải tiến), cần chốt Q6 | |
+| 12/10 | Tắt 3 VM (`vmrun ... stop soft`). **C1:** viết `make_user_metrics.py` (9 chỉ số phía người dùng từ `locust_stats_history.csv`, 2 hình), thêm p-value Mann-Whitney U vào `make_comparison.py` (W6), gắn vào cuối `run_experiment.ps1` | 2R-20%: ProSmart → Smart HPA → K8s HPA, nhất quán 5/5 ở hầu hết chỉ số. 5R-50%: không chỉ số phía người dùng nào nhất quán (cao nhất 3/5). Ngưỡng SLO chốt 1000 ms. Chi tiết ở mục 7, phần C1. Số trong `all_runs.csv` và các hình cũ không đổi sau khi sửa `make_comparison.py` |
+| | *(tiếp theo)* C3 (và C2 nếu kịp), cần chốt Q6 | |
 
 ---
 
