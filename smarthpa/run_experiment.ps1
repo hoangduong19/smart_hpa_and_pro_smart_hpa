@@ -3,7 +3,8 @@ Runs ONE experiment run end to end (plan.md, section 6 "Quy trinh mot lan chay")
   1. Check kubectl targets the k3s lab cluster
   2. Reset: delete HPAs, scale every deployment to 1, wait until clean, cool down
   3. Start the autoscaler under test:
-       smarthpa -> Microservice_Capacity_Analyzer.py (scales the app itself)
+       smarthpa    -> Microservice_Capacity_Analyzer.py (scales the app itself)
+       prosmarthpa -> ..\prosmarthpa\prosmart_hpa.py with D:\prosmart-venv (PROPHET models in ..\prosmarthpa\models)
        k8shpa   -> kubectl autoscale for all deployments + k8shpa_observer.py (records only)
   4. Start cluster_recorder.py and Locust at the same time
   5. Stop everything, remove HPAs, copy Knowledge Base + logs to results\<scenario>\<autoscaler>\run<N>\
@@ -13,7 +14,7 @@ Example:
   .\run_experiment.ps1 -Autoscaler smarthpa -Scenario 5R-50% -Run 0 -DurationSec 300 -Users 100 -CooldownSec 60   # short trial
 #>
 param(
-    [Parameter(Mandatory = $true)][ValidateSet("smarthpa", "k8shpa")][string]$Autoscaler,
+    [Parameter(Mandatory = $true)][ValidateSet("smarthpa", "prosmarthpa", "k8shpa")][string]$Autoscaler,
     [Parameter(Mandatory = $true)][ValidatePattern('^\d+R-\d+%$')][string]$Scenario,
     [Parameter(Mandatory = $true)][int]$Run,
     [int]$Users = 200,
@@ -28,6 +29,7 @@ param(
 $ErrorActionPreference = "Stop"
 $Python = "D:\smarthpa-venv\Scripts\python.exe"
 $Locust = "D:\smarthpa-venv\Scripts\locust.exe"
+$ProSmartPython = "D:\prosmart-venv\Scripts\python.exe"         # prophet needs numpy < 2 / pandas 2.x, kept apart from smarthpa-venv
 $CodeDir = $PSScriptRoot
 $ScenarioDir = $Scenario.TrimEnd('%')
 $RelOut = "..\results\$ScenarioDir\$Autoscaler\run$Run"
@@ -47,6 +49,10 @@ function Get-DeploymentNames { Invoke-Kubectl get deployments -o "jsonpath={.ite
 $ctx = (Invoke-Kubectl config current-context).Trim()
 if ($ctx -ne $ExpectedContext) { throw "kubectl context is '$ctx', expected '$ExpectedContext'. Aborting." }
 if ((Test-Path $OutDir) -and -not $Force) { throw "$OutDir already exists. Use -Force to overwrite or pick another -Run." }
+if ($Autoscaler -eq "prosmarthpa") {
+    $models = @(Get-ChildItem (Join-Path $CodeDir "..\prosmarthpa\models") -Filter *.pkl -ErrorAction SilentlyContinue).Count
+    if ($models -ne 22) { throw "Expected 22 PROPHET models in ..\prosmarthpa\models, found $models. Run train_prophet.py first." }
+}
 $m = [regex]::Match($Scenario, '^(\d+)R-(\d+)%$')
 $MaxR = [int]$m.Groups[1].Value
 $Threshold = [int]$m.Groups[2].Value
@@ -92,9 +98,12 @@ try {
         }
         Log "Created $($Deployments.Count) Kubernetes HPAs (cpu=$Threshold%, max=$MaxR)"
         $controllerScript = "k8shpa_observer.py"
+    } elseif ($Autoscaler -eq "prosmarthpa") {
+        $controllerScript = "..\prosmarthpa\prosmart_hpa.py"
     } else {
         $controllerScript = "Microservice_Capacity_Analyzer.py"
     }
+    $controllerPython = if ($Autoscaler -eq "prosmarthpa") { $ProSmartPython } else { $Python }
 
     $info = [ordered]@{
         autoscaler = $Autoscaler; scenario = $Scenario; run = $Run; max_replicas = $MaxR; cpu_threshold = $Threshold
@@ -108,7 +117,7 @@ try {
         -WorkingDirectory $CodeDir -NoNewWindow -PassThru -RedirectStandardError "$OutDir\recorder.err.log"
     $procs += Start-Process $Locust -ArgumentList "-f locustfile.py --host $TargetHost --headless -u $Users -r $SpawnRate -t ${DurationSec}s --csv `"$RelOut\locust`" --csv-full-history --only-summary" `
         -WorkingDirectory $CodeDir -NoNewWindow -PassThru -RedirectStandardOutput "$OutDir\locust.out.log" -RedirectStandardError "$OutDir\locust.err.log"
-    $controller = Start-Process $Python -ArgumentList $controllerScript `
+    $controller = Start-Process $controllerPython -ArgumentList $controllerScript `
         -WorkingDirectory $CodeDir -NoNewWindow -PassThru -RedirectStandardOutput "$OutDir\controller.out.log" -RedirectStandardError "$OutDir\controller.err.log"
     $null = $controller.Handle          # PowerShell 5.1 only reports ExitCode if the handle was opened while running
     $procs += $controller

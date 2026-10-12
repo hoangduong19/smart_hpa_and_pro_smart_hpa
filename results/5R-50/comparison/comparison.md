@@ -1,10 +1,12 @@
 # Comparison: 5R-50%
 
-Runs found: k8shpa run1, k8shpa run2, k8shpa run3, k8shpa run4, k8shpa run5, smarthpa run1, smarthpa run2, smarthpa run3, smarthpa run4, smarthpa run5. Paired runs: [1, 2, 3, 4, 5].
+Runs found: k8shpa run1, k8shpa run2, k8shpa run3, k8shpa run4, k8shpa run5, smarthpa run1, smarthpa run2, smarthpa run3, smarthpa run4, smarthpa run5.
 
 ## Consistency (Smart HPA vs K8s HPA, same run number)
 
-| Metric | Better is | Smart HPA better in | Per run (Smart vs K8s) |
+Paired runs: [1, 2, 3, 4, 5].
+
+| Metric | Better is | Smart HPA better in | Per run (Smart HPA vs K8s HPA) |
 |---|---|---|---|
 | Supply CPU (m) | higher | 5/5 | run1: 3,900.9 vs 2,652.5 ✅; run2: 4,018.7 vs 2,950.2 ✅; run3: 3,582.3 vs 2,737.8 ✅; run4: 3,891.4 vs 2,654.5 ✅; run5: 4,095.5 vs 2,596.1 ✅ |
 | CPU Overutilization (%) | lower | 5/5 | run1: 141.9 vs 215.3 ✅; run2: 209.5 vs 267.5 ✅; run3: 159.6 vs 223.4 ✅; run4: 143.2 vs 202.1 ✅; run5: 148.1 vs 154.5 ✅ |

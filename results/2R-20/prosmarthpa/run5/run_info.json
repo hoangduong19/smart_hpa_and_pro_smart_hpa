@@ -1,0 +1,17 @@
+{
+    "autoscaler":  "prosmarthpa",
+    "scenario":  "2R-20%",
+    "run":  5,
+    "max_replicas":  2,
+    "cpu_threshold":  20,
+    "users":  200,
+    "spawn_rate":  0.67,
+    "duration_sec":  900,
+    "cooldown_sec":  300,
+    "host":  "http://192.168.161.10",
+    "kube_context":  "k3s-lab",
+    "started_at":  "2026-10-12 12:14:44",
+    "monitor_kubectl_errors":  0,
+    "finished_at":  "2026-10-12 12:30:14",
+    "controller_exit_code":  0
+}

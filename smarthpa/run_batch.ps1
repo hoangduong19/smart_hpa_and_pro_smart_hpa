@@ -12,14 +12,17 @@ Example:
 #>
 param(
     [Parameter(Mandatory = $true)][string[]]$Pairs,          # "<scenario>:<run>"
+    [string[]]$Autoscalers = @("k8shpa", "smarthpa"),        # run in this order for each pair; add "prosmarthpa" for 2R-20%
     [string]$Deadline = "",                                  # HH:mm today; empty = no deadline
-    [double]$PairMinutes = 42,                               # measured: R01+R02 took 41.5 min with default settings
+    [double]$PairMinutes = 0,                                # 0 = 21 min per autoscaler (measured: R01+R02 took 41.5 min with default settings)
     [int]$MaxAttempts = 3
 )
 
 $ErrorActionPreference = "Stop"
 # powershell -File passes "a","b" as one string "a,b": split on commas either way
 $Pairs = @($Pairs | ForEach-Object { $_ -split ',' } | ForEach-Object { $_.Trim() } | Where-Object { $_ })
+$Autoscalers = @($Autoscalers | ForEach-Object { $_ -split ',' } | ForEach-Object { $_.Trim() } | Where-Object { $_ })
+if ($PairMinutes -le 0) { $PairMinutes = 21 * $Autoscalers.Count }
 $Script = Join-Path $PSScriptRoot "run_experiment.ps1"
 $end = if ($Deadline) { [datetime]::ParseExact($Deadline, "HH:mm", $null) } else { [datetime]::MaxValue }
 
@@ -38,7 +41,7 @@ function Wait-Cluster {
     }
 }
 
-Log "Pairs: $($Pairs -join ', ') | deadline: $(if ($Deadline) { $Deadline } else { 'none' }) | ~$PairMinutes min per pair"
+Log "Pairs: $($Pairs -join ', ') | autoscalers: $($Autoscalers -join ', ') | deadline: $(if ($Deadline) { $Deadline } else { 'none' }) | ~$PairMinutes min per pair"
 foreach ($p in $Pairs) {
     $scenario, $run = $p -split ':'
     $eta = (Get-Date).AddMinutes($PairMinutes)
@@ -46,7 +49,7 @@ foreach ($p in $Pairs) {
         Log "Skipping $scenario run $run and the rest: would finish ~$($eta.ToString('HH:mm')), after deadline $Deadline"
         break
     }
-    foreach ($a in "k8shpa", "smarthpa") {
+    foreach ($a in $Autoscalers) {
         $outDir = Join-Path $PSScriptRoot ("..\results\{0}\{1}\run{2}" -f $scenario.TrimEnd('%'), $a, $run)
         if (Test-Path $outDir) { Log "=== $a | $scenario | run $run already done, skipping ==="; continue }
         for ($attempt = 1; $attempt -le $MaxAttempts; $attempt++) {

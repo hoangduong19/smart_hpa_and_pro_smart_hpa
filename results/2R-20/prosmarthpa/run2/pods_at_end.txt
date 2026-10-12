@@ -1,0 +1,31 @@
+﻿NAME                                     READY   STATUS    RESTARTS      AGE     IP            NODE          NOMINATED NODE   READINESS GATES
+adservice-689c5b7f7c-4s2x6               1/1     Running   3 (24h ago)   6d3h    10.42.0.150   k3s-master    <none>           <none>
+cartservice-7c77b9c98d-knm8h             1/1     Running   0             14m     10.42.4.163   k3s-worker2   <none>           <none>
+cartservice-7c77b9c98d-lw5bw             1/1     Running   1 (56m ago)   25h     10.42.2.244   k3s-worker1   <none>           <none>
+checkoutservice-ddc97f8b7-9wr5j          1/1     Running   3 (56m ago)   6d3h    10.42.2.239   k3s-worker1   <none>           <none>
+checkoutservice-ddc97f8b7-wm48f          1/1     Running   0             14m     10.42.4.166   k3s-worker2   <none>           <none>
+currencyservice-5cd798cd99-5xn9p         1/1     Running   0             3m12s   10.42.4.168   k3s-worker2   <none>           <none>
+currencyservice-5cd798cd99-9zbbq         1/1     Running   0             14m     10.42.2.16    k3s-worker1   <none>           <none>
+currencyservice-5cd798cd99-c7dmz         1/1     Running   0             14m     10.42.2.15    k3s-worker1   <none>           <none>
+currencyservice-5cd798cd99-lm56q         1/1     Running   0             14m     10.42.0.163   k3s-master    <none>           <none>
+currencyservice-5cd798cd99-ppwjl         1/1     Running   0             14m     10.42.4.164   k3s-worker2   <none>           <none>
+currencyservice-5cd798cd99-qg86x         1/1     Running   0             14m     10.42.4.165   k3s-worker2   <none>           <none>
+currencyservice-5cd798cd99-xdbw8         1/1     Running   0             44m     10.42.0.158   k3s-master    <none>           <none>
+emailservice-6f7c9586f7-7qpl7            1/1     Running   3 (57m ago)   6d3h    10.42.4.140   k3s-worker2   <none>           <none>
+emailservice-6f7c9586f7-z4ffn            1/1     Running   0             6m22s   10.42.2.22    k3s-worker1   <none>           <none>
+frontend-6dbcf6bc9c-7d989                1/1     Running   0             12m     10.42.0.165   k3s-master    <none>           <none>
+frontend-6dbcf6bc9c-7vsm6                1/1     Running   0             14m     10.42.4.167   k3s-worker2   <none>           <none>
+frontend-6dbcf6bc9c-8sq5z                1/1     Running   0             15m     10.42.2.13    k3s-worker1   <none>           <none>
+frontend-6dbcf6bc9c-lmd6x                1/1     Running   1 (24h ago)   25h     10.42.0.154   k3s-master    <none>           <none>
+frontend-6dbcf6bc9c-mgh89                1/1     Running   0             14m     10.42.2.20    k3s-worker1   <none>           <none>
+frontend-6dbcf6bc9c-x4xkj                1/1     Running   0             14m     10.42.4.162   k3s-worker2   <none>           <none>
+paymentservice-75cb85754f-686ff          1/1     Running   5 (57m ago)   6d3h    10.42.4.138   k3s-worker2   <none>           <none>
+paymentservice-75cb85754f-rmt6x          1/1     Running   0             14m     10.42.2.14    k3s-worker1   <none>           <none>
+productcatalogservice-6f9b7b94b7-6hbs6   1/1     Running   1 (57m ago)   25h     10.42.4.134   k3s-worker2   <none>           <none>
+productcatalogservice-6f9b7b94b7-fhxxq   1/1     Running   0             14m     10.42.2.17    k3s-worker1   <none>           <none>
+recommendationservice-84b4d75d85-529tj   1/1     Running   0             14m     10.42.2.18    k3s-worker1   <none>           <none>
+recommendationservice-84b4d75d85-dxbdj   1/1     Running   1 (57m ago)   25h     10.42.0.151   k3s-master    <none>           <none>
+redis-cart-788fbddc7-89t4m               1/1     Running   0             13m     10.42.0.164   k3s-master    <none>           <none>
+redis-cart-788fbddc7-glmnw               1/1     Running   3 (57m ago)   6d3h    10.42.4.142   k3s-worker2   <none>           <none>
+shippingservice-794c6f8f99-5gl74         1/1     Running   0             11m     10.42.2.21    k3s-worker1   <none>           <none>
+shippingservice-794c6f8f99-s9757         1/1     Running   3 (24h ago)   6d3h    10.42.0.152   k3s-master    <none>           <none>

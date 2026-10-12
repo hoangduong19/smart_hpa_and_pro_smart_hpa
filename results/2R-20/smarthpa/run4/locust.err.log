@@ -1,0 +1,60 @@
+[2026-10-12 10:50:23,148] DESKTOP-1G7ONFQ/INFO/locust.main: Starting Locust 2.46.6
+[2026-10-12 10:50:23,153] DESKTOP-1G7ONFQ/INFO/locust.main: Run time limit set to 900 seconds
+[2026-10-12 10:50:23,156] DESKTOP-1G7ONFQ/INFO/locust.runners: Ramping to 200 users at a rate of 0.67 per second
+[2026-10-12 10:55:21,278] DESKTOP-1G7ONFQ/INFO/locust.runners: All users spawned: {"WebsiteUser": 200} (200 total users)
+[2026-10-12 11:05:22,762] DESKTOP-1G7ONFQ/INFO/locust.main: --run-time limit reached, shutting down
+[2026-10-12 11:05:22,907] DESKTOP-1G7ONFQ/INFO/locust.main: Shutting down (exit code 1)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /                                                                              10512     6(0.06%) |    656       2   15799    400 |   11.68        0.01
+GET      /cart                                                                          10433     9(0.09%) |    296       2    8382    190 |   11.60        0.01
+POST     /cart                                                                          10160     8(0.08%) |    362       7    9527    260 |   11.29        0.01
+POST     /cart/checkout                                                                 10160     9(0.09%) |    319      14    8841    200 |   11.29        0.01
+GET      /product/0PUK6V6EV0                                                             1159     2(0.17%) |    299       2    6106    200 |    1.29        0.00
+GET      /product/1YMWWN1N4O                                                             1118     0(0.00%) |    300       9    7049    200 |    1.24        0.00
+GET      /product/2ZYFJ3GM2N                                                             1094     0(0.00%) |    326      10    7497    210 |    1.22        0.00
+GET      /product/66VCHSJNUP                                                             1159     0(0.00%) |    302       9    7582    200 |    1.29        0.00
+GET      /product/6E92ZMYYFZ                                                             1099     1(0.09%) |    312       4    7078    200 |    1.22        0.00
+GET      /product/9SIQT8TOJO                                                             1121     1(0.09%) |    298       4    7103    190 |    1.25        0.00
+GET      /product/L9ECAV7KIM                                                             1135     0(0.00%) |    289       9    7387    200 |    1.26        0.00
+GET      /product/LS4PSXUNUM                                                             1151     1(0.09%) |    287       7    7947    200 |    1.28        0.00
+GET      /product/OLJCESPC7Z                                                             1127     3(0.27%) |    291       3    7214    200 |    1.25        0.00
+POST     /setCurrency                                                                   10353     4(0.04%) |    666       6   15787    420 |   11.51        0.00
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                     61781    44(0.07%) |    435       2   15799    270 |   68.67        0.05
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+GET      /                                                                                     400    550    680    770   1200   1700   3500   7200  15000  16000  16000  10512
+GET      /cart                                                                                 190    270    340    390    580    800   1100   1400   7500   8400   8400  10433
+POST     /cart                                                                                 260    340    410    460    630    910   1400   2400   8400   9000   9500  10160
+POST     /cart/checkout                                                                        200    300    360    400    570    850   1300   2300   8100   8800   8800  10160
+GET      /product/0PUK6V6EV0                                                                   200    290    360    410    610    900   1200   1700   4400   6100   6100   1159
+GET      /product/1YMWWN1N4O                                                                   200    280    350    410    600    860   1400   1700   4400   7000   7000   1118
+GET      /product/2ZYFJ3GM2N                                                                   210    300    370    430    660    950   1400   1900   6500   7500   7500   1094
+GET      /product/66VCHSJNUP                                                                   200    290    360    410    580    850   1100   1500   6900   7600   7600   1159
+GET      /product/6E92ZMYYFZ                                                                   200    280    350    410    640    870   1300   1700   6500   7100   7100   1099
+GET      /product/9SIQT8TOJO                                                                   190    280    360    420    600    840   1200   1600   6100   7100   7100   1121
+GET      /product/L9ECAV7KIM                                                                   200    290    340    390    580    780   1100   1300   7200   7400   7400   1135
+GET      /product/LS4PSXUNUM                                                                   200    280    340    380    560    810   1200   1500   5600   7900   7900   1151
+GET      /product/OLJCESPC7Z                                                                   200    290    350    400    590    810   1200   1500   5700   7200   7200   1127
+POST     /setCurrency                                                                          420    570    690    780   1200   1700   3500   7000  14000  16000  16000  10353
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                            270    380    470    540    810   1200   1900   3400  12000  16000  16000  61781
+
+Error report
+# occurrences      Error                                                                                               
+------------------|---------------------------------------------------------------------------------------------------------------------------------------------
+6                  GET /: HTTPError('500 Server Error: Internal Server Error for url: /')                              
+9                  GET /cart: HTTPError('500 Server Error: Internal Server Error for url: /cart')                      
+3                  GET /product/OLJCESPC7Z: HTTPError('500 Server Error: Internal Server Error for url: /product/OLJCESPC7Z')
+2                  GET /product/0PUK6V6EV0: HTTPError('500 Server Error: Internal Server Error for url: /product/0PUK6V6EV0')
+8                  POST /cart: HTTPError('500 Server Error: Internal Server Error for url: /cart')                     
+1                  GET /product/6E92ZMYYFZ: HTTPError('500 Server Error: Internal Server Error for url: /product/6E92ZMYYFZ')
+9                  POST /cart/checkout: HTTPError('500 Server Error: Internal Server Error for url: /cart/checkout')   
+4                  POST /setCurrency: HTTPError('500 Server Error: Internal Server Error for url: /setCurrency')       
+1                  GET /product/LS4PSXUNUM: HTTPError('500 Server Error: Internal Server Error for url: /product/LS4PSXUNUM')
+1                  GET /product/9SIQT8TOJO: HTTPError('500 Server Error: Internal Server Error for url: /product/9SIQT8TOJO')
+------------------|---------------------------------------------------------------------------------------------------------------------------------------------
+
