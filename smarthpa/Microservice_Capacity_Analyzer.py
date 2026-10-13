@@ -18,7 +18,11 @@ from recommendationservice import *
 from shippingservice import *
 from rediscart import *
 from Adaptive_Resource_Manager import *
+from Priority_Resource_Manager import Priority_Resource_Manager
 import config
+
+if config.ARM_VARIANT == "priority":                    # improvement C3; the default keeps the authors' Algorithm 2
+    Adaptive_Resource_Manager = Priority_Resource_Manager
 
 
 

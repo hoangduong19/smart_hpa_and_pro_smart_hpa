@@ -1,0 +1,57 @@
+﻿NAME                                     READY   STATUS    RESTARTS       AGE     IP            NODE          NOMINATED NODE   READINESS GATES
+adservice-689c5b7f7c-4s2x6               1/1     Running   5 (28h ago)    11d     10.42.0.203   k3s-master    <none>           <none>
+cartservice-7c77b9c98d-8xbb6             1/1     Running   0              96s     10.42.0.30    k3s-master    <none>           <none>
+cartservice-7c77b9c98d-lw5bw             1/1     Running   3 (112m ago)   6d3h    10.42.2.80    k3s-worker1   <none>           <none>
+cartservice-7c77b9c98d-sl2v7             1/1     Running   0              13m     10.42.4.51    k3s-worker2   <none>           <none>
+checkoutservice-ddc97f8b7-5ggjk          1/1     Running   0              12m     10.42.4.52    k3s-worker2   <none>           <none>
+checkoutservice-ddc97f8b7-9wr5j          1/1     Running   5 (112m ago)   11d     10.42.2.77    k3s-worker1   <none>           <none>
+currencyservice-5cd798cd99-5zk46         1/1     Running   0              12m     10.42.2.151   k3s-worker1   <none>           <none>
+currencyservice-5cd798cd99-68vwf         1/1     Running   0              11m     10.42.2.153   k3s-worker1   <none>           <none>
+currencyservice-5cd798cd99-6kvcw         1/1     Running   0              14m     10.42.2.136   k3s-worker1   <none>           <none>
+currencyservice-5cd798cd99-6zw5h         1/1     Running   0              15m     10.42.0.3     k3s-master    <none>           <none>
+currencyservice-5cd798cd99-79zcm         1/1     Running   0              13m     10.42.0.6     k3s-master    <none>           <none>
+currencyservice-5cd798cd99-7jn29         1/1     Running   0              10m     10.42.0.18    k3s-master    <none>           <none>
+currencyservice-5cd798cd99-975ts         1/1     Running   0              13m     10.42.0.9     k3s-master    <none>           <none>
+currencyservice-5cd798cd99-c8mc9         1/1     Running   0              3m5s    10.42.4.67    k3s-worker2   <none>           <none>
+currencyservice-5cd798cd99-fcdp8         1/1     Running   0              32m     10.42.2.119   k3s-worker1   <none>           <none>
+currencyservice-5cd798cd99-fxx2s         1/1     Running   0              11m     10.42.2.152   k3s-worker1   <none>           <none>
+currencyservice-5cd798cd99-kbknm         1/1     Running   0              13m     10.42.4.49    k3s-worker2   <none>           <none>
+currencyservice-5cd798cd99-kr8rn         1/1     Running   0              13m     10.42.0.10    k3s-master    <none>           <none>
+currencyservice-5cd798cd99-kxmp7         1/1     Running   0              13m     10.42.2.142   k3s-worker1   <none>           <none>
+currencyservice-5cd798cd99-l59c2         1/1     Running   0              14m     10.42.0.4     k3s-master    <none>           <none>
+currencyservice-5cd798cd99-lds5v         1/1     Running   0              14m     10.42.4.44    k3s-worker2   <none>           <none>
+currencyservice-5cd798cd99-lfhhm         1/1     Running   0              15m     10.42.4.42    k3s-worker2   <none>           <none>
+currencyservice-5cd798cd99-n5972         1/1     Running   0              10m     10.42.0.21    k3s-master    <none>           <none>
+currencyservice-5cd798cd99-nbbn8         1/1     Running   0              11m     10.42.4.53    k3s-worker2   <none>           <none>
+currencyservice-5cd798cd99-njwhl         1/1     Running   0              11m     10.42.4.54    k3s-worker2   <none>           <none>
+currencyservice-5cd798cd99-nknp2         1/1     Running   0              14m     10.42.4.43    k3s-worker2   <none>           <none>
+currencyservice-5cd798cd99-qmbtn         1/1     Running   0              13m     10.42.2.141   k3s-worker1   <none>           <none>
+currencyservice-5cd798cd99-tqhtb         1/1     Running   0              13m     10.42.4.47    k3s-worker2   <none>           <none>
+emailservice-6f7c9586f7-8qpqd            1/1     Running   1 (112m ago)   29h     10.42.2.76    k3s-worker1   <none>           <none>
+frontend-6dbcf6bc9c-5v9hv                1/1     Running   0              12m     10.42.0.11    k3s-master    <none>           <none>
+frontend-6dbcf6bc9c-74sll                1/1     Running   0              14m     10.42.2.137   k3s-worker1   <none>           <none>
+frontend-6dbcf6bc9c-8gzrf                1/1     Running   0              11m     10.42.4.55    k3s-worker2   <none>           <none>
+frontend-6dbcf6bc9c-8s2fp                1/1     Running   0              2m51s   10.42.4.68    k3s-worker2   <none>           <none>
+frontend-6dbcf6bc9c-bqsvv                1/1     Running   0              14m     10.42.2.139   k3s-worker1   <none>           <none>
+frontend-6dbcf6bc9c-c749r                1/1     Running   0              13m     10.42.0.7     k3s-master    <none>           <none>
+frontend-6dbcf6bc9c-ddqpk                1/1     Running   0              14m     10.42.4.45    k3s-worker2   <none>           <none>
+frontend-6dbcf6bc9c-frzb9                1/1     Running   0              13m     10.42.4.50    k3s-worker2   <none>           <none>
+frontend-6dbcf6bc9c-lnw22                1/1     Running   0              10m     10.42.0.17    k3s-master    <none>           <none>
+frontend-6dbcf6bc9c-sv9rb                1/1     Running   0              9m8s    10.42.0.23    k3s-master    <none>           <none>
+frontend-6dbcf6bc9c-xcxxc                1/1     Running   0              12m     10.42.2.150   k3s-worker1   <none>           <none>
+frontend-6dbcf6bc9c-xqvm5                1/1     Running   0              35m     10.42.0.218   k3s-master    <none>           <none>
+frontend-6dbcf6bc9c-zk6ln                1/1     Running   0              14m     10.42.4.46    k3s-worker2   <none>           <none>
+frontend-6dbcf6bc9c-ztjmm                1/1     Running   0              12m     10.42.2.147   k3s-worker1   <none>           <none>
+paymentservice-75cb85754f-gvgkl          1/1     Running   0              13m     10.42.2.143   k3s-worker1   <none>           <none>
+paymentservice-75cb85754f-wx9nq          1/1     Running   1 (112m ago)   29h     10.42.4.241   k3s-worker2   <none>           <none>
+productcatalogservice-6f9b7b94b7-44826   1/1     Running   0              14m     10.42.2.140   k3s-worker1   <none>           <none>
+productcatalogservice-6f9b7b94b7-6hbs6   1/1     Running   3 (112m ago)   6d3h    10.42.4.244   k3s-worker2   <none>           <none>
+productcatalogservice-6f9b7b94b7-fq274   1/1     Running   0              3m52s   10.42.4.65    k3s-worker2   <none>           <none>
+productcatalogservice-6f9b7b94b7-h4cgt   1/1     Running   0              10m     10.42.0.19    k3s-master    <none>           <none>
+productcatalogservice-6f9b7b94b7-mnsmt   1/1     Running   0              13m     10.42.0.8     k3s-master    <none>           <none>
+recommendationservice-84b4d75d85-ds7sq   1/1     Running   0              8m8s    10.42.2.157   k3s-worker1   <none>           <none>
+recommendationservice-84b4d75d85-dxbdj   1/1     Running   3 (112m ago)   6d3h    10.42.0.200   k3s-master    <none>           <none>
+recommendationservice-84b4d75d85-hb85t   1/1     Running   0              13m     10.42.4.48    k3s-worker2   <none>           <none>
+recommendationservice-84b4d75d85-zhqmc   1/1     Running   0              12m     10.42.2.149   k3s-worker1   <none>           <none>
+redis-cart-788fbddc7-5mmjp               1/1     Running   1 (112m ago)   29h     10.42.4.236   k3s-worker2   <none>           <none>
+shippingservice-794c6f8f99-kdplr         1/1     Running   2 (112m ago)   5d2h    10.42.4.239   k3s-worker2   <none>           <none>

@@ -5,6 +5,8 @@
 #
 #   SMARTHPA_SCENARIO   e.g. "5R-50%" (default) or "2R-20%"  -> "<maxR>R-<CPU threshold>%"
 #   SMARTHPA_DURATION   total test time in seconds (default 900 = 15 minutes, as in the paper)
+#   SMARTHPA_ARM        "paper" (default) = Adaptive_Resource_Manager.py, the authors' Algorithm 2
+#                       "priority"        = Priority_Resource_Manager.py, improvement C3
 
 import os
 import re
@@ -20,6 +22,10 @@ TARGET_CPU = int(_match.group(2))
 MIN_REPLICA = 1
 
 TEST_DURATION = int(os.environ.get("SMARTHPA_DURATION", "900"))
+
+ARM_VARIANT = os.environ.get("SMARTHPA_ARM", "paper")
+if ARM_VARIANT not in ("paper", "priority"):
+    raise ValueError(f"SMARTHPA_ARM must be 'paper' or 'priority', got {ARM_VARIANT!r}")
 
 
 #*********************************************************** Retry transient kubectl failures ***********************************************************

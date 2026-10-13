@@ -11,7 +11,7 @@
 #   ramp phase       0-5 min, users rise from 0 to the maximum
 #   high-load phase  5-15 min, all users active
 #
-# Usage: python make_user_metrics.py <results/<scenario> dir> [--include-trials]
+# Usage: python make_user_metrics.py <results/<scenario> dir> [--include-trials] [--c3]     (--c3: see make_comparison.py)
 
 import csv
 import os
@@ -23,7 +23,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 from make_comparison import (AUTOSCALERS, COMPARISONS, COLOR, GRID, INK, INK_2, MARKER, NAME, SURFACE,
-                             consistency_lines, fig_runs, means_lines, run_dirs, style_axis)
+                             consistency_lines, fig_runs, means_lines, output_folder, run_dirs, style_axis)
 
 RAMP_END_SEC = 300              # 200 users at 0.67 users/s
 SLO_P95_MS = 1000               # service-level objective for the SLO metric: p95 response time of at most 1 s
@@ -140,6 +140,7 @@ def fig_timeline(histories, present, scenario, out):
 def main():
     scenario_dir = os.path.normpath(sys.argv[1])
     scenario = os.path.basename(scenario_dir) + "%"
+    out_dir = os.path.join(scenario_dir, output_folder(sys.argv))
     histories = {(a, n): load_history(d) for a, n, d in run_dirs(scenario_dir, "--include-trials" in sys.argv)}
     if not histories:
         print(f"No runs under {scenario_dir}")
@@ -148,7 +149,6 @@ def main():
     present = [a for a, _ in AUTOSCALERS if any(aa == a for aa, _ in runs)]
     comparisons = [(a, b) for a, b in COMPARISONS if a in present and b in present]
 
-    out_dir = os.path.join(scenario_dir, "comparison")
     os.makedirs(out_dir, exist_ok=True)
     keys = [k for k, _, _ in METRICS]
     with open(os.path.join(out_dir, "user_metrics.csv"), "w", newline="") as f:

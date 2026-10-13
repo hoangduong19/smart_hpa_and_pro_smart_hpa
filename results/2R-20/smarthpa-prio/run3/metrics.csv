@@ -1,0 +1,13 @@
+autoscaler,scenario,run,microservice,supply_cpu_m,cpu_overutilization_pct,overutilization_time_min,cpu_overprovision_m,overprovision_time_min,cpu_underprovision_m,underprovision_time_min
+smarthpa-prio,2R-20%,3,frontend,194.495,163.202,14.515,3.976,0.458,1472.783,14.515
+smarthpa-prio,2R-20%,3,currencyservice,764.526,49.615,14.766,1.835,0.207,1194.19,14.515
+smarthpa-prio,2R-20%,3,cartservice,378.593,35.208,14.003,17.737,1.213,389.602,13.532
+smarthpa-prio,2R-20%,3,adservice,200,8.072,5.772,3.67,0.207,50.153,3.735
+smarthpa-prio,2R-20%,3,checkoutservice,187.768,32.281,13.017,11.621,1.696,189.602,12.924
+smarthpa-prio,2R-20%,3,productcatalogservice,193.578,73.061,14.251,5.81,0.722,577.37,14.164
+smarthpa-prio,2R-20%,3,recommendationservice,100,132.401,14.251,3.976,0.458,620.795,14.251
+smarthpa-prio,2R-20%,3,paymentservice,100,71.765,14.251,3.976,0.458,312.538,14.251
+smarthpa-prio,2R-20%,3,shippingservice,100,30.034,12.521,3.976,0.458,90.52,12.521
+smarthpa-prio,2R-20%,3,emailservice,100,4.765,3.311,3.976,0.458,21.713,3.311
+smarthpa-prio,2R-20%,3,redis-cart,125.015,0.28,0.167,14.128,2.961,0,0.0
+smarthpa-prio,2R-20%,3,APPLICATION,2443.976,600.682,14.766,74.679,0.458,4919.266,14.515

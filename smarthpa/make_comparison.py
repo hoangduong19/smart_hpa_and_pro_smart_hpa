@@ -10,7 +10,10 @@
 # Autoscalers without runs in the scenario are left out (ProSmart HPA only runs in 2R-20%).
 # Runs are paired by run number. Trial runs (run0) are skipped unless --include-trials is given.
 #
-# Usage: python make_comparison.py <results/<scenario> dir> [--include-trials]
+# With --c3 the autoscalers are K8s HPA, Smart HPA and Smart HPA + priority (improvement C3) and the output folder is
+# results/<scenario>/comparison_c3, so the default comparison keeps its three autoscalers and its numbers.
+#
+# Usage: python make_comparison.py <results/<scenario> dir> [--include-trials] [--c3]
 
 import csv
 import glob
@@ -25,9 +28,11 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 AUTOSCALERS = [("k8shpa", "K8s HPA"), ("smarthpa", "Smart HPA"), ("prosmarthpa", "ProSmart HPA")]
-NAME = dict(AUTOSCALERS)
+C3_AUTOSCALERS = [("k8shpa", "K8s HPA"), ("smarthpa", "Smart HPA"), ("smarthpa-prio", "Smart HPA + priority")]
+NAME = dict(AUTOSCALERS + C3_AUTOSCALERS)
 # (autoscaler, baseline) pairs for the consistency tables, shown when both have runs
-COMPARISONS = [("smarthpa", "k8shpa"), ("prosmarthpa", "smarthpa"), ("prosmarthpa", "k8shpa")]
+COMPARISONS = [("smarthpa", "k8shpa"), ("prosmarthpa", "smarthpa"), ("prosmarthpa", "k8shpa"),
+               ("smarthpa-prio", "smarthpa"), ("smarthpa-prio", "k8shpa")]
 # (key, label, True if higher is better)
 METRICS = [
     ("supply_cpu_m", "Supply CPU (m)", True),
@@ -43,8 +48,18 @@ METRICS = [
 
 # Reference palette (dataviz skill, light mode), categorical slots 1-3.
 SURFACE, INK, INK_2, GRID = "#fcfcfb", "#0b0b0b", "#52514e", "#e6e5e0"
-COLOR = {"k8shpa": "#eb6834", "smarthpa": "#2a78d6", "prosmarthpa": "#1baf7a"}
-MARKER = {"k8shpa": "s", "smarthpa": "o", "prosmarthpa": "^"}   # shape as a second channel, so identity is not color alone
+COLOR = {"k8shpa": "#eb6834", "smarthpa": "#2a78d6", "prosmarthpa": "#1baf7a", "smarthpa-prio": "#1baf7a"}
+MARKER = {"k8shpa": "s", "smarthpa": "o", "prosmarthpa": "^", "smarthpa-prio": "D"}   # shape as a second channel, so identity is not color alone
+# ProSmart HPA and Smart HPA + priority share the third hue: they are never drawn together (no fourth hue of the
+# palette stays distinguishable from the first three when every pair of points can meet, as in fig_runs.png)
+
+
+def output_folder(argv):
+    """Name of the output folder under the scenario; --c3 also switches AUTOSCALERS to the C3 set."""
+    if "--c3" not in argv:
+        return "comparison"
+    AUTOSCALERS[:] = C3_AUTOSCALERS
+    return "comparison_c3"
 
 
 def run_dirs(scenario_dir, include_trials):
@@ -199,6 +214,7 @@ def main():
     scenario_dir = os.path.normpath(sys.argv[1])
     include_trials = "--include-trials" in sys.argv
     scenario = os.path.basename(scenario_dir) + "%"
+    out_dir = os.path.join(scenario_dir, output_folder(sys.argv))
     runs = load_runs(scenario_dir, include_trials)
     if not runs:
         print(f"No runs with metrics.csv under {scenario_dir}")
@@ -206,7 +222,6 @@ def main():
     present = [a for a, _ in AUTOSCALERS if any(aa == a for aa, _ in runs)]
     comparisons = [(a, b) for a, b in COMPARISONS if a in present and b in present]
 
-    out_dir = os.path.join(scenario_dir, "comparison")
     os.makedirs(out_dir, exist_ok=True)
 
     keys = [k for k, _, _ in METRICS]
