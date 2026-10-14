@@ -166,7 +166,7 @@ Lý do chọn 2R-20% cho ProSmart: đó là kịch bản Smart HPA yếu nhất 
 | Chỉ số | Ý nghĩa | Tốt khi |
 |---|---|---|
 | Supply CPU (milliCPU) | CPU của các replica đang được cấp | Cao |
-| CPU Overutilization (%) | Phần CPU vượt ngưỡng | Thấp |
+| CPU Overutilization (%) | CPU % (so với request) lúc vượt ngưỡng, lúc dưới ngưỡng tính 0; mức ứng dụng = tổng 11 service nên có thể > 100% | Thấp |
 | Overutilization Time (phút) | Thời gian có ít nhất 1 service vượt ngưỡng | Thấp |
 | CPU Overprovision (milliCPU) | CPU thừa = capacity − demand | Thấp |
 | Overprovision Time (phút) | Thời gian không service nào thiếu CPU | Cao |
