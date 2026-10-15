@@ -1,0 +1,62 @@
+[2026-10-15 14:22:18,053] DESKTOP-1G7ONFQ/INFO/locust.main: Starting Locust 2.46.6
+[2026-10-15 14:22:18,063] DESKTOP-1G7ONFQ/INFO/locust.main: Run time limit set to 900 seconds
+[2026-10-15 14:22:18,067] DESKTOP-1G7ONFQ/INFO/locust.runners: Ramping to 200 users at a rate of 0.67 per second
+[2026-10-15 14:27:16,226] DESKTOP-1G7ONFQ/INFO/locust.runners: All users spawned: {"WebsiteUser": 200} (200 total users)
+[2026-10-15 14:37:17,582] DESKTOP-1G7ONFQ/INFO/locust.main: --run-time limit reached, shutting down
+[2026-10-15 14:37:17,869] DESKTOP-1G7ONFQ/INFO/locust.main: Shutting down (exit code 1)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /                                                                              10629     2(0.02%) |    560      11   15274    300 |   11.81        0.00
+POST     /                                                                                  1   1(100.00%) |   9627    9627    9627   9627 |    0.00        0.00
+GET      /cart                                                                          10547     4(0.04%) |    201       8   10224    130 |   11.72        0.00
+POST     /cart                                                                          10702     1(0.01%) |    230      13    9623    190 |   11.89        0.00
+POST     /cart/checkout                                                                 10697     0(0.00%) |    223      18    8944    200 |   11.89        0.00
+GET      /product/0PUK6V6EV0                                                             1215     1(0.08%) |    227      10   10188    110 |    1.35        0.00
+GET      /product/1YMWWN1N4O                                                             1178     0(0.00%) |    188      10    9741    100 |    1.31        0.00
+GET      /product/2ZYFJ3GM2N                                                             1195     1(0.08%) |    234       8    9789    110 |    1.33        0.00
+GET      /product/66VCHSJNUP                                                             1190     2(0.17%) |    225       9    9788    110 |    1.32        0.00
+GET      /product/6E92ZMYYFZ                                                             1222     0(0.00%) |    203      11    9774    100 |    1.36        0.00
+GET      /product/9SIQT8TOJO                                                             1178     0(0.00%) |    190       9    9770    110 |    1.31        0.00
+GET      /product/L9ECAV7KIM                                                             1153     0(0.00%) |    203      10   10254    110 |    1.28        0.00
+GET      /product/LS4PSXUNUM                                                             1147     0(0.00%) |    204      11    9876    110 |    1.27        0.00
+GET      /product/OLJCESPC7Z                                                             1226     0(0.00%) |    194      11    9705    110 |    1.36        0.00
+POST     /setCurrency                                                                   10579     1(0.01%) |    559      14   15265    310 |   11.76        0.00
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                     63859    13(0.02%) |    330       8   15274    190 |   70.97        0.01
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+GET      /                                                                                     300    390    480    550    800   1100   4200   8200  14000  15000  15000  10629
+POST     /                                                                                    9600   9600   9600   9600   9600   9600   9600   9600   9600   9600   9600      1
+GET      /cart                                                                                 130    160    180    190    280    430    750   1000   9700   9900  10000  10547
+POST     /cart                                                                                 190    210    270    290    390    480    660   1000   2300   9000   9600  10702
+POST     /cart/checkout                                                                        200    200    270    290    350    420    800   1200   1900   8900   8900  10697
+GET      /product/0PUK6V6EV0                                                                   110    160    200    230    310    490   1000   3000   9800  10000  10000   1215
+GET      /product/1YMWWN1N4O                                                                   100    150    190    210    310    500    940   1200   9700   9700   9700   1178
+GET      /product/2ZYFJ3GM2N                                                                   110    150    190    210    310    580   1100   5700   9800   9800   9800   1195
+GET      /product/66VCHSJNUP                                                                   110    160    200    230    320    480   1100   4800   9700   9800   9800   1190
+GET      /product/6E92ZMYYFZ                                                                   100    150    200    220    310    470    950   1200   9800   9800   9800   1222
+GET      /product/9SIQT8TOJO                                                                   110    150    190    210    300    470    850   1200   9700   9800   9800   1178
+GET      /product/L9ECAV7KIM                                                                   110    160    190    220    310    490    890   1000   9800  10000  10000   1153
+GET      /product/LS4PSXUNUM                                                                   110    150    200    220    310    460    880   1200   9800   9900   9900   1147
+GET      /product/OLJCESPC7Z                                                                   110    150    190    220    310    470    840   1100   9700   9700   9700   1226
+POST     /setCurrency                                                                          310    410    490    570    810   1100   4200   5200  14000  15000  15000  10579
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                            190    250    300    350    520    770   1200   4200  13000  15000  15000  63859
+
+Error report
+# occurrences      Error                                                                                               
+------------------|---------------------------------------------------------------------------------------------------------------------------------------------
+1                  POST /cart: HTTPError('500 Server Error: Internal Server Error for url: /cart')                     
+1                  GET /: HTTPError('500 Server Error: Internal Server Error for url: /')                              
+1                  GET /product/66VCHSJNUP: HTTPError('500 Server Error: Internal Server Error for url: /product/66VCHSJNUP')
+1                  GET /product/0PUK6V6EV0: RemoteDisconnected('Remote end closed connection without response')        
+1                  GET /: RemoteDisconnected('Remote end closed connection without response')                          
+4                  GET /cart: RemoteDisconnected('Remote end closed connection without response')                      
+1                  GET /product/2ZYFJ3GM2N: RemoteDisconnected('Remote end closed connection without response')        
+1                  POST /setCurrency: RemoteDisconnected('Remote end closed connection without response')              
+1                  GET /product/66VCHSJNUP: RemoteDisconnected('Remote end closed connection without response')        
+1                  POST /: RemoteDisconnected('Remote end closed connection without response')                         
+------------------|---------------------------------------------------------------------------------------------------------------------------------------------
+

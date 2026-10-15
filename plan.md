@@ -2,8 +2,8 @@
 
 > **Bài báo:** H. Ahmad, C. Treude, M. Wagner, C. Szabo, *Towards resource-efficient reactive and proactive auto-scaling for microservice architectures*, Journal of Systems and Software 225 (2025) 112390. DOI: 10.1016/j.jss.2025.112390
 > **Người thực hiện:** Nhóm. **Hoàng Quốc Dương** phụ trách phần demo (hạ tầng, chạy hệ thống, chạy thí nghiệm, demo khi bảo vệ)
-> **Cập nhật lần cuối:** 13/10/2026
-> **Trạng thái tổng:** 🟡 Giai đoạn 1–6 xong (20/20 lần chạy hợp lệ: 2R-20% 5 cặp, 5R-50% 5 cặp; lần 4–5 của 2R-20% chạy 12/10). Giai đoạn 6b ProSmart HPA xong (5/5 lần 2R-20% hợp lệ, 08/10 và 12/10). Giai đoạn 7: C1 xong phần phân tích (12/10); C3 đã chạy 6 lần (13/10, 3 lần mỗi kịch bản). Tiếp theo: chạy đối chứng cho C3 ở 5R-50% (mục 7), quyết định có làm C2 không, rồi báo cáo
+> **Cập nhật lần cuối:** 15/10/2026
+> **Trạng thái tổng:** 🟡 Giai đoạn 1–6 xong (20/20 lần chạy hợp lệ: 2R-20% 5 cặp, 5R-50% 5 cặp; lần 4–5 của 2R-20% chạy 12/10). Giai đoạn 6b ProSmart HPA xong (5/5 lần 2R-20% hợp lệ, 08/10 và 12/10). Giai đoạn 7: C1 xong phần phân tích (12/10); C3 xong (13/10 và 15/10: 5R-50% 5 lần + 3 lần đối chứng, 2R-20% 3 lần). Tiếp theo: quyết định có làm C2 không, rồi báo cáo
 > **Yêu cầu của giảng viên:** chạy nhiều lần, mỗi lần ra con số khác nhau cũng được, nhưng **xu hướng phải giống nhau ở mọi lần chạy**.
 
 ---
@@ -291,7 +291,7 @@ Chú thích: ✅ xong · ⚠️ cần xác nhận · ⬜ chưa làm
 | 5. Chuẩn bị baseline K8s HPA + công cụ ghi metric | ✅ `k8shpa_observer.py`, `cluster_recorder.py`, `run_experiment.ps1`, `run_batch.ps1`, `check_run.py`, `make_run_report.py`, `make_comparison.py` |
 | 6. Chạy thí nghiệm tái hiện | ✅ 20/20 lần hợp lệ (5R-50% 5 cặp, xong 07/10; 2R-20% 5 cặp, xong 12/10), xem [ma trận chạy](#ma-trận-chạy-xen-kẽ-để-giảm-sai-lệch-theo-thời-gian) |
 | 6b. ProSmart HPA (2R-20%, window 25s) | ✅ 5/5 lần hợp lệ (08/10 và 12/10), xem [Giai đoạn 6b](#56b-giai-đoạn-6b-prosmart-hpa-2r-20-window-25s) |
-| 7. Cải tiến | 🟡 C1 xong phần phân tích (12/10); C3 chạy xong 6/6 lần hợp lệ (13/10), còn thiếu lần chạy đối chứng ở 5R-50% **← TIẾP THEO**; C2 chưa làm |
+| 7. Cải tiến | 🟡 C1 xong phần phân tích (12/10); C3 xong, 11/11 lần hợp lệ kể cả 3 lần đối chứng ở 5R-50% (13/10 và 15/10); C2 chưa làm, cần quyết định có làm không **← TIẾP THEO** |
 | 8. Phân tích, báo cáo, slide | ⬜ |
 
 ---
@@ -719,7 +719,7 @@ results/
 | W6 | Chỉ báo cáo trung bình, không có độ lệch chuẩn hay kiểm định thống kê | Mục 5.2 |
 | W7 | Replication package của ProSmart không tái hiện được trực tiếp: 22 model `.pkl` không có regressor như mô tả ở mục 5.1, code không chạy được (ít nhất 7 lỗi) | Mở `.pkl` thấy `extra_regressors = []`; danh sách lỗi ở mục 2, phần ProSmart HPA. *Đây là điểm yếu về tính tái hiện, dùng cho phần phân tích, không phải cải tiến* |
 | W8 | ProSmart có thể dùng **vượt tổng quota**: Algorithm 4 dòng 19–20 (`ResSD = No Scale, ResDR = CR`) giữ nguyên replica của service bị ARM hạ capacity xuống dưới số replica hiện tại, trong khi phần quota đó đã cấp cho service khác | Cả 5 lần chạy 2R-20%: supply 2,953–3,114m so với quota 2R là 2,540m (+16–23%); lần chạy thử `run0` (08/10) cũng vậy (3,070m). Tổng capacity (cột E) không lần nào vượt 2,540m, nhưng khoảng 23% số dòng Knowledge Base có capacity thấp hơn số replica đang chạy. Smart HPA không bị (supply trung bình 2,409m). Ảnh hưởng đến tính công bằng khi so sánh và đến tuyên bố "resource-efficient" |
-| W9 | Code ARM của Smart HPA (replication package) **làm mất quota** ở 5R-50%: tổng capacity (Σ maxR × CPU request) giảm dần và không quay lại, trái với ý "tổng quota của ứng dụng không đổi" | Knowledge Base của cả 5 lần Smart HPA 5R-50%: tổng capacity bắt đầu 6.350m, kết thúc 3.970–4.770m (mất 25–37%). Ở 2R-20% không bị (2.540m suốt lần chạy, trừ run 4 còn 2.340m). Chưa tách được nguyên nhân chính xác: dòng 101 của `Adaptive_Resource_Manager.py` (lệch Algorithm 2, mục 5.4c) và phần quota lẻ nhỏ hơn 1 replica không trả lại được đều có thể gây ra. Phát hiện 13/10 khi làm C3 |
+| W9 | Code ARM của Smart HPA (replication package) **làm mất quota** ở 5R-50%: tổng capacity (Σ maxR × CPU request) giảm dần và không quay lại, trái với ý "tổng quota của ứng dụng không đổi" | Knowledge Base của cả 5 lần Smart HPA 5R-50%: tổng capacity bắt đầu 6.350m, kết thúc 3.970–4.770m (mất 25–37%). Ở 2R-20% không bị (2.540m suốt lần chạy, trừ run 4 còn 2.340m). Chưa tách được nguyên nhân chính xác: dòng 101 của `Adaptive_Resource_Manager.py` (lệch Algorithm 2, mục 5.4c) và phần quota lẻ nhỏ hơn 1 replica không trả lại được đều có thể gây ra. Phát hiện 13/10 khi làm C3. Lần chạy đối chứng 15/10 xác nhận: chỉ cần sửa W9 (không có ưu tiên), Underprovision ở 5R-50% đã giảm từ 389 xuống 10m (mục 7, C3) |
 
 ### Các cải tiến đề xuất (chọn 2)
 
@@ -799,9 +799,11 @@ Script `smarthpa\make_user_metrics.py`, tự chạy ở cuối `run_experiment.p
 - **Thí nghiệm thêm:** chạy biến thể "Smart HPA + ưu tiên" ở 5R-50% (và 2R-20%, nơi thiếu tài nguyên nặng nhất nên ưu tiên có tác dụng rõ nhất), 3 lần mỗi kịch bản.
 - **Chỉ số để so:** latency của luồng chính (trang chủ, checkout), các chỉ số CPU của nhóm service quan trọng.
 
-##### Kết quả C3 (13/10, 6/6 lần hợp lệ; còn thiếu lần chạy đối chứng)
+##### Kết quả C3 (13/10 và 15/10, 11/11 lần hợp lệ, có lần chạy đối chứng)
 
-Code: `smarthpa\Priority_Resource_Manager.py`, bật bằng `run_experiment.ps1 -Autoscaler smarthpa-prio` (biến môi trường `SMARTHPA_ARM=priority`). ARM gốc không sửa. Kết quả ở `results\<kịch bản>\smarthpa-prio\run1..3` và `results\<kịch bản>\comparison_c3\` (K8s HPA, Smart HPA, Smart HPA + ưu tiên); thư mục `comparison` cũ không đổi.
+Code: `smarthpa\Priority_Resource_Manager.py`, bật bằng `run_experiment.ps1 -Autoscaler smarthpa-prio` (biến môi trường `SMARTHPA_ARM=priority`). ARM gốc không sửa. Kết quả ở `results\<kịch bản>\smarthpa-prio\run<N>` và `results\<kịch bản>\comparison_c3\` (K8s HPA, Smart HPA, Smart HPA + ưu tiên); thư mục `comparison` cũ không đổi.
+
+Lần chạy đối chứng: `-Autoscaler smarthpa-flat` (`SMARTHPA_ARM=flat`), cùng code nhưng mọi trọng số = 1 và không dự phòng, nên tắt điểm 1–3 dưới đây, chỉ còn điểm 4 (sửa W9); thứ tự chia khi đó giống Algorithm 2. Kết quả ở `results\5R-50\smarthpa-flat\run1..3` và `results\5R-50\comparison_c3_control\` (Smart HPA, đối chứng, Smart HPA + ưu tiên).
 
 Bốn điểm khác ARM gốc:
 1. Service thiếu được xếp theo `trọng số × CPU còn thiếu` (trọng số như trên: `frontend` 3; `checkout`, `cart`, `productcatalog`, `currency` 2; còn lại 1).
@@ -811,23 +813,26 @@ Bốn điểm khác ARM gốc:
 
 Kiểm tra offline: 2.000 kịch bản ngẫu nhiên × 300 vòng ở mỗi kịch bản, tổng capacity không lần nào vượt quota.
 
-**5R-50%** (C3 n=3 chạy 13/10; Smart HPA n=5 chạy 02–07/10):
+**5R-50%** (Smart HPA n=5 chạy 02–07/10; C3 n=5: run1–3 ngày 13/10, run4–5 ngày 15/10; đối chứng n=3 ngày 15/10, chạy xen kẽ với C3 run4–5 theo thứ tự đối chứng 1, C3 4, đối chứng 2, C3 5, đối chứng 3):
 
-| Chỉ số | Smart HPA | Smart HPA + ưu tiên | C3 tốt hơn (ghép run 1–3) | p |
-|---|---|---|---|---|
-| CPU Underprovision (m) | 389 ± 124 | **20 ± 22** | 3/3 | 0,036 |
-| Underprovision Time (phút) | 10,25 ± 0,42 | **1,67 ± 1,56** | 3/3 | 0,036 |
-| CPU Overutilization (%) | 160 ± 28 | **75 ± 3** | 3/3 | 0,036 |
-| Overutilization Time (phút) | 14,23 ± 0,30 | **10,89 ± 0,46** | 3/3 | 0,036 |
-| Supply CPU (m) | 3.898 ± 196 | **4.611 ± 277** | 3/3 | 0,036 |
-| CPU Overprovision (m) | **781 ± 52** | 1.585 ± 254 | 0/3 | 0,036 |
-| p95 pha tải cao (ms) | 1.085 ± 151 | **671 ± 85** | 3/3 | 0,036 |
-| % thời gian p95 > 1000 ms | 30,7 ± 16,8 | **5,8 ± 3,8** | 3/3 | 0,036 |
-| Throughput (request/s) | 84,7 ± 1,0 | **88,6 ± 1,1** | 3/3 | 0,036 |
+| Chỉ số | Smart HPA (n=5) | Đối chứng: chỉ sửa W9 (n=3) | C3: sửa W9 + ưu tiên (n=5) | C3 so với đối chứng | p (C3 vs đối chứng) |
+|---|---|---|---|---|---|
+| CPU Underprovision (m) | 389 ± 124 | **10 ± 7** | 12 ± 19 | ngang | 0,571 |
+| Underprovision Time (phút) | 10,25 ± 0,42 | **0,88 ± 0,45** | 1,05 ± 1,39 | ngang | 0,786 |
+| CPU Overutilization (%) | 160 ± 28 | 87 ± 6 | **75 ± 3** | thấp hơn: cả 5 lần C3 thấp hơn cả 3 lần đối chứng | 0,036 |
+| Overutilization Time (phút) | 14,23 ± 0,30 | 11,47 ± 0,33 | **10,47 ± 0,66** | thấp hơn, có chồng lấn (11,2 so với 11,1) | 0,071 |
+| Supply CPU (m) | 3.898 ± 196 | 4.307 ± 65 | 4.326 ± 437 | ngang | 0,786 |
+| CPU Overprovision (m) | **781 ± 52** | 1.858 ± 67 | 1.870 ± 429 | ngang | 0,786 |
+| p95 pha tải cao (ms) | 1.085 ± 151 | **653 ± 74** | 812 ± 310 | ngang (C3 run 4 bị chập mạng, xem dưới) | 0,571 |
+| % thời gian p95 > 1000 ms | 30,7 ± 16,8 | **3,9 ± 2,9** | 7,3 ± 5,1 | ngang | 0,571 |
+| Throughput (request/s) | 84,7 ± 1,0 | **89,0 ± 0,7** | 87,5 ± 2,6 | ngang | 0,786 |
 
-- Tốt hơn ở mọi chỉ số trừ CPU Overprovision, nhất quán 3/3. Underprovision gần 0, giống con số bài báo công bố cho Smart HPA (0m) mà nhóm không tái hiện được bằng code gốc.
-- **Chưa kết luận được là nhờ ưu tiên.** Tổng capacity cuối lần chạy: Smart HPA gốc 3.970–4.770m, C3 6.340m (quota 6.350m). C3 có thêm khoảng 1.600–2.400m để chia, đủ giải thích phần lớn chênh lệch (`frontend` 14–15 replica so với 8–12, `currency` 21–22 so với 12–16). Overprovision cao hơn cũng do vậy: quota không mất nên capacity − demand lớn hơn.
-- Cần **lần chạy đối chứng**: cùng code C3 nhưng mọi trọng số = 1 và không dự phòng (chỉ giữ điểm 4), 3 lần ở 5R-50%. Nếu đối chứng cho kết quả như C3 thì công là của việc sửa W9, không phải của ưu tiên.
+- **C3 so với Smart HPA gốc (n=5 mỗi bên):** tốt hơn 5/5 lần ở Underprovision, Underprovision Time, Overutilization, Overutilization Time, Overprovision Time và p95 (p = 0,008; p95 0,032); kém hơn 5/5 ở CPU Overprovision; Supply CPU chỉ 3/5 (run 4–5: 3.884 và 3.913m so với 3.891 và 4.096m).
+- **Phần lớn cải thiện là do sửa W9, không phải do ưu tiên.** Đối chứng đã đưa Underprovision từ 389 xuống 10m, Underprovision Time từ 10,25 xuống 0,88 phút, p95 từ 1.085 xuống 653 ms, nhất quán 3/3 (p = 0,036). Thêm ưu tiên (C3) không làm tốt hơn đối chứng ở các chỉ số này.
+- Nguyên nhân: tổng capacity cuối lần chạy của Smart HPA gốc là 3.970–4.770m, của đối chứng 6.310–6.350m, của C3 6.340m (quota 6.350m). Không mất quota thì có thêm 1.600–2.400m để chia (maxR cuối lần chạy của đối chứng và C3: `frontend` 14–16, `currency` 17–23). Overprovision cao hơn cũng do vậy: capacity − demand lớn hơn.
+- **Ưu tiên chỉ giảm thêm Overutilization:** từ 87% xuống 75% (−12 điểm %), Overutilization Time từ 11,47 xuống 10,47 phút. Phía người dùng không tốt hơn đối chứng: median và p95 checkout của C3 còn hơi cao hơn (p = 0,25).
+- **Không lệch theo ngày ở các chỉ số Table 1:** C3 run 4–5 (15/10) cho Overutilization 77% và 72%, Underprovision 1m và 0m; run 1–3 (13/10) là 71–77% và 1–43m.
+- **Kết luận cho báo cáo:** ở 5R-50%, đóng góp chính của C3 là phát hiện và sửa W9. Smart HPA sau khi sửa đạt Underprovision gần 0, đúng con số bài báo công bố (0m) mà code gốc trong replication package không đạt được. Quy tắc ưu tiên chỉ đóng góp phần nhỏ (Overutilization).
 
 **2R-20%** (C3 n=3 chạy 13/10; Smart HPA n=5 chạy 05/10 và 12/10):
 
@@ -847,7 +852,7 @@ Kiểm tra offline: 2.000 kịch bản ngẫu nhiên × 300 vòng ở mỗi kị
 - Run 1 chia khác hẳn vì hai service thiếu gần như cùng lúc nên `frontend` được xếp trước (`frontend` 6, `currency` 4 với CPU 136%); lần này có Underprovision 6.726m, cao nhất trong 3 lần. Kết quả phụ thuộc thứ tự service nào thiếu trước, đúng điểm yếu W4 mà C3 định sửa nhưng chưa sửa được.
 - **Hướng sửa (chưa làm):** cho service trọng số cao hơn lấy lại quota mà service trọng số thấp hơn đã *mượn* vượt maxR ban đầu, có giới hạn để không làm service kia thiếu ngược lại.
 
-**Lưu ý khi dùng số liệu:** C3 chạy khác ngày với Smart HPA và K8s HPA (không xen kẽ). Mục 6 đã ghi nhận p95 lệch giữa các ngày chạy, nên chênh lệch nhỏ ở 2R-20% không đủ tin; chênh lệch lớn ở 5R-50% thì ít bị ảnh hưởng. Cả 6 lần: 0 pod `Unschedulable`, 0 request lỗi trừ 1 request ở 5R-50% run 1, 0/8.488 ping mất trên mỗi node (`results\ping_20261013.csv`).
+**Lưu ý khi dùng số liệu:** C3 chạy khác ngày với Smart HPA và K8s HPA (không xen kẽ). Mục 6 đã ghi nhận p95 lệch giữa các ngày chạy, nên chênh lệch nhỏ ở 2R-20% không đủ tin; chênh lệch lớn ở 5R-50% thì ít bị ảnh hưởng. Cả 6 lần ngày 13/10: 0 pod `Unschedulable`, 0 request lỗi trừ 1 request ở 5R-50% run 1, 0/8.488 ping mất trên mỗi node (`results\ping_20261013.csv`). 5 lần ngày 15/10 (`results\ping_20261015.csv`, log `results\batch_20261015.log`): 0 pod `Unschedulable`, 0 request lỗi, 0 ping mất, **trừ C3 run 4**: hai lần chập mạng khoảng 5 giây lúc 14:32:56 và 14:33:35 (phút 12–13 của lần chạy), mất 15 ping trên cả 3 node (`.10`: 8, `.11`: 3, `.12`: 4), 13/63.765 request lỗi (0,02%, `500` và `RemoteDisconnected`). Lần này vẫn qua `check_run.py`, không rớt tải nên giữ lại (R06 ngày 05/10 có 44 lỗi cũng đã giữ). Tuy vậy p95/p99 pha tải cao của run 4 (1.356 / 1.714 ms) bị ảnh hưởng, nên không dùng số phía người dùng của run 4 để kết luận.
 
 #### Phương án chọn
 | Phương án | Gồm | Phù hợp khi |
@@ -1048,7 +1053,10 @@ Cần trả lời để chốt kế hoạch:
 | 13/10 16:10–16:19 | 3 VM đang tắt → bật bằng `vmrun ... nogui`. `run0` C3 2R-20% (100 users, 3 phút) | ✅ Exit 0, 0 request lỗi, tổng capacity giữ 2.540m. `frontend` chỉ lên 3 replica vì `currency` lấy quota trước |
 | 13/10 16:19–18:26 | `run_batch.ps1 -Pairs "2R-20%:1,2R-20%:2,2R-20%:3,5R-50%:1,5R-50%:2,5R-50%:3" -Autoscalers "smarthpa-prio"`, ghi ping mỗi giây vào `results\ping_20261013.csv`; log ở `results\batch_20261013.log` | ✅ Cả 6 lần hợp lệ ngay lần thử đầu, 0 pod `Unschedulable`, 0/8.488 ping mất trên mỗi node. **5R-50%:** tốt hơn Smart HPA gốc 3/3 ở mọi chỉ số trừ Overprovision (Underprovision 20 so với 389m, p95 671 so với 1.085 ms), nhưng lẫn với việc sửa W9. **2R-20%:** không cải thiện, phía người dùng hơi kém hơn 3/3. Chi tiết ở mục 7, phần C3. Chưa chạy Smart HPA gốc cùng ngày |
 | 13/10 18:40 | Đối chiếu lại mục 7 (C3) và nhật ký 13/10 với `results\` sau khi batch xong | Số liệu khớp `comparison_c3\comparison.md`, `user_metrics.md`, `run_info.json` và file ping. Cluster không kết nối được từ Windows (`kubectl` timeout tới `192.168.161.10:6443`); file ping dừng ghi lúc 18:29:02. Chưa kiểm tra 3 VM đang tắt hay mất mạng, nên chưa xác nhận trạng thái HPA/deployment sau lần chạy cuối. Code và kết quả C3 chưa commit (nhánh `prosmart-2r20`) |
-| | *(tiếp theo)* chạy đối chứng C3 ở 5R-50% (trọng số = 1, không dự phòng), quyết định có làm C2 không, rồi báo cáo | |
+| 15/10 | **Đối chứng C3:** thêm `SMARTHPA_ARM=flat` (`Priority_Resource_Manager.py` với mọi trọng số 1, không dự phòng), `-Autoscaler smarthpa-flat` trong `run_experiment.ps1`, `--c3-control` trong `make_comparison.py` và `make_user_metrics.py` (đầu ra `comparison_c3_control`); `run_experiment.ps1` với `smarthpa-prio` giờ dựng lại cả `comparison_c3` lẫn `comparison_c3_control` | Kiểm tra offline: không vượt quota trong 2.000 kịch bản × 300 vòng ở cả 5R-50% và 2R-20%. Chạy lại mọi `comparison*` với dữ liệu cũ: không file nào đổi |
+| 15/10 13:52–13:55 | 3 VM đang tắt → bật bằng `vmrun ... nogui` | 3 node Ready, 0 HPA. Deployment còn ở mức scale của lần C3 cuối ngày 13/10 (`frontend` 14, `currency` 22), `run_experiment.ps1` tự reset về 1. Vậy lần mất kết nối 13/10 18:40 là do VM đã tắt hoặc mất mạng sau batch, không ảnh hưởng kết quả |
+| 15/10 13:55–15:42 | 5 lần 5R-50% xen kẽ: đối chứng 1 → C3 4 → đối chứng 2 → C3 5 → đối chứng 3 (mỗi lần một `run_batch.ps1`), ghi ping mỗi giây vào `results\ping_20261015.csv`; log ở `results\batch_20261015.log` | ✅ Cả 5 lần hợp lệ ngay lần thử đầu, 0 pod `Unschedulable`. C3 run 4 có 2 lần chập mạng khoảng 5 giây (15 ping mất, 13 request lỗi), giữ lại. **Kết luận:** phần lớn cải thiện của C3 ở 5R-50% đến từ việc sửa W9 (đối chứng: Underprovision 10m, p95 653 ms); ưu tiên chỉ giảm thêm Overutilization 87% → 75% (p = 0,036). Chi tiết ở mục 7, phần C3 |
+| | *(tiếp theo)* quyết định có làm C2 không, rồi báo cáo | |
 
 ---
 

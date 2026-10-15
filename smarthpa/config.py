@@ -7,6 +7,8 @@
 #   SMARTHPA_DURATION   total test time in seconds (default 900 = 15 minutes, as in the paper)
 #   SMARTHPA_ARM        "paper" (default) = Adaptive_Resource_Manager.py, the authors' Algorithm 2
 #                       "priority"        = Priority_Resource_Manager.py, improvement C3
+#                       "flat"            = Priority_Resource_Manager.py with every weight 1 and no headroom: control
+#                                           run of C3, keeps only its fix of the lost quota (W9)
 
 import os
 import re
@@ -24,8 +26,8 @@ MIN_REPLICA = 1
 TEST_DURATION = int(os.environ.get("SMARTHPA_DURATION", "900"))
 
 ARM_VARIANT = os.environ.get("SMARTHPA_ARM", "paper")
-if ARM_VARIANT not in ("paper", "priority"):
-    raise ValueError(f"SMARTHPA_ARM must be 'paper' or 'priority', got {ARM_VARIANT!r}")
+if ARM_VARIANT not in ("paper", "priority", "flat"):
+    raise ValueError(f"SMARTHPA_ARM must be 'paper', 'priority' or 'flat', got {ARM_VARIANT!r}")
 
 
 #*********************************************************** Retry transient kubectl failures ***********************************************************

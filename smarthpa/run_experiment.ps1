@@ -5,6 +5,7 @@ Runs ONE experiment run end to end (plan.md, section 6 "Quy trinh mot lan chay")
   3. Start the autoscaler under test:
        smarthpa    -> Microservice_Capacity_Analyzer.py (scales the app itself)
        smarthpa-prio -> the same, with Priority_Resource_Manager.py as the Adaptive Resource Manager (improvement C3)
+       smarthpa-flat -> control run of C3: Priority_Resource_Manager.py with every weight 1 and no headroom
        prosmarthpa -> ..\prosmarthpa\prosmart_hpa.py with D:\prosmart-venv (PROPHET models in ..\prosmarthpa\models)
        k8shpa   -> kubectl autoscale for all deployments + k8shpa_observer.py (records only)
   4. Start cluster_recorder.py and Locust at the same time
@@ -15,7 +16,7 @@ Example:
   .\run_experiment.ps1 -Autoscaler smarthpa -Scenario 5R-50% -Run 0 -DurationSec 300 -Users 100 -CooldownSec 60   # short trial
 #>
 param(
-    [Parameter(Mandatory = $true)][ValidateSet("smarthpa", "smarthpa-prio", "prosmarthpa", "k8shpa")][string]$Autoscaler,
+    [Parameter(Mandatory = $true)][ValidateSet("smarthpa", "smarthpa-prio", "smarthpa-flat", "prosmarthpa", "k8shpa")][string]$Autoscaler,
     [Parameter(Mandatory = $true)][ValidatePattern('^\d+R-\d+%$')][string]$Scenario,
     [Parameter(Mandatory = $true)][int]$Run,
     [int]$Users = 200,
@@ -91,7 +92,7 @@ try {
 
     $env:SMARTHPA_SCENARIO = $Scenario
     $env:SMARTHPA_DURATION = "$DurationSec"
-    $env:SMARTHPA_ARM = if ($Autoscaler -eq "smarthpa-prio") { "priority" } else { "paper" }
+    $env:SMARTHPA_ARM = switch ($Autoscaler) { "smarthpa-prio" { "priority" } "smarthpa-flat" { "flat" } default { "paper" } }
 
     if ($Autoscaler -eq "k8shpa") {
         foreach ($d in $Deployments) {
@@ -182,11 +183,15 @@ finally {
             # rebuild the cross-run trend charts of this scenario (results\<scenario>\comparison\)
             $compareArgs = @((Join-Path $CodeDir "make_comparison.py"), (Split-Path (Split-Path $OutDir)))
             if ($Run -eq 0) { $compareArgs += "--include-trials" }
-            # the priority variant is compared with K8s HPA and Smart HPA in its own folder (comparison_c3)
-            $setArgs = @(); if ($Autoscaler -eq "smarthpa-prio") { $setArgs += "--c3" }
-            & $Python @compareArgs @setArgs
-            # user-side metrics of the scenario (latency, SLO, throughput); trial runs are too short for its phases
-            & $Python (Join-Path $CodeDir "make_user_metrics.py") (Split-Path (Split-Path $OutDir)) @setArgs
+            # the priority variant is compared with K8s HPA and Smart HPA in its own folder (comparison_c3), and with
+            # Smart HPA and its control run in comparison_c3_control
+            $sets = switch ($Autoscaler) { "smarthpa-prio" { @("--c3", "--c3-control") } "smarthpa-flat" { @("--c3-control") } default { @("") } }
+            foreach ($set in $sets) {
+                $setArgs = @(); if ($set) { $setArgs += $set }
+                & $Python @compareArgs @setArgs
+                # user-side metrics of the scenario (latency, SLO, throughput); trial runs are too short for its phases
+                & $Python (Join-Path $CodeDir "make_user_metrics.py") (Split-Path (Split-Path $OutDir)) @setArgs
+            }
         }
     }
 }

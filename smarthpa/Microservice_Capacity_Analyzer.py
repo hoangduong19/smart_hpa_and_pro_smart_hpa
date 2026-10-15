@@ -21,7 +21,7 @@ from Adaptive_Resource_Manager import *
 from Priority_Resource_Manager import Priority_Resource_Manager
 import config
 
-if config.ARM_VARIANT == "priority":                    # improvement C3; the default keeps the authors' Algorithm 2
+if config.ARM_VARIANT in ("priority", "flat"):          # improvement C3 and its control run; the default keeps the authors' Algorithm 2
     Adaptive_Resource_Manager = Priority_Resource_Manager
 
 

@@ -1,6 +1,7 @@
 
 # Improvement C3 (plan.md section 7): Adaptive Resource Manager that exchanges quota by microservice priority.
-# Drop-in replacement for Adaptive_Resource_Manager (same input, same output), selected with SMARTHPA_ARM=priority.
+# Drop-in replacement for Adaptive_Resource_Manager (same input, same output), selected with SMARTHPA_ARM=priority
+# (or SMARTHPA_ARM=flat for the control run, see below).
 #
 # Differences from the paper's Algorithm 2 (Adaptive_Resource_Manager.py, left untouched):
 #   1. Underprovisioned microservices are served in descending order of weight x required CPU (paper: required CPU only).
@@ -20,6 +21,11 @@ import config
 # and currency on every page, cart and checkout on the purchase path. Microservices not listed have weight 1.
 WEIGHTS = {"frontend": 3, "checkoutservice": 2, "cartservice": 2, "productcatalogservice": 2, "currencyservice": 2}
 HEADROOM = 1                    # spare replicas kept by an overprovisioned microservice of weight >= 2
+
+# Control run of C3 (SMARTHPA_ARM=flat): every weight 1 and no headroom switch off differences 1-3, so the exchange
+# follows the paper's order and only difference 4 (no lost quota, W9) is left. C3 minus this run = effect of priority.
+if config.ARM_VARIANT == "flat":
+    WEIGHTS, HEADROOM = {}, 0
 
 
 def Priority_Resource_Manager(microservices_data):
