@@ -1,0 +1,30 @@
+﻿NAME                                     READY   STATUS    RESTARTS        AGE     IP            NODE          NOMINATED NODE   READINESS GATES
+adservice-689c5b7f7c-4s2x6               1/1     Running   7 (3d20h ago)   17d     10.42.0.205   k3s-master    <none>           <none>
+cartservice-7c77b9c98d-b5dkf             1/1     Running   1 (31m ago)     3d20h   10.42.2.182   k3s-worker1   <none>           <none>
+cartservice-7c77b9c98d-htb5j             1/1     Running   0               12m     10.42.4.96    k3s-worker2   <none>           <none>
+cartservice-7c77b9c98d-p7xs8             1/1     Running   0               12m     10.42.0.222   k3s-master    <none>           <none>
+checkoutservice-ddc97f8b7-9wr5j          1/1     Running   7 (31m ago)     17d     10.42.2.183   k3s-worker1   <none>           <none>
+checkoutservice-ddc97f8b7-qn7kg          1/1     Running   0               12m     10.42.4.97    k3s-worker2   <none>           <none>
+currencyservice-5cd798cd99-5p6fs         1/1     Running   0               15m     10.42.4.92    k3s-worker2   <none>           <none>
+currencyservice-5cd798cd99-8jlrz         1/1     Running   0               15m     10.42.2.201   k3s-worker1   <none>           <none>
+currencyservice-5cd798cd99-fkjrk         1/1     Running   0               28m     10.42.4.74    k3s-worker2   <none>           <none>
+currencyservice-5cd798cd99-jwphk         1/1     Running   0               15m     10.42.2.202   k3s-worker1   <none>           <none>
+currencyservice-5cd798cd99-sbxlc         1/1     Running   0               15m     10.42.0.221   k3s-master    <none>           <none>
+emailservice-6f7c9586f7-8qpqd            1/1     Running   3 (31m ago)     6d23h   10.42.2.178   k3s-worker1   <none>           <none>
+frontend-6dbcf6bc9c-5z2tz                1/1     Running   0               15m     10.42.2.203   k3s-worker1   <none>           <none>
+frontend-6dbcf6bc9c-b9bn5                1/1     Running   0               15m     10.42.4.93    k3s-worker2   <none>           <none>
+frontend-6dbcf6bc9c-hpq9z                1/1     Running   0               13m     10.42.4.95    k3s-worker2   <none>           <none>
+frontend-6dbcf6bc9c-skp49                1/1     Running   2 (3d20h ago)   5d18h   10.42.0.200   k3s-master    <none>           <none>
+frontend-6dbcf6bc9c-xvqvr                1/1     Running   0               12m     10.42.2.204   k3s-worker1   <none>           <none>
+paymentservice-75cb85754f-jl5p2          1/1     Running   2 (32m ago)     5d18h   10.42.0.194   k3s-master    <none>           <none>
+paymentservice-75cb85754f-n2h9k          1/1     Running   0               12m     10.42.2.205   k3s-worker1   <none>           <none>
+productcatalogservice-6f9b7b94b7-78jqj   1/1     Running   0               15m     10.42.4.94    k3s-worker2   <none>           <none>
+productcatalogservice-6f9b7b94b7-8g5mr   1/1     Running   0               12m     10.42.0.223   k3s-master    <none>           <none>
+productcatalogservice-6f9b7b94b7-rzqpc   1/1     Running   0               12m     10.42.2.206   k3s-worker1   <none>           <none>
+productcatalogservice-6f9b7b94b7-vtkz5   1/1     Running   0               25m     10.42.2.195   k3s-worker1   <none>           <none>
+recommendationservice-84b4d75d85-dxbdj   1/1     Running   5 (32m ago)     11d     10.42.0.203   k3s-master    <none>           <none>
+recommendationservice-84b4d75d85-f2jfd   1/1     Running   0               12m     10.42.4.99    k3s-worker2   <none>           <none>
+recommendationservice-84b4d75d85-kdc6n   1/1     Running   0               12m     10.42.2.207   k3s-worker1   <none>           <none>
+recommendationservice-84b4d75d85-r6msg   1/1     Running   0               12m     10.42.4.98    k3s-worker2   <none>           <none>
+redis-cart-788fbddc7-5mmjp               1/1     Running   3 (31m ago)     6d23h   10.42.4.71    k3s-worker2   <none>           <none>
+shippingservice-794c6f8f99-kdplr         1/1     Running   4 (31m ago)     10d     10.42.4.62    k3s-worker2   <none>           <none>

@@ -1,0 +1,61 @@
+[2026-10-19 13:03:52,680] DESKTOP-1G7ONFQ/INFO/locust.main: Starting Locust 2.46.6
+[2026-10-19 13:03:52,687] DESKTOP-1G7ONFQ/INFO/locust.runners: Shape test starting.
+[2026-10-19 13:03:52,691] DESKTOP-1G7ONFQ/INFO/locust.runners: Shape worker starting
+[2026-10-19 13:03:52,693] DESKTOP-1G7ONFQ/INFO/locust.runners: Shape test updating to 50 users at 5.00 spawn rate
+[2026-10-19 13:03:52,696] DESKTOP-1G7ONFQ/INFO/locust.runners: Ramping to 50 users at a rate of 5.00 per second
+[2026-10-19 13:04:01,767] DESKTOP-1G7ONFQ/INFO/locust.runners: All users spawned: {"WebsiteUser": 50} (50 total users)
+[2026-10-19 13:06:52,828] DESKTOP-1G7ONFQ/INFO/locust.runners: Shape test updating to 250 users at 50.00 spawn rate
+[2026-10-19 13:06:52,833] DESKTOP-1G7ONFQ/INFO/locust.runners: Ramping to 250 users at a rate of 50.00 per second
+[2026-10-19 13:06:55,856] DESKTOP-1G7ONFQ/INFO/locust.runners: All users spawned: {"WebsiteUser": 250} (250 total users)
+[2026-10-19 13:10:53,429] DESKTOP-1G7ONFQ/INFO/locust.runners: Shape test updating to 50 users at 50.00 spawn rate
+[2026-10-19 13:10:53,434] DESKTOP-1G7ONFQ/INFO/locust.runners: Ramping to 50 users at a rate of 50.00 per second
+[2026-10-19 13:10:56,464] DESKTOP-1G7ONFQ/INFO/locust.runners: All users spawned: {"WebsiteUser": 50} (50 total users)
+[2026-10-19 13:13:52,798] DESKTOP-1G7ONFQ/INFO/locust.runners: Shape test updating to 250 users at 50.00 spawn rate
+[2026-10-19 13:13:52,803] DESKTOP-1G7ONFQ/INFO/locust.runners: Ramping to 250 users at a rate of 50.00 per second
+[2026-10-19 13:13:55,833] DESKTOP-1G7ONFQ/INFO/locust.runners: All users spawned: {"WebsiteUser": 250} (250 total users)
+[2026-10-19 13:16:53,093] DESKTOP-1G7ONFQ/INFO/locust.runners: Shape test updating to 50 users at 50.00 spawn rate
+[2026-10-19 13:16:53,095] DESKTOP-1G7ONFQ/INFO/locust.runners: Ramping to 50 users at a rate of 50.00 per second
+[2026-10-19 13:16:56,112] DESKTOP-1G7ONFQ/INFO/locust.runners: All users spawned: {"WebsiteUser": 50} (50 total users)
+[2026-10-19 13:18:53,365] DESKTOP-1G7ONFQ/INFO/locust.runners: Shape test stopping
+[2026-10-19 13:18:53,512] DESKTOP-1G7ONFQ/INFO/locust.main: Shape test completed, shutting down
+[2026-10-19 13:18:53,515] DESKTOP-1G7ONFQ/INFO/locust.main: Run time limit set to 900 seconds
+[2026-10-19 13:18:53,515] DESKTOP-1G7ONFQ/INFO/locust.main: Shutting down (exit code 0)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /                                                                               8844     0(0.00%) |    632       9    5958    450 |    9.82        0.00
+GET      /cart                                                                           8445     0(0.00%) |    466       8    1603    440 |    9.37        0.00
+POST     /cart                                                                           8296     0(0.00%) |    563      13    2383    520 |    9.21        0.00
+POST     /cart/checkout                                                                  8280     0(0.00%) |    606      15    2691    590 |    9.19        0.00
+GET      /product/0PUK6V6EV0                                                              923     0(0.00%) |    486       9    1812    470 |    1.02        0.00
+GET      /product/1YMWWN1N4O                                                              901     0(0.00%) |    464       9    1718    450 |    1.00        0.00
+GET      /product/2ZYFJ3GM2N                                                              923     0(0.00%) |    458       9    1480    420 |    1.02        0.00
+GET      /product/66VCHSJNUP                                                              920     0(0.00%) |    466       9    1845    420 |    1.02        0.00
+GET      /product/6E92ZMYYFZ                                                              887     0(0.00%) |    482       9    1482    460 |    0.98        0.00
+GET      /product/9SIQT8TOJO                                                              909     0(0.00%) |    476       9    1895    450 |    1.01        0.00
+GET      /product/L9ECAV7KIM                                                              939     0(0.00%) |    464       9    1456    430 |    1.04        0.00
+GET      /product/LS4PSXUNUM                                                              954     0(0.00%) |    488       9    1769    450 |    1.06        0.00
+GET      /product/OLJCESPC7Z                                                              954     0(0.00%) |    484       9    1531    460 |    1.06        0.00
+POST     /setCurrency                                                                    8541     0(0.00%) |    590      10    5979    430 |    9.48        0.00
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                     50716     0(0.00%) |    556       8    5979    480 |   56.30        0.00
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+GET      /                                                                                     450    650    830    960   1300   1700   2300   3300   5400   6000   6000   8844
+GET      /cart                                                                                 440    590    690    760    930   1100   1200   1200   1500   1600   1600   8445
+POST     /cart                                                                                 520    690    800    890   1100   1200   1400   1600   2000   2400   2400   8296
+POST     /cart/checkout                                                                        590    710    860    900   1100   1300   1500   1700   2500   2700   2700   8280
+GET      /product/0PUK6V6EV0                                                                   470    620    700    770    950   1100   1300   1400   1800   1800   1800    923
+GET      /product/1YMWWN1N4O                                                                   450    590    680    750    920   1000   1200   1400   1700   1700   1700    901
+GET      /product/2ZYFJ3GM2N                                                                   420    580    690    760    930   1100   1200   1300   1500   1500   1500    923
+GET      /product/66VCHSJNUP                                                                   420    580    680    750    970   1100   1200   1300   1800   1800   1800    920
+GET      /product/6E92ZMYYFZ                                                                   460    600    710    790    960   1100   1200   1300   1500   1500   1500    887
+GET      /product/9SIQT8TOJO                                                                   450    610    680    760    950   1100   1300   1300   1900   1900   1900    909
+GET      /product/L9ECAV7KIM                                                                   430    600    710    770    930   1000   1200   1300   1500   1500   1500    939
+GET      /product/LS4PSXUNUM                                                                   450    620    730    810   1000   1100   1200   1400   1800   1800   1800    954
+GET      /product/OLJCESPC7Z                                                                   460    620    720    790    960   1100   1200   1300   1500   1500   1500    954
+POST     /setCurrency                                                                          430    610    780    900   1200   1600   2000   2500   5300   6000   6000   8541
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                            480    650    780    860   1100   1300   1600   2000   4800   5400   6000  50716
+

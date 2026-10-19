@@ -1,0 +1,9 @@
+[2026-10-19 11:46:47,012] DESKTOP-1G7ONFQ/INFO/locust.main: Starting Locust 2.46.6
+[2026-10-19 11:46:47,017] DESKTOP-1G7ONFQ/INFO/locust.runners: Shape test starting.
+[2026-10-19 11:46:47,021] DESKTOP-1G7ONFQ/INFO/locust.runners: Shape worker starting
+[2026-10-19 11:46:47,025] DESKTOP-1G7ONFQ/INFO/locust.runners: Shape test updating to 50 users at 5.00 spawn rate
+[2026-10-19 11:46:47,028] DESKTOP-1G7ONFQ/INFO/locust.runners: Ramping to 50 users at a rate of 5.00 per second
+[2026-10-19 11:46:56,062] DESKTOP-1G7ONFQ/INFO/locust.runners: All users spawned: {"WebsiteUser": 50} (50 total users)
+[2026-10-19 11:49:47,359] DESKTOP-1G7ONFQ/INFO/locust.runners: Shape test updating to 250 users at 50.00 spawn rate
+[2026-10-19 11:49:47,363] DESKTOP-1G7ONFQ/INFO/locust.runners: Ramping to 250 users at a rate of 50.00 per second
+[2026-10-19 11:49:50,389] DESKTOP-1G7ONFQ/INFO/locust.runners: All users spawned: {"WebsiteUser": 250} (250 total users)

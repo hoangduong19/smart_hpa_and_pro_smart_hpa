@@ -1,0 +1,7 @@
+scenario,autoscaler,run,replica_changes,scale_reversals,maxr_changes,max_swing
+5R-50% spike,k8shpa,1,11,0,0,2
+5R-50% spike,smarthpa,1,76,31,26,11
+5R-50% spike,k8shpa,2,12,0,0,2
+5R-50% spike,smarthpa,2,97,49,20,10
+5R-50% spike,k8shpa,3,14,0,0,3
+5R-50% spike,smarthpa,3,94,48,36,11

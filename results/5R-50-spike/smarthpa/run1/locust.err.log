@@ -1,0 +1,67 @@
+[2026-10-19 12:21:34,611] DESKTOP-1G7ONFQ/INFO/locust.main: Starting Locust 2.46.6
+[2026-10-19 12:21:34,615] DESKTOP-1G7ONFQ/INFO/locust.runners: Shape test starting.
+[2026-10-19 12:21:34,617] DESKTOP-1G7ONFQ/INFO/locust.runners: Shape worker starting
+[2026-10-19 12:21:34,619] DESKTOP-1G7ONFQ/INFO/locust.runners: Shape test updating to 50 users at 5.00 spawn rate
+[2026-10-19 12:21:34,622] DESKTOP-1G7ONFQ/INFO/locust.runners: Ramping to 50 users at a rate of 5.00 per second
+[2026-10-19 12:21:43,709] DESKTOP-1G7ONFQ/INFO/locust.runners: All users spawned: {"WebsiteUser": 50} (50 total users)
+[2026-10-19 12:24:35,113] DESKTOP-1G7ONFQ/INFO/locust.runners: Shape test updating to 250 users at 50.00 spawn rate
+[2026-10-19 12:24:35,120] DESKTOP-1G7ONFQ/INFO/locust.runners: Ramping to 250 users at a rate of 50.00 per second
+[2026-10-19 12:24:38,145] DESKTOP-1G7ONFQ/INFO/locust.runners: All users spawned: {"WebsiteUser": 250} (250 total users)
+[2026-10-19 12:28:35,112] DESKTOP-1G7ONFQ/INFO/locust.runners: Shape test updating to 50 users at 50.00 spawn rate
+[2026-10-19 12:28:35,115] DESKTOP-1G7ONFQ/INFO/locust.runners: Ramping to 50 users at a rate of 50.00 per second
+[2026-10-19 12:28:38,136] DESKTOP-1G7ONFQ/INFO/locust.runners: All users spawned: {"WebsiteUser": 50} (50 total users)
+[2026-10-19 12:31:34,669] DESKTOP-1G7ONFQ/INFO/locust.runners: Shape test updating to 250 users at 50.00 spawn rate
+[2026-10-19 12:31:34,674] DESKTOP-1G7ONFQ/INFO/locust.runners: Ramping to 250 users at a rate of 50.00 per second
+[2026-10-19 12:31:37,726] DESKTOP-1G7ONFQ/INFO/locust.runners: All users spawned: {"WebsiteUser": 250} (250 total users)
+[2026-10-19 12:34:34,891] DESKTOP-1G7ONFQ/INFO/locust.runners: Shape test updating to 50 users at 50.00 spawn rate
+[2026-10-19 12:34:34,894] DESKTOP-1G7ONFQ/INFO/locust.runners: Ramping to 50 users at a rate of 50.00 per second
+[2026-10-19 12:34:37,934] DESKTOP-1G7ONFQ/INFO/locust.runners: All users spawned: {"WebsiteUser": 50} (50 total users)
+[2026-10-19 12:36:35,649] DESKTOP-1G7ONFQ/INFO/locust.runners: Shape test stopping
+[2026-10-19 12:36:35,706] DESKTOP-1G7ONFQ/INFO/locust.main: Shape test completed, shutting down
+[2026-10-19 12:36:35,707] DESKTOP-1G7ONFQ/INFO/locust.main: Run time limit set to 900 seconds
+[2026-10-19 12:36:35,708] DESKTOP-1G7ONFQ/INFO/locust.main: Shutting down (exit code 1)
+Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /                                                                               9526     0(0.00%) |    640       9    5944    500 |   10.57        0.00
+GET      /cart                                                                           8946     0(0.00%) |    219       8    1561    170 |    9.93        0.00
+POST     /cart                                                                           9010     1(0.01%) |    313      11    1919    280 |   10.00        0.00
+POST     /cart/checkout                                                                  9006     0(0.00%) |    333      14    1993    290 |   10.00        0.00
+GET      /product/0PUK6V6EV0                                                              989     0(0.00%) |    215       9    1582    170 |    1.10        0.00
+GET      /product/1YMWWN1N4O                                                             1038     0(0.00%) |    226       7    1653    180 |    1.15        0.00
+GET      /product/2ZYFJ3GM2N                                                             1048     0(0.00%) |    230       8    1503    180 |    1.16        0.00
+GET      /product/66VCHSJNUP                                                              949     0(0.00%) |    218       8    1656    170 |    1.05        0.00
+GET      /product/6E92ZMYYFZ                                                              962     0(0.00%) |    208       7    1355    170 |    1.07        0.00
+GET      /product/9SIQT8TOJO                                                             1028     0(0.00%) |    222       8    1576    170 |    1.14        0.00
+GET      /product/L9ECAV7KIM                                                             1046     0(0.00%) |    224       8    1530    170 |    1.16        0.00
+GET      /product/LS4PSXUNUM                                                              980     0(0.00%) |    218       7    1496    170 |    1.09        0.00
+GET      /product/OLJCESPC7Z                                                              979     0(0.00%) |    214       9    1483    170 |    1.09        0.00
+POST     /setCurrency                                                                    8971     0(0.00%) |    613      10    5792    490 |    9.96        0.00
+--------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                                     54478     1(0.00%) |    392       7    5944    280 |   60.46        0.00
+
+Response time percentiles (approximated)
+Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+GET      /                                                                                     500    720    880   1000   1300   1600   2000   3000   5300   5900   5900   9526
+GET      /cart                                                                                 170    220    280    320    430    550    720    850   1200   1600   1600   8946
+POST     /cart                                                                                 280    320    400    470    590    710    910   1100   1700   1900   1900   9010
+POST     /cart/checkout                                                                        290    370    400    490    600    710    990   1300   1800   2000   2000   9006
+GET      /product/0PUK6V6EV0                                                                   170    230    280    330    460    580    730   1000   1600   1600   1600    989
+GET      /product/1YMWWN1N4O                                                                   180    240    290    340    480    590    800   1000   1600   1700   1700   1038
+GET      /product/2ZYFJ3GM2N                                                                   180    250    310    360    490    630    780    930   1400   1500   1500   1048
+GET      /product/66VCHSJNUP                                                                   170    250    300    340    440    540    750    990   1700   1700   1700    949
+GET      /product/6E92ZMYYFZ                                                                   170    230    290    320    430    540    700    910   1400   1400   1400    962
+GET      /product/9SIQT8TOJO                                                                   170    240    300    350    470    600    860    990   1300   1600   1600   1028
+GET      /product/L9ECAV7KIM                                                                   170    240    300    340    460    610    870   1000   1400   1500   1500   1046
+GET      /product/LS4PSXUNUM                                                                   170    230    300    340    460    580    840   1100   1500   1500   1500    980
+GET      /product/OLJCESPC7Z                                                                   170    240    290    320    450    560    700    780   1500   1500   1500    979
+POST     /setCurrency                                                                          490    700    840    940   1200   1500   2000   2600   4900   5800   5800   8971
+--------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                                            280    390    490    580    850   1200   1500   1800   4400   5800   5900  54478
+
+Error report
+# occurrences      Error                                                                                               
+------------------|---------------------------------------------------------------------------------------------------------------------------------------------
+1                  POST /cart: RemoteDisconnected('Remote end closed connection without response')                     
+------------------|---------------------------------------------------------------------------------------------------------------------------------------------
+

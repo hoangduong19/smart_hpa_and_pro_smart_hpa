@@ -9,11 +9,14 @@ Runs ONE experiment run end to end (plan.md, section 6 "Quy trinh mot lan chay")
        prosmarthpa -> ..\prosmarthpa\prosmart_hpa.py with D:\prosmart-venv (PROPHET models in ..\prosmarthpa\models)
        k8shpa   -> kubectl autoscale for all deployments + k8shpa_observer.py (records only)
   4. Start cluster_recorder.py and Locust at the same time
-  5. Stop everything, remove HPAs, copy Knowledge Base + logs to results\<scenario>\<autoscaler>\run<N>\
+       -Shape ramp  -> locustfile.py, -Users rising at -SpawnRate then held (the paper's load)
+       -Shape spike -> locustfile_spike.py, 50 <-> 250 users (improvement C2); -Users / -SpawnRate are not used
+  5. Stop everything, remove HPAs, copy Knowledge Base + logs to results\<scenario>[-spike]\<autoscaler>\run<N>\
 
 Example:
   .\run_experiment.ps1 -Autoscaler k8shpa -Scenario 5R-50% -Run 1
   .\run_experiment.ps1 -Autoscaler smarthpa -Scenario 5R-50% -Run 0 -DurationSec 300 -Users 100 -CooldownSec 60   # short trial
+  .\run_experiment.ps1 -Autoscaler smarthpa -Scenario 5R-50% -Run 1 -Shape spike
 #>
 param(
     [Parameter(Mandatory = $true)][ValidateSet("smarthpa", "smarthpa-prio", "smarthpa-flat", "prosmarthpa", "k8shpa")][string]$Autoscaler,
@@ -23,6 +26,7 @@ param(
     [double]$SpawnRate = 0.67,
     [int]$DurationSec = 900,
     [int]$CooldownSec = 300,
+    [ValidateSet("ramp", "spike")][string]$Shape = "ramp",
     [string]$TargetHost = "http://192.168.161.10",
     [string]$ExpectedContext = "k3s-lab",
     [switch]$Force
@@ -34,6 +38,7 @@ $Locust = "D:\smarthpa-venv\Scripts\locust.exe"
 $ProSmartPython = "D:\prosmart-venv\Scripts\python.exe"         # prophet needs numpy < 2 / pandas 2.x, kept apart from smarthpa-venv
 $CodeDir = $PSScriptRoot
 $ScenarioDir = $Scenario.TrimEnd('%')
+if ($Shape -ne "ramp") { $ScenarioDir += "-$Shape" }         # spike runs get their own scenario folder and comparison
 $RelOut = "..\results\$ScenarioDir\$Autoscaler\run$Run"
 $OutDir = Join-Path $CodeDir $RelOut
 
@@ -59,7 +64,8 @@ $m = [regex]::Match($Scenario, '^(\d+)R-(\d+)%$')
 $MaxR = [int]$m.Groups[1].Value
 $Threshold = [int]$m.Groups[2].Value
 $Deployments = @(Get-DeploymentNames)
-Log "Context $ctx | $Autoscaler | $Scenario (maxR=$MaxR, threshold=$Threshold%) | run $Run | $Users users @ $SpawnRate/s | ${DurationSec}s"
+$load = if ($Shape -eq "spike") { "spike shape (locustfile_spike.py)" } else { "$Users users @ $SpawnRate/s" }
+Log "Context $ctx | $Autoscaler | $Scenario (maxR=$MaxR, threshold=$Threshold%) | run $Run | $load | ${DurationSec}s"
 
 $procs = @()
 $failed = $false
@@ -110,7 +116,7 @@ try {
 
     $info = [ordered]@{
         autoscaler = $Autoscaler; scenario = $Scenario; run = $Run; max_replicas = $MaxR; cpu_threshold = $Threshold
-        users = $Users; spawn_rate = $SpawnRate; duration_sec = $DurationSec; cooldown_sec = $CooldownSec
+        users = $Users; spawn_rate = $SpawnRate; duration_sec = $DurationSec; cooldown_sec = $CooldownSec; shape = $Shape
         host = $TargetHost; kube_context = $ctx; started_at = (Get-Date -Format "yyyy-MM-dd HH:mm:ss")
     }
 
@@ -118,7 +124,8 @@ try {
     Log "Starting $controllerScript, cluster_recorder.py and Locust"
     $procs += Start-Process $Python -ArgumentList "cluster_recorder.py `"$RelOut\cluster_metrics.csv`" $($DurationSec + 30) 15" `
         -WorkingDirectory $CodeDir -NoNewWindow -PassThru -RedirectStandardError "$OutDir\recorder.err.log"
-    $procs += Start-Process $Locust -ArgumentList "-f locustfile.py --host $TargetHost --headless -u $Users -r $SpawnRate -t ${DurationSec}s --csv `"$RelOut\locust`" --csv-full-history --only-summary" `
+    $loadArgs = if ($Shape -eq "spike") { "-f locustfile_spike.py" } else { "-f locustfile.py -u $Users -r $SpawnRate" }
+    $procs += Start-Process $Locust -ArgumentList "$loadArgs --host $TargetHost --headless -t ${DurationSec}s --csv `"$RelOut\locust`" --csv-full-history --only-summary" `
         -WorkingDirectory $CodeDir -NoNewWindow -PassThru -RedirectStandardOutput "$OutDir\locust.out.log" -RedirectStandardError "$OutDir\locust.err.log"
     $controller = Start-Process $controllerPython -ArgumentList $controllerScript `
         -WorkingDirectory $CodeDir -NoNewWindow -PassThru -RedirectStandardOutput "$OutDir\controller.out.log" -RedirectStandardError "$OutDir\controller.err.log"

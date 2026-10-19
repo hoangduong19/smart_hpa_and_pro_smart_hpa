@@ -1,0 +1,30 @@
+﻿[11:45:33] Context k3s-lab | smarthpa | 5R-50% (maxR=5, threshold=50%) | run 0 | spike shape (locustfile_spike.py) | 
+240s
+[11:45:33] Reset: deleting HPAs, scaling all deployments to 1
+[11:45:45] Cluster clean: 11 deployments x 1 replica. Cooling down 60s
+[11:46:46] Starting Microservice_Capacity_Analyzer.py, cluster_recorder.py and Locust
+[11:47:16]   30s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=1 emailservice=1 frontend=2 
+paymentservice=1 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[11:47:46]   60s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=4 emailservice=1 frontend=4 
+paymentservice=1 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[11:48:16]   90s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 
+paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[11:48:46]  121s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=1 emailservice=1 frontend=3 
+paymentservice=1 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[11:49:16]  151s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 
+paymentservice=1 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[11:49:46]  181s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=9 emailservice=1 frontend=4 
+paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[11:50:16]  211s | adservice=1 cartservice=2 checkoutservice=2 currencyservice=8 emailservice=1 frontend=5 
+paymentservice=2 productcatalogservice=3 recommendationservice=3 redis-cart=1 shippingservice=1 
+[11:50:47]  241s | adservice=1 cartservice=3 checkoutservice=2 currencyservice=9 emailservice=1 frontend=11 
+paymentservice=3 productcatalogservice=4 recommendationservice=4 redis-cart=1 shippingservice=1 
+[11:51:17]  271s | adservice=1 cartservice=3 checkoutservice=2 currencyservice=9 emailservice=1 frontend=11 
+paymentservice=3 productcatalogservice=4 recommendationservice=4 redis-cart=1 shippingservice=1 
+[11:51:17] Controller exited with code 0
+[11:53:17] Stopping PID 23644
+[11:53:17] Run check passed
+[11:53:17] Results saved to D:\Nam 4 - HK1\Các Chuyên đề\Demo\smarthpa\..\results\5R-50-spike\smarthpa\run0
+Report written to D:\Nam 4 - HK1\Các Chuyên đề\Demo\smarthpa\..\results\5R-50-spike\smarthpa\run0
+Comparison written to D:\Nam 4 - HK1\Các Chuyên đề\Demo\results\5R-50-spike\comparison
+No runs under D:\Nam 4 - HK1\Các Chuyên đề\Demo\results\5R-50-spike

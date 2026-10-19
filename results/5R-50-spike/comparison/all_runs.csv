@@ -1,0 +1,7 @@
+scenario,autoscaler,run,supply_cpu_m,cpu_overutilization_pct,overutilization_time_min,cpu_overprovision_m,overprovision_time_min,cpu_underprovision_m,underprovision_time_min,p95_ms,failure_pct
+5R-50% spike,k8shpa,1,2890.361,158.613,13.043,3750.361,2.685,784.536,12.307,1000.0,0.0
+5R-50% spike,smarthpa,1,2735.06,38.317,5.306,2552.45,14.967,0.0,0.0,1200.0,0.002
+5R-50% spike,k8shpa,2,2583.941,110.068,11.75,3947.56,7.245,272.922,7.717,1600.0,0.0
+5R-50% spike,smarthpa,2,2739.469,47.164,6.478,3109.204,14.982,0.0,0.0,1300.0,0.0
+5R-50% spike,k8shpa,3,2727.672,129.179,12.965,3822.328,5.418,395.238,9.548,1800.0,0.0
+5R-50% spike,smarthpa,3,2670.465,49.13,7.506,2965.581,14.991,0.0,0.0,1800.0,0.075

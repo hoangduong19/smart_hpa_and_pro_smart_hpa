@@ -70,6 +70,12 @@ def output_folder(argv):
     return "comparison_c3"
 
 
+def scenario_label(scenario_dir):
+    """results/5R-50 -> '5R-50%', results/5R-50-spike -> '5R-50% spike' (improvement C2)."""
+    name, spike, _ = os.path.basename(scenario_dir).partition("-spike")
+    return name + "%" + (" spike" if spike else "")
+
+
 def run_dirs(scenario_dir, include_trials):
     """(autoscaler, run number, run directory) of every finished run of the scenario."""
     for a, _ in AUTOSCALERS:
@@ -221,7 +227,7 @@ def fig_means(runs, present, scenario, out):
 def main():
     scenario_dir = os.path.normpath(sys.argv[1])
     include_trials = "--include-trials" in sys.argv
-    scenario = os.path.basename(scenario_dir) + "%"
+    scenario = scenario_label(scenario_dir)
     out_dir = os.path.join(scenario_dir, output_folder(sys.argv))
     runs = load_runs(scenario_dir, include_trials)
     if not runs:

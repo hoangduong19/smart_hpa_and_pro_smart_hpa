@@ -9,13 +9,15 @@ waiting until the cluster answers again; the batch stops only when all attempts 
 
 Example:
   .\run_batch.ps1 -Deadline 17:30 -Pairs "5R-50%:2","5R-50%:3","2R-20%:1"
+  .\run_batch.ps1 -Pairs "5R-50%:1","5R-50%:2" -Shape spike          # improvement C2, results\5R-50-spike\
 #>
 param(
     [Parameter(Mandatory = $true)][string[]]$Pairs,          # "<scenario>:<run>"
     [string[]]$Autoscalers = @("k8shpa", "smarthpa"),        # run in this order for each pair; add "prosmarthpa" for 2R-20%
     [string]$Deadline = "",                                  # HH:mm today; empty = no deadline
     [double]$PairMinutes = 0,                                # 0 = 21 min per autoscaler (measured: R01+R02 took 41.5 min with default settings)
-    [int]$MaxAttempts = 3
+    [int]$MaxAttempts = 3,
+    [ValidateSet("ramp", "spike")][string]$Shape = "ramp"   # passed to run_experiment.ps1
 )
 
 $ErrorActionPreference = "Stop"
@@ -41,7 +43,9 @@ function Wait-Cluster {
     }
 }
 
-Log "Pairs: $($Pairs -join ', ') | autoscalers: $($Autoscalers -join ', ') | deadline: $(if ($Deadline) { $Deadline } else { 'none' }) | ~$PairMinutes min per pair"
+$suffix = if ($Shape -ne "ramp") { "-$Shape" } else { "" }    # same folder naming as run_experiment.ps1
+
+Log "Pairs: $($Pairs -join ', ') | autoscalers: $($Autoscalers -join ', ') | shape: $Shape | deadline: $(if ($Deadline) { $Deadline } else { 'none' }) | ~$PairMinutes min per pair"
 foreach ($p in $Pairs) {
     $scenario, $run = $p -split ':'
     $eta = (Get-Date).AddMinutes($PairMinutes)
@@ -50,12 +54,12 @@ foreach ($p in $Pairs) {
         break
     }
     foreach ($a in $Autoscalers) {
-        $outDir = Join-Path $PSScriptRoot ("..\results\{0}\{1}\run{2}" -f $scenario.TrimEnd('%'), $a, $run)
+        $outDir = Join-Path $PSScriptRoot ("..\results\{0}{1}\{2}\run{3}" -f $scenario.TrimEnd('%'), $suffix, $a, $run)
         if (Test-Path $outDir) { Log "=== $a | $scenario | run $run already done, skipping ==="; continue }
         for ($attempt = 1; $attempt -le $MaxAttempts; $attempt++) {
             Wait-Cluster
             Log "=== $a | $scenario | run $run | attempt $attempt/$MaxAttempts ==="
-            & powershell -NoProfile -ExecutionPolicy Bypass -File $Script -Autoscaler $a -Scenario $scenario -Run ([int]$run)
+            & powershell -NoProfile -ExecutionPolicy Bypass -File $Script -Autoscaler $a -Scenario $scenario -Run ([int]$run) -Shape $Shape
             if ($LASTEXITCODE -eq 0) { break }
             Log "Run failed (exit $LASTEXITCODE)"
             if ($attempt -eq $MaxAttempts) { Log "All $MaxAttempts attempts failed, stopping batch"; exit 1 }

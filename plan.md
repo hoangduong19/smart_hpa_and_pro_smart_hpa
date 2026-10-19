@@ -3,7 +3,7 @@
 > **Bài báo:** H. Ahmad, C. Treude, M. Wagner, C. Szabo, *Towards resource-efficient reactive and proactive auto-scaling for microservice architectures*, Journal of Systems and Software 225 (2025) 112390. DOI: 10.1016/j.jss.2025.112390
 > **Người thực hiện:** Nhóm. **Hoàng Quốc Dương** phụ trách phần demo (hạ tầng, chạy hệ thống, chạy thí nghiệm, demo khi bảo vệ)
 > **Cập nhật lần cuối:** 15/10/2026
-> **Trạng thái tổng:** 🟡 Giai đoạn 1–6 xong (20/20 lần chạy hợp lệ: 2R-20% 5 cặp, 5R-50% 5 cặp; lần 4–5 của 2R-20% chạy 12/10). Giai đoạn 6b ProSmart HPA xong (5/5 lần 2R-20% hợp lệ, 08/10 và 12/10). Giai đoạn 7: C1 xong phần phân tích (12/10); C3 xong (13/10 và 15/10: 5R-50% 5 lần + 3 lần đối chứng, 2R-20% 3 lần). Tiếp theo: quyết định có làm C2 không, rồi báo cáo
+> **Trạng thái tổng:** 🟡 Giai đoạn 1–6 xong (20/20 lần chạy hợp lệ: 2R-20% 5 cặp, 5R-50% 5 cặp; lần 4–5 của 2R-20% chạy 12/10). Giai đoạn 6b ProSmart HPA xong (5/5 lần 2R-20% hợp lệ, 08/10 và 12/10). Giai đoạn 7: C1 xong phần phân tích (12/10); C3 xong (13/10 và 15/10: 5R-50% 5 lần + 3 lần đối chứng, 2R-20% 3 lần); C2 xong (19/10: 5R-50% tải đột biến, 3 cặp). Tiếp theo: báo cáo
 > **Yêu cầu của giảng viên:** chạy nhiều lần, mỗi lần ra con số khác nhau cũng được, nhưng **xu hướng phải giống nhau ở mọi lần chạy**.
 
 ---
@@ -291,7 +291,7 @@ Chú thích: ✅ xong · ⚠️ cần xác nhận · ⬜ chưa làm
 | 5. Chuẩn bị baseline K8s HPA + công cụ ghi metric | ✅ `k8shpa_observer.py`, `cluster_recorder.py`, `run_experiment.ps1`, `run_batch.ps1`, `check_run.py`, `make_run_report.py`, `make_comparison.py` |
 | 6. Chạy thí nghiệm tái hiện | ✅ 20/20 lần hợp lệ (5R-50% 5 cặp, xong 07/10; 2R-20% 5 cặp, xong 12/10), xem [ma trận chạy](#ma-trận-chạy-xen-kẽ-để-giảm-sai-lệch-theo-thời-gian) |
 | 6b. ProSmart HPA (2R-20%, window 25s) | ✅ 5/5 lần hợp lệ (08/10 và 12/10), xem [Giai đoạn 6b](#56b-giai-đoạn-6b-prosmart-hpa-2r-20-window-25s) |
-| 7. Cải tiến | 🟡 C1 xong phần phân tích (12/10); C3 xong, 11/11 lần hợp lệ kể cả 3 lần đối chứng ở 5R-50% (13/10 và 15/10); C2 chưa làm, cần quyết định có làm không **← TIẾP THEO** |
+| 7. Cải tiến | 🟡 C1 xong phần phân tích (12/10); C3 xong, 11/11 lần hợp lệ kể cả 3 lần đối chứng ở 5R-50% (13/10 và 15/10); C2 xong, 6/6 lần 5R-50% tải đột biến hợp lệ (19/10). **Tiếp theo: báo cáo** |
 | 8. Phân tích, báo cáo, slide | ⬜ |
 
 ---
@@ -790,6 +790,11 @@ Script `smarthpa\make_user_metrics.py`, tự chạy ở cuối `run_experiment.p
   ```
 - **Thí nghiệm thêm:** 5R-50% × 2 autoscaler × 3 lần = 6 lần (~2 giờ).
 - **Giả thuyết cần kiểm tra:** khi tải lên xuống liên tục, Smart HPA có bị chuyển quota qua lại liên tục (flapping) không? Độ trễ khởi động pod ảnh hưởng thế nào?
+- **Kết quả (19/10, 5R-50%, 3 cặp, `resultsR-50-spike\comparison`):**
+  - **Tài nguyên:** Smart HPA tốt hơn 3/3 ở 6/7 chỉ số (p = 0,100, nhỏ nhất có thể với 3 vs 3): Overutilization 44,9 so với 132,6%, thời gian Overutilization 6,4 so với 12,6 phút, Underprovision 0 so với 484m, Overprovision 2.876 so với 3.840m.
+  - **Người dùng:** gần như hòa, không chỉ số nào nhất quán 3/3 (p95 lúc spike 1.468 so với 1.535 ms, thời gian p95 > 1 s 73 so với 74%).
+  - **Flapping (`make_flapping.py`, có):** Smart HPA đổi replica 89 lần so với 12, đảo chiều scale 43 so với 0, chuyển quota 27 lần, một service dao động tới 11 replica (K8s HPA 2–3). K8s HPA có cửa sổ ổn định 5 phút khi scale down nên không đảo chiều trong 15 phút.
+  - **Request lỗi:** Smart HPA run3 có 38 lỗi, K8s HPA 0. Không phải do mạng (0 ping mất 13:55–14:00). Hai đợt, đều trùng lúc Smart HPA scale down: (1) 13:56:11, 32 lỗi `RemoteDisconnected` trong 1 giây, đúng lúc `frontend` 5 → 4 trong chuỗi đảo chiều 4→5→4→5→4 (13:55:35–13:56:20); (2) 13:59:40–41, 6 lỗi 500 ở `/cart`, `/setCurrency`, `/product`, đúng lúc thu hẹp mạnh sau spike thứ 2 (`frontend` 12 → 9 → 5, `productcatalog` 4 → 1, `currency` 8 → 6, `cart` 2 → 1 trong 30 giây). Có thể pod bị xoá khi đang xử lý request (chưa kiểm tra log pod).
 
 #### C3. Chia quota theo độ ưu tiên (giải quyết W4, độ khó ⭐⭐⭐)
 - **Làm gì:** sửa Microservice Resource Balancer (Algorithm 2):
@@ -992,7 +997,7 @@ Cần trả lời để chốt kế hoạch:
 | ~~Q3~~ | ~~RAM mỗi VM~~ | ✅ Đã trả lời: **4GB** |
 | ~~Q4~~ | ~~Lệnh chuẩn bị đã chạy trước khi clone chưa~~ | ✅ Đã trả lời: **rồi** |
 | ~~Q5~~ | ~~Yêu cầu bắt buộc của giảng viên~~ | ✅ Đã trả lời: không có yêu cầu đặc biệt về công cụ; yêu cầu **chạy nhiều lần, con số khác nhau nhưng xu hướng phải giống nhau ở mỗi lần** |
-| Q6 | Muốn chọn cải tiến nào (C1, C2, C3)? C1 và C3 đã làm (12/10, 13/10); còn phải chốt có làm C2 không | Mục 7 |
+| Q6 | Muốn chọn cải tiến nào (C1, C2, C3)? Đã làm cả ba: C1 (12/10), C3 (13/10, 15/10), C2 (19/10) | Mục 7 |
 | ~~Q7~~ | ~~Python sẽ chạy trên Windows hay trong VM~~ | ✅ Đã trả lời: chạy trên **Windows** (venv `D:\smarthpa-venv`, `D:\prosmart-venv`) |
 
 ---
@@ -1056,7 +1061,10 @@ Cần trả lời để chốt kế hoạch:
 | 15/10 | **Đối chứng C3:** thêm `SMARTHPA_ARM=flat` (`Priority_Resource_Manager.py` với mọi trọng số 1, không dự phòng), `-Autoscaler smarthpa-flat` trong `run_experiment.ps1`, `--c3-control` trong `make_comparison.py` và `make_user_metrics.py` (đầu ra `comparison_c3_control`); `run_experiment.ps1` với `smarthpa-prio` giờ dựng lại cả `comparison_c3` lẫn `comparison_c3_control` | Kiểm tra offline: không vượt quota trong 2.000 kịch bản × 300 vòng ở cả 5R-50% và 2R-20%. Chạy lại mọi `comparison*` với dữ liệu cũ: không file nào đổi |
 | 15/10 13:52–13:55 | 3 VM đang tắt → bật bằng `vmrun ... nogui` | 3 node Ready, 0 HPA. Deployment còn ở mức scale của lần C3 cuối ngày 13/10 (`frontend` 14, `currency` 22), `run_experiment.ps1` tự reset về 1. Vậy lần mất kết nối 13/10 18:40 là do VM đã tắt hoặc mất mạng sau batch, không ảnh hưởng kết quả |
 | 15/10 13:55–15:42 | 5 lần 5R-50% xen kẽ: đối chứng 1 → C3 4 → đối chứng 2 → C3 5 → đối chứng 3 (mỗi lần một `run_batch.ps1`), ghi ping mỗi giây vào `results\ping_20261015.csv`; log ở `results\batch_20261015.log` | ✅ Cả 5 lần hợp lệ ngay lần thử đầu, 0 pod `Unschedulable`. C3 run 4 có 2 lần chập mạng khoảng 5 giây (15 ping mất, 13 request lỗi), giữ lại. **Kết luận:** phần lớn cải thiện của C3 ở 5R-50% đến từ việc sửa W9 (đối chứng: Underprovision 10m, p95 653 ms); ưu tiên chỉ giảm thêm Overutilization 87% → 75% (p = 0,036). Chi tiết ở mục 7, phần C3 |
-| | *(tiếp theo)* quyết định có làm C2 không, rồi báo cáo | |
+| 19/10 | **C2:** `smarthpa\locustfile_spike.py` (`LoadTestShape`: 50 users, spike 250 ở phút 3–7 và 10–13), `-Shape spike` trong `run_experiment.ps1` và `run_batch.ps1` (kết quả ở `resultsR-50-spike`), pha spike trong `make_user_metrics.py`, `make_flapping.py` (đếm đổi replica, đảo chiều scale, chuyển quota từ Knowledge Base) | |
+| 19/10 11:45–11:53 | `run0` Smart HPA 5R-50% spike (240 s), log ở `results\c2_run0_20261019.log` | ✅ Exit 0, qua `check_run.py` |
+| 19/10 11:54–14:01 | `run_batch.ps1 -Pairs "5R-50%:1","5R-50%:2","5R-50%:3" -Shape spike`, ghi ping mỗi giây vào `results\ping_20261019.csv`; log ở `resultsatch_20261019.log` | ✅ Cả 6 lần hợp lệ ngay lần thử đầu. Smart HPA tốt hơn 3/3 về tài nguyên, hòa về người dùng, nhưng flapping rõ (43 so với 0 lần đảo chiều). Smart HPA run3 có 38 request lỗi trùng hai lần scale down, không phải do mạng → giữ. Chi tiết ở mục 7, phần C2 |
+| | *(tiếp theo)* báo cáo | |
 
 ---
 

@@ -10,6 +10,10 @@
 # (not the whole test), so they follow the load. A phase value below is the mean of those per-second values.
 #   ramp phase       0-5 min, users rise from 0 to the maximum
 #   high-load phase  5-15 min, all users active
+# A spike scenario (folder name ending in -spike, improvement C2, stages from locustfile_spike.py) uses other phases:
+#   spike phase      both 250-user stages (3-7 and 10-13 min)
+#   spike onset      the first minute of each spike, while the autoscaler is still reacting
+#   base after spike the 50-user stages after a spike (7-10 and 13-15 min), when replicas and quota should come back
 #
 # Usage: python make_user_metrics.py <results/<scenario> dir> [--include-trials] [--c3]     (--c3: see make_comparison.py)
 
@@ -23,12 +27,16 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 from make_comparison import (AUTOSCALERS, COMPARISONS, COLOR, GRID, INK, INK_2, MARKER, NAME, SURFACE,
-                             consistency_lines, fig_runs, means_lines, output_folder, run_dirs, style_axis)
+                             consistency_lines, fig_runs, means_lines, output_folder, run_dirs, scenario_label,
+                             style_axis)
 
 RAMP_END_SEC = 300              # 200 users at 0.67 users/s
 SLO_P95_MS = 1000               # service-level objective for the SLO metric: p95 response time of at most 1 s
 BIN_SEC = 15                    # resolution of the timeline figure
 HOME, CHECKOUT = ("GET", "/"), ("POST", "/cart/checkout")
+
+# phase -> list of (start s, end s); the ramp load of the paper
+PHASES = {"ramp": [(0, RAMP_END_SEC)], "high": [(RAMP_END_SEC, float("inf"))]}
 
 # (key, label, True if higher is better)
 METRICS = [
@@ -41,6 +49,30 @@ METRICS = [
     ("failed_requests", "Failed requests (count)", False),
     ("p95_home_high_ms", "p95 home page, high load (ms)", False),
     ("p95_checkout_high_ms", "p95 checkout, high load (ms)", False),
+]
+
+
+def spike_phases():
+    from locustfile_spike import STAGES
+    starts = [0] + [end for end, _, _ in STAGES[:-1]]
+    stages = [(start, end, users) for start, (end, users, _) in zip(starts, STAGES)]
+    peak = max(users for _, _, users in stages)
+    spikes = [(a, b) for a, b, u in stages if u == peak]
+    return {"spike": spikes,
+            "onset": [(a, a + 60) for a, _ in spikes],
+            "base": [(a, b) for a, b, u in stages if u < peak and a >= spikes[0][1]]}
+
+
+SPIKE_METRICS = [
+    ("p50_spike_ms", "Median response time, spikes (ms)", False),
+    ("p95_spike_ms", "p95 response time, spikes (ms)", False),
+    ("p99_spike_ms", "p99 response time, spikes (ms)", False),
+    ("p95_onset_ms", "p95 response time, first minute of a spike (ms)", False),
+    ("p95_base_ms", "p95 response time, base load after a spike (ms)", False),
+    ("slo_violation_pct", f"Time with p95 > {SLO_P95_MS} ms, spikes (%)", False),
+    ("rps_spike", "Throughput, spikes (requests/s)", True),
+    ("failed_requests", "Failed requests (count)", False),
+    ("p95_checkout_spike_ms", "p95 checkout, spikes (ms)", False),
 ]
 
 
@@ -59,25 +91,56 @@ def load_history(run_dir):
     return series
 
 
-def phase_mean(rows, column, high):
-    values = [r[column] for r in rows if (r["t"] >= RAMP_END_SEC) == high and r[column] is not None]
-    return statistics.mean(values)
+def in_phase(rows, intervals):
+    return [r for r in rows if any(a <= r["t"] < b for a, b in intervals)]
+
+
+def phase_mean(rows, column, intervals):
+    return statistics.mean(r[column] for r in in_phase(rows, intervals) if r[column] is not None)
+
+
+def phase_rps(rows, intervals):
+    """Requests per second over the phase, from the cumulative request count of each interval."""
+    requests = seconds = 0
+    for interval in intervals:
+        part = in_phase(rows, [interval])
+        requests += part[-1]["requests"] - part[0]["requests"]
+        seconds += part[-1]["t"] - part[0]["t"]
+    return requests / seconds
+
+
+def slo_violation_pct(rows, intervals):
+    p95 = [r["95%"] for r in in_phase(rows, intervals) if r["95%"] is not None]
+    return 100 * sum(1 for v in p95 if v > SLO_P95_MS) / len(p95)
 
 
 def user_metrics(series):
     total = series[("", "Aggregated")]
-    high = [r for r in total if r["t"] >= RAMP_END_SEC]
-    p95_high = [r["95%"] for r in high if r["95%"] is not None]
     return {
-        "p50_high_ms": phase_mean(total, "50%", True),
-        "p95_high_ms": phase_mean(total, "95%", True),
-        "p99_high_ms": phase_mean(total, "99%", True),
-        "p95_ramp_ms": phase_mean(total, "95%", False),
-        "slo_violation_pct": 100 * sum(1 for v in p95_high if v > SLO_P95_MS) / len(p95_high),
-        "rps_high": (high[-1]["requests"] - high[0]["requests"]) / (high[-1]["t"] - high[0]["t"]),
+        "p50_high_ms": phase_mean(total, "50%", PHASES["high"]),
+        "p95_high_ms": phase_mean(total, "95%", PHASES["high"]),
+        "p99_high_ms": phase_mean(total, "99%", PHASES["high"]),
+        "p95_ramp_ms": phase_mean(total, "95%", PHASES["ramp"]),
+        "slo_violation_pct": slo_violation_pct(total, PHASES["high"]),
+        "rps_high": phase_rps(total, PHASES["high"]),
         "failed_requests": total[-1]["failures"],
-        "p95_home_high_ms": phase_mean(series[HOME], "95%", True),
-        "p95_checkout_high_ms": phase_mean(series[CHECKOUT], "95%", True),
+        "p95_home_high_ms": phase_mean(series[HOME], "95%", PHASES["high"]),
+        "p95_checkout_high_ms": phase_mean(series[CHECKOUT], "95%", PHASES["high"]),
+    }
+
+
+def spike_user_metrics(series, phases):
+    total = series[("", "Aggregated")]
+    return {
+        "p50_spike_ms": phase_mean(total, "50%", phases["spike"]),
+        "p95_spike_ms": phase_mean(total, "95%", phases["spike"]),
+        "p99_spike_ms": phase_mean(total, "99%", phases["spike"]),
+        "p95_onset_ms": phase_mean(total, "95%", phases["onset"]),
+        "p95_base_ms": phase_mean(total, "95%", phases["base"]) if phases["base"] else float("nan"),
+        "slo_violation_pct": slo_violation_pct(total, phases["spike"]),
+        "rps_spike": phase_rps(total, phases["spike"]),
+        "failed_requests": total[-1]["failures"],
+        "p95_checkout_spike_ms": phase_mean(series[CHECKOUT], "95%", phases["spike"]),
     }
 
 
@@ -90,7 +153,7 @@ def binned(rows, column):
     return {t: statistics.mean(v) for t, v in bins.items()}
 
 
-def fig_timeline(histories, present, scenario, out):
+def fig_timeline(histories, present, scenario, out, spikes=None):
     panels = [("95%", "p95 response time (ms)"), ("rps", "Throughput (requests/s)")]
     fig, axes = plt.subplots(2, 1, figsize=(11, 7.5), facecolor=SURFACE, sharex=True)
     fig.suptitle(f"{scenario}: what users experienced over the test (line = median of the runs, band = min to max)",
@@ -122,8 +185,13 @@ def fig_timeline(histories, present, scenario, out):
             ends[i][0] = max(ends[i][0], ends[i - 1][0] + 0.055 * top)
         for y, a in ends:
             ax.text(15.15, y, NAME[a], fontsize=9, color=INK, va="center")
-        ax.axvline(RAMP_END_SEC / 60, color=INK_2, linewidth=1, linestyle=":")
-        ax.text(RAMP_END_SEC / 60 + 0.1, top * 0.97, "all users active", fontsize=8, color=INK_2, va="top")
+        if spikes:
+            for a, b in spikes:
+                ax.axvspan(a / 60, b / 60, color=GRID, alpha=0.5, linewidth=0, zorder=0)
+                ax.text(a / 60 + 0.1, top * 0.97, "spike", fontsize=8, color=INK_2, va="top")
+        else:
+            ax.axvline(RAMP_END_SEC / 60, color=INK_2, linewidth=1, linestyle=":")
+            ax.text(RAMP_END_SEC / 60 + 0.1, top * 0.97, "all users active", fontsize=8, color=INK_2, va="top")
         if column == "95%":
             ax.axhline(SLO_P95_MS, color=INK_2, linewidth=1, linestyle="--")
             ax.text(0.05, SLO_P95_MS + top * 0.015, f"SLO {SLO_P95_MS} ms", fontsize=8, color=INK_2)
@@ -139,35 +207,49 @@ def fig_timeline(histories, present, scenario, out):
 
 def main():
     scenario_dir = os.path.normpath(sys.argv[1])
-    scenario = os.path.basename(scenario_dir) + "%"
+    scenario = scenario_label(scenario_dir)
     out_dir = os.path.join(scenario_dir, output_folder(sys.argv))
     histories = {(a, n): load_history(d) for a, n, d in run_dirs(scenario_dir, "--include-trials" in sys.argv)}
     if not histories:
         print(f"No runs under {scenario_dir}")
         return
-    runs = {k: user_metrics(h) for k, h in histories.items()}
+    spike = scenario_dir.endswith("-spike")
+    phases = spike_phases() if spike else PHASES
+    metrics = SPIKE_METRICS if spike else METRICS
+    if spike:
+        # trial runs stop early; keep only the part of each phase the shortest run reached
+        last = min(h[("", "Aggregated")][-1]["t"] for h in histories.values())
+        phases = {k: [(a, min(b, last)) for a, b in v if a < last] for k, v in phases.items()}
+        runs = {k: spike_user_metrics(h, phases) for k, h in histories.items()}
+    else:
+        runs = {k: user_metrics(h) for k, h in histories.items()}
     present = [a for a, _ in AUTOSCALERS if any(aa == a for aa, _ in runs)]
     comparisons = [(a, b) for a, b in COMPARISONS if a in present and b in present]
 
     os.makedirs(out_dir, exist_ok=True)
-    keys = [k for k, _, _ in METRICS]
+    keys = [k for k, _, _ in metrics]
     with open(os.path.join(out_dir, "user_metrics.csv"), "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["scenario", "autoscaler", "run"] + keys)
         for (a, n), m in sorted(runs.items(), key=lambda x: (x[0][1], x[0][0])):
             w.writerow([scenario, a, n] + [round(m[k], 3) for k in keys])
 
+    minutes = lambda v: " + ".join(f"{a / 60:g}-{b / 60:g}" for a, b in v)
+    phase_text = (f"Spikes = minute {minutes(phases['spike'])}, first minute of a spike = {minutes(phases['onset'])}, "
+                  f"base load after a spike = {minutes(phases['base'])}. " if spike else
+                  "Ramp = minute 0-5, high load = minute 5-15 (all users active). ")
     lines = [f"# User-side metrics: {scenario}", "",
-             f"From `locust_stats_history.csv` of {len(runs)} runs. Ramp = minute 0-5, high load = minute 5-15 (all users active). "
+             f"From `locust_stats_history.csv` of {len(runs)} runs. {phase_text}"
              f"Response-time values are means of Locust's per-second percentiles (each over the last ~10 s). "
              f"SLO: p95 of at most {SLO_P95_MS} ms."]
-    lines += consistency_lines(runs, comparisons, METRICS) + means_lines(runs, present, METRICS)
+    lines += consistency_lines(runs, comparisons, metrics) + means_lines(runs, present, metrics)
     lines += ["", "Figures: `fig_user_runs.png` (per run, consistency), `fig_user_timeline.png` (p95 and throughput over time)."]
     with open(os.path.join(out_dir, "user_metrics.md"), "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
 
-    fig_runs(runs, present, comparisons, scenario, os.path.join(out_dir, "fig_user_runs.png"), METRICS)
-    fig_timeline(histories, present, scenario, os.path.join(out_dir, "fig_user_timeline.png"))
+    fig_runs(runs, present, comparisons, scenario, os.path.join(out_dir, "fig_user_runs.png"), metrics)
+    fig_timeline(histories, present, scenario, os.path.join(out_dir, "fig_user_timeline.png"),
+                 phases["spike"] if spike else None)
     print(f"User-side metrics written to {out_dir}")
 
 
