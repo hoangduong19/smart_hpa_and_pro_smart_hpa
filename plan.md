@@ -1064,7 +1064,8 @@ Cần trả lời để chốt kế hoạch:
 | 19/10 | **C2:** `smarthpa\locustfile_spike.py` (`LoadTestShape`: 50 users, spike 250 ở phút 3–7 và 10–13), `-Shape spike` trong `run_experiment.ps1` và `run_batch.ps1` (kết quả ở `resultsR-50-spike`), pha spike trong `make_user_metrics.py`, `make_flapping.py` (đếm đổi replica, đảo chiều scale, chuyển quota từ Knowledge Base) | |
 | 19/10 11:45–11:53 | `run0` Smart HPA 5R-50% spike (240 s), log ở `results\c2_run0_20261019.log` | ✅ Exit 0, qua `check_run.py` |
 | 19/10 11:54–14:01 | `run_batch.ps1 -Pairs "5R-50%:1","5R-50%:2","5R-50%:3" -Shape spike`, ghi ping mỗi giây vào `results\ping_20261019.csv`; log ở `resultsatch_20261019.log` | ✅ Cả 6 lần hợp lệ ngay lần thử đầu. Smart HPA tốt hơn 3/3 về tài nguyên, hòa về người dùng, nhưng flapping rõ (43 so với 0 lần đảo chiều). Smart HPA run3 có 38 request lỗi trùng hai lần scale down, không phải do mạng → giữ. Chi tiết ở mục 7, phần C2 |
-| | *(tiếp theo)* báo cáo | |
+| 22/10 | Thầy hỏi vì sao train lại model PROPHET. `prosmarthpa\compare_author_models.py` (kết quả ở `results\2R-20\comparison\prophet_models\`): đọc dữ liệu train trong 22 `.pkl` của tác giả, so với Knowledge Base Smart HPA của nhóm, thử dự đoán trên run 4–5. Báo cáo thêm Bảng 5.4, Hình 5.6 ở mục 5.3 (bảng sau đánh số lại 5.5, 5.6), sửa mục 4.3, Bảng 4.4, mục 8.2, Phụ lục A | Model tác giả train từ Smart HPA của họ (tổng maxR = 22 ở cả 1.810 dòng, quota có chuyển). Nhu cầu ở pha ổn định của nhóm cao hơn 15–89% ở 9/11 service; maxR của nhóm 1–12 so với 1–3. Model tác giả đoán sai 1,93 replica, đoán thiếu 42%; model nhóm 0,96 và 15%. Chưa chạy đối chứng `.pkl` tác giả trên cluster (để 23/10) |
+| | *(tiếp theo)* chạy ProSmart 2R-20% với `.pkl` của tác giả làm đối chứng | |
 
 ---
 
