@@ -7,6 +7,7 @@ Runs ONE experiment run end to end (plan.md, section 6 "Quy trinh mot lan chay")
        smarthpa-prio -> the same, with Priority_Resource_Manager.py as the Adaptive Resource Manager (improvement C3)
        smarthpa-flat -> control run of C3: Priority_Resource_Manager.py with every weight 1 and no headroom
        prosmarthpa -> ..\prosmarthpa\prosmart_hpa.py with D:\prosmart-venv (PROPHET models in ..\prosmarthpa\models)
+       prosmarthpa-authors -> the same with the authors' 22 released models (PROSMART_MODELS=authors), control run
        k8shpa   -> kubectl autoscale for all deployments + k8shpa_observer.py (records only)
   4. Start cluster_recorder.py and Locust at the same time
        -Shape ramp  -> locustfile.py, -Users rising at -SpawnRate then held (the paper's load)
@@ -19,7 +20,7 @@ Example:
   .\run_experiment.ps1 -Autoscaler smarthpa -Scenario 5R-50% -Run 1 -Shape spike
 #>
 param(
-    [Parameter(Mandatory = $true)][ValidateSet("smarthpa", "smarthpa-prio", "smarthpa-flat", "prosmarthpa", "k8shpa")][string]$Autoscaler,
+    [Parameter(Mandatory = $true)][ValidateSet("smarthpa", "smarthpa-prio", "smarthpa-flat", "prosmarthpa", "prosmarthpa-authors", "k8shpa")][string]$Autoscaler,
     [Parameter(Mandatory = $true)][ValidatePattern('^\d+R-\d+%$')][string]$Scenario,
     [Parameter(Mandatory = $true)][int]$Run,
     [int]$Users = 200,
@@ -98,6 +99,7 @@ try {
 
     $env:SMARTHPA_SCENARIO = $Scenario
     $env:SMARTHPA_DURATION = "$DurationSec"
+    $env:PROSMART_MODELS = if ($Autoscaler -eq "prosmarthpa-authors") { "authors" } else { "ours" }
     $env:SMARTHPA_ARM = switch ($Autoscaler) { "smarthpa-prio" { "priority" } "smarthpa-flat" { "flat" } default { "paper" } }
 
     if ($Autoscaler -eq "k8shpa") {
@@ -107,12 +109,12 @@ try {
         }
         Log "Created $($Deployments.Count) Kubernetes HPAs (cpu=$Threshold%, max=$MaxR)"
         $controllerScript = "k8shpa_observer.py"
-    } elseif ($Autoscaler -eq "prosmarthpa") {
+    } elseif ($Autoscaler -like "prosmarthpa*") {
         $controllerScript = "..\prosmarthpa\prosmart_hpa.py"
     } else {
         $controllerScript = "Microservice_Capacity_Analyzer.py"
     }
-    $controllerPython = if ($Autoscaler -eq "prosmarthpa") { $ProSmartPython } else { $Python }
+    $controllerPython = if ($Autoscaler -like "prosmarthpa*") { $ProSmartPython } else { $Python }
 
     $info = [ordered]@{
         autoscaler = $Autoscaler; scenario = $Scenario; run = $Run; max_replicas = $MaxR; cpu_threshold = $Threshold
@@ -191,8 +193,9 @@ finally {
             $compareArgs = @((Join-Path $CodeDir "make_comparison.py"), (Split-Path (Split-Path $OutDir)))
             if ($Run -eq 0) { $compareArgs += "--include-trials" }
             # the priority variant is compared with K8s HPA and Smart HPA in its own folder (comparison_c3), and with
-            # Smart HPA and its control run in comparison_c3_control
-            $sets = switch ($Autoscaler) { "smarthpa-prio" { @("--c3", "--c3-control") } "smarthpa-flat" { @("--c3-control") } default { @("") } }
+            # Smart HPA and its control run in comparison_c3_control; ProSmart with the authors' models in comparison_prophet_authors
+            $sets = switch ($Autoscaler) { "smarthpa-prio" { @("--c3", "--c3-control") } "smarthpa-flat" { @("--c3-control") }
+                      "prosmarthpa-authors" { @("--prophet-authors") } default { @("") } }
             foreach ($set in $sets) {
                 $setArgs = @(); if ($set) { $setArgs += $set }
                 & $Python @compareArgs @setArgs

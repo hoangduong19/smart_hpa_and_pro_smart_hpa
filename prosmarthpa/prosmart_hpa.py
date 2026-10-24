@@ -30,6 +30,11 @@ import time
 
 SMARTHPA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "smarthpa")
 MODEL_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models")
+# PROSMART_MODELS=authors: control run with the authors' 22 released models (time only, trained on their cluster)
+AUTHOR_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "Pro_Smart_HPA", "ProSmart_HPA", "ProSmart HPA Codebase")
+AUTHOR_MODEL_DIRS = {"demand": os.path.join(AUTHOR_DIR, "Microservice Managers", "Trained PROPHET models - Resource Demand Prediction"),
+                     "capacity": os.path.join(AUTHOR_DIR, "Trained PROPHET models - Resource Capacity Prediction")}
+USE_AUTHOR_MODELS = os.environ.get("PROSMART_MODELS", "ours") == "authors"
 sys.path.insert(0, SMARTHPA_DIR)
 
 import pandas as pd
@@ -51,8 +56,14 @@ PREDICTION_START_SEC = 10           # as in the released code: predict only afte
 
 def load_model(service, kind):
     suffix = "Demand_Model" if kind == "demand" else "capacity_model"
-    with open(os.path.join(MODEL_DIR, f"{service}_{suffix}.pkl"), "rb") as f:
-        return pickle.load(f)
+    folder = AUTHOR_MODEL_DIRS[kind] if USE_AUTHOR_MODELS else MODEL_DIR
+    with open(os.path.join(folder, f"{service}_{suffix}.pkl"), "rb") as f:
+        model = pickle.load(f)
+    # the authors pickled with prophet 1.1.4; on 1.1.5 these attributes are missing (same patch as compare_author_models.py)
+    for attr, value in {"scaling": "absmax", "y_min": 0.0, "holidays_mode": model.seasonality_mode}.items():
+        if not hasattr(model, attr):
+            setattr(model, attr, value)
+    return model
 
 
 def predicted_time(test_time):

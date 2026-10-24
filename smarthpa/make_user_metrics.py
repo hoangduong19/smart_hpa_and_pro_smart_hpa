@@ -15,7 +15,7 @@
 #   spike onset      the first minute of each spike, while the autoscaler is still reacting
 #   base after spike the 50-user stages after a spike (7-10 and 13-15 min), when replicas and quota should come back
 #
-# Usage: python make_user_metrics.py <results/<scenario> dir> [--include-trials] [--c3]     (--c3: see make_comparison.py)
+# Usage: python make_user_metrics.py <results/<scenario> dir> [--include-trials] [--c3 | --c3-control | --prophet-authors]     (see make_comparison.py)
 
 import csv
 import os
