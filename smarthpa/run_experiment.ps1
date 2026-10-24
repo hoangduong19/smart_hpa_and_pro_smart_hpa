@@ -8,6 +8,7 @@ Runs ONE experiment run end to end (plan.md, section 6 "Quy trinh mot lan chay")
        smarthpa-flat -> control run of C3: Priority_Resource_Manager.py with every weight 1 and no headroom
        prosmarthpa -> ..\prosmarthpa\prosmart_hpa.py with D:\prosmart-venv (PROPHET models in ..\prosmarthpa\models)
        prosmarthpa-authors -> the same with the authors' 22 released models (PROSMART_MODELS=authors), control run
+       prosmarthpa-rerun -> prosmarthpa again (our models), run on the day of the control run to measure the day effect
        k8shpa   -> kubectl autoscale for all deployments + k8shpa_observer.py (records only)
   4. Start cluster_recorder.py and Locust at the same time
        -Shape ramp  -> locustfile.py, -Users rising at -SpawnRate then held (the paper's load)
@@ -20,7 +21,7 @@ Example:
   .\run_experiment.ps1 -Autoscaler smarthpa -Scenario 5R-50% -Run 1 -Shape spike
 #>
 param(
-    [Parameter(Mandatory = $true)][ValidateSet("smarthpa", "smarthpa-prio", "smarthpa-flat", "prosmarthpa", "prosmarthpa-authors", "k8shpa")][string]$Autoscaler,
+    [Parameter(Mandatory = $true)][ValidateSet("smarthpa", "smarthpa-prio", "smarthpa-flat", "prosmarthpa", "prosmarthpa-authors", "prosmarthpa-rerun", "k8shpa")][string]$Autoscaler,
     [Parameter(Mandatory = $true)][ValidatePattern('^\d+R-\d+%$')][string]$Scenario,
     [Parameter(Mandatory = $true)][int]$Run,
     [int]$Users = 200,
@@ -194,8 +195,10 @@ finally {
             if ($Run -eq 0) { $compareArgs += "--include-trials" }
             # the priority variant is compared with K8s HPA and Smart HPA in its own folder (comparison_c3), and with
             # Smart HPA and its control run in comparison_c3_control; ProSmart with the authors' models in comparison_prophet_authors
+            # (and, with the same-day rerun of our models, in comparison_prophet_sameday)
             $sets = switch ($Autoscaler) { "smarthpa-prio" { @("--c3", "--c3-control") } "smarthpa-flat" { @("--c3-control") }
-                      "prosmarthpa-authors" { @("--prophet-authors") } default { @("") } }
+                      "prosmarthpa-authors" { @("--prophet-authors", "--prophet-sameday") }
+                      "prosmarthpa-rerun" { @("--prophet-sameday") } default { @("") } }
             foreach ($set in $sets) {
                 $setArgs = @(); if ($set) { $setArgs += $set }
                 & $Python @compareArgs @setArgs

@@ -16,8 +16,10 @@
 # Smart HPA + priority, written to results/<scenario>/comparison_c3_control.
 # With --prophet-authors they are Smart HPA, ProSmart HPA (our retrained models) and ProSmart HPA with the authors'
 # 22 released models (control run for retraining), written to results/<scenario>/comparison_prophet_authors.
+# With --prophet-sameday they are ProSmart HPA (our models, 08/10 and 12/10), the same again on the day of the control
+# run (24/10) and the authors' models, written to results/<scenario>/comparison_prophet_sameday.
 #
-# Usage: python make_comparison.py <results/<scenario> dir> [--include-trials] [--c3 | --c3-control | --prophet-authors]
+# Usage: python make_comparison.py <results/<scenario> dir> [--include-trials] [--c3 | --c3-control | --prophet-authors | --prophet-sameday]
 
 import csv
 import glob
@@ -35,12 +37,15 @@ AUTOSCALERS = [("k8shpa", "K8s HPA"), ("smarthpa", "Smart HPA"), ("prosmarthpa",
 C3_AUTOSCALERS = [("k8shpa", "K8s HPA"), ("smarthpa", "Smart HPA"), ("smarthpa-prio", "Smart HPA + priority")]
 C3_CONTROL_AUTOSCALERS = [("smarthpa", "Smart HPA"), ("smarthpa-flat", "Smart HPA + quota fix"), ("smarthpa-prio", "Smart HPA + priority")]
 PROPHET_AUTHORS_AUTOSCALERS = [("smarthpa", "Smart HPA"), ("prosmarthpa", "ProSmart HPA"), ("prosmarthpa-authors", "ProSmart HPA, authors' models")]
-NAME = dict(AUTOSCALERS + C3_AUTOSCALERS + C3_CONTROL_AUTOSCALERS + PROPHET_AUTHORS_AUTOSCALERS)
+PROPHET_SAMEDAY_AUTOSCALERS = [("prosmarthpa", "ProSmart HPA"), ("prosmarthpa-rerun", "ProSmart HPA, rerun 24/10"),
+                               ("prosmarthpa-authors", "ProSmart HPA, authors' models")]
+NAME = dict(AUTOSCALERS + C3_AUTOSCALERS + C3_CONTROL_AUTOSCALERS + PROPHET_AUTHORS_AUTOSCALERS + PROPHET_SAMEDAY_AUTOSCALERS)
 # (autoscaler, baseline) pairs for the consistency tables, shown when both have runs
 COMPARISONS = [("smarthpa", "k8shpa"), ("prosmarthpa", "smarthpa"), ("prosmarthpa", "k8shpa"),
                ("smarthpa-prio", "smarthpa"), ("smarthpa-prio", "k8shpa"),
                ("smarthpa-flat", "smarthpa"), ("smarthpa-prio", "smarthpa-flat"),
-               ("prosmarthpa", "prosmarthpa-authors"), ("prosmarthpa-authors", "smarthpa")]
+               ("prosmarthpa", "prosmarthpa-authors"), ("prosmarthpa-authors", "smarthpa"),
+               ("prosmarthpa-rerun", "prosmarthpa-authors"), ("prosmarthpa-rerun", "prosmarthpa")]
 # (key, label, True if higher is better)
 METRICS = [
     ("supply_cpu_m", "Supply CPU (m)", True),
@@ -57,16 +62,19 @@ METRICS = [
 # Reference palette (dataviz skill, light mode), categorical slots 1-3.
 SURFACE, INK, INK_2, GRID = "#fcfcfb", "#0b0b0b", "#52514e", "#e6e5e0"
 COLOR = {"k8shpa": "#eb6834", "smarthpa": "#2a78d6", "prosmarthpa": "#1baf7a", "smarthpa-prio": "#1baf7a", "smarthpa-flat": "#eb6834",
-         "prosmarthpa-authors": "#eb6834"}
+         "prosmarthpa-authors": "#eb6834", "prosmarthpa-rerun": "#2a78d6"}
 MARKER = {"k8shpa": "s", "smarthpa": "o", "prosmarthpa": "^", "smarthpa-prio": "D", "smarthpa-flat": "v",
-          "prosmarthpa-authors": "X"}   # shape as a second channel, so identity is not color alone
+          "prosmarthpa-authors": "X", "prosmarthpa-rerun": "P"}   # shape as a second channel, so identity is not color alone
 # ProSmart HPA and Smart HPA + priority share the third hue, and the control runs borrow K8s HPA's: they are never
-# drawn together (no fourth hue of the palette stays distinguishable from the first three when every pair of points
-# can meet, as in fig_runs.png)
+# drawn together, nor is the same-day rerun with Smart HPA, whose hue it borrows (no fourth hue of the palette stays
+# distinguishable from the first three when every pair of points can meet, as in fig_runs.png)
 
 
 def output_folder(argv):
     """Name of the output folder under the scenario; --c3 / --c3-control / --prophet-authors also switch AUTOSCALERS."""
+    if "--prophet-sameday" in argv:
+        AUTOSCALERS[:] = PROPHET_SAMEDAY_AUTOSCALERS
+        return "comparison_prophet_sameday"
     if "--prophet-authors" in argv:
         AUTOSCALERS[:] = PROPHET_AUTHORS_AUTOSCALERS
         return "comparison_prophet_authors"
