@@ -1,0 +1,23 @@
+models,service,pdr_mean,maxR_min,maxR_max,replicas_min,replicas_max
+Our models,adservice,1.8875358166189111,1,1,1.0,1.0
+Our models,cartservice,4.458452722063037,1,1,2.0,2.0
+Our models,checkoutservice,4.446275071633238,1,2,1.0,2.0
+Our models,currencyservice,25.12320916905444,3,7,6.0,9.0
+Our models,emailservice,2.2234957020057307,1,2,1.0,2.0
+Our models,frontend,31.84383954154728,2,6,6.0,6.0
+Our models,paymentservice,4.704154727793696,2,2,2.0,2.0
+Our models,productcatalogservice,9.293696275071634,2,2,2.0,2.0
+Our models,recommendationservice,7.941260744985673,2,2,2.0,2.0
+Our models,redis-cart,2.694842406876791,2,2,2.0,2.0
+Our models,shippingservice,2.8287965616045847,1,2,1.0,2.0
+Authors' models,adservice,2.3382137628111272,2,2,2.0,2.0
+Authors' models,cartservice,4.0,2,2,2.0,2.0
+Authors' models,checkoutservice,3.0,2,2,2.0,2.0
+Authors' models,currencyservice,11.659590043923865,2,2,3.0,3.0
+Authors' models,emailservice,2.0,1,2,2.0,2.0
+Authors' models,frontend,19.0,2,3,3.0,3.0
+Authors' models,paymentservice,3.171303074670571,2,2,2.0,2.0
+Authors' models,productcatalogservice,8.0,2,2,2.0,2.0
+Authors' models,recommendationservice,8.0,2,2,2.0,2.0
+Authors' models,redis-cart,2.0,2,2,2.0,2.0
+Authors' models,shippingservice,2.0,2,2,2.0,2.0
