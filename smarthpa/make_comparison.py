@@ -18,8 +18,10 @@
 # 22 released models (control run for retraining), written to results/<scenario>/comparison_prophet_authors.
 # With --prophet-sameday they are ProSmart HPA (our models, 08/10 and 12/10), the same again on the day of the control
 # run (24/10) and the authors' models, written to results/<scenario>/comparison_prophet_sameday.
+# With --no-prosmart they are only K8s HPA and Smart HPA, written to results/<scenario>/comparison_k8s_smart
+# (the 2R-20% figure without ProSmart HPA).
 #
-# Usage: python make_comparison.py <results/<scenario> dir> [--include-trials] [--c3 | --c3-control | --prophet-authors | --prophet-sameday]
+# Usage: python make_comparison.py <results/<scenario> dir> [--include-trials] [--c3 | --c3-control | --prophet-authors | --prophet-sameday | --no-prosmart]
 
 import csv
 import glob
@@ -34,6 +36,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 AUTOSCALERS = [("k8shpa", "K8s HPA"), ("smarthpa", "Smart HPA"), ("prosmarthpa", "ProSmart HPA")]
+K8S_SMART_AUTOSCALERS = [("k8shpa", "K8s HPA"), ("smarthpa", "Smart HPA")]
 C3_AUTOSCALERS = [("k8shpa", "K8s HPA"), ("smarthpa", "Smart HPA"), ("smarthpa-prio", "Smart HPA + priority")]
 C3_CONTROL_AUTOSCALERS = [("smarthpa", "Smart HPA"), ("smarthpa-flat", "Smart HPA + quota fix"), ("smarthpa-prio", "Smart HPA + priority")]
 PROPHET_AUTHORS_AUTOSCALERS = [("smarthpa", "Smart HPA"), ("prosmarthpa", "ProSmart HPA"), ("prosmarthpa-authors", "ProSmart HPA, authors' models")]
@@ -71,7 +74,10 @@ MARKER = {"k8shpa": "s", "smarthpa": "o", "prosmarthpa": "^", "smarthpa-prio": "
 
 
 def output_folder(argv):
-    """Name of the output folder under the scenario; --c3 / --c3-control / --prophet-authors also switch AUTOSCALERS."""
+    """Name of the output folder under the scenario; --c3 / --c3-control / --prophet-* / --no-prosmart also switch AUTOSCALERS."""
+    if "--no-prosmart" in argv:
+        AUTOSCALERS[:] = K8S_SMART_AUTOSCALERS
+        return "comparison_k8s_smart"
     if "--prophet-sameday" in argv:
         AUTOSCALERS[:] = PROPHET_SAMEDAY_AUTOSCALERS
         return "comparison_prophet_sameday"
