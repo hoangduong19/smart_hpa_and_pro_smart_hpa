@@ -1,0 +1,217 @@
+scenario,window_sec,autoscaler,microservice,metric,mean_over_runs
+2R-20%,5,prosmarthpa-cv-w5,frontend,supply_cpu_m,161.286
+2R-20%,5,prosmarthpa-cv-w5,currency,supply_cpu_m,788.465
+2R-20%,5,prosmarthpa-cv-w5,cart,supply_cpu_m,262.956
+2R-20%,5,prosmarthpa-cv-w5,checkout,supply_cpu_m,161.956
+2R-20%,5,prosmarthpa-cv-w5,productcatalog,supply_cpu_m,224.391
+2R-20%,5,prosmarthpa-cv-w5,recommendation,supply_cpu_m,162.039
+2R-20%,5,prosmarthpa-cv-w5,adservice,supply_cpu_m,200.0
+2R-20%,5,prosmarthpa-cv-w5,other services,supply_cpu_m,497.463
+2R-20%,5,prosmarthpa-cv-w5,APPLICATION,supply_cpu_m,2458.555
+2R-20%,10,prosmarthpa-cv-w10,frontend,supply_cpu_m,255.302
+2R-20%,10,prosmarthpa-cv-w10,currency,supply_cpu_m,694.392
+2R-20%,10,prosmarthpa-cv-w10,cart,supply_cpu_m,200.423
+2R-20%,10,prosmarthpa-cv-w10,checkout,supply_cpu_m,100.0
+2R-20%,10,prosmarthpa-cv-w10,productcatalog,supply_cpu_m,287.804
+2R-20%,10,prosmarthpa-cv-w10,recommendation,supply_cpu_m,194.106
+2R-20%,10,prosmarthpa-cv-w10,adservice,supply_cpu_m,200.0
+2R-20%,10,prosmarthpa-cv-w10,other services,supply_cpu_m,507.814
+2R-20%,10,prosmarthpa-cv-w10,APPLICATION,supply_cpu_m,2439.842
+2R-20%,15,prosmarthpa-cv-w15,frontend,supply_cpu_m,255.276
+2R-20%,15,prosmarthpa-cv-w15,currency,supply_cpu_m,719.9
+2R-20%,15,prosmarthpa-cv-w15,cart,supply_cpu_m,200.0
+2R-20%,15,prosmarthpa-cv-w15,checkout,supply_cpu_m,131.215
+2R-20%,15,prosmarthpa-cv-w15,productcatalog,supply_cpu_m,225.649
+2R-20%,15,prosmarthpa-cv-w15,recommendation,supply_cpu_m,193.908
+2R-20%,15,prosmarthpa-cv-w15,adservice,supply_cpu_m,200.0
+2R-20%,15,prosmarthpa-cv-w15,other services,supply_cpu_m,484.899
+2R-20%,15,prosmarthpa-cv-w15,APPLICATION,supply_cpu_m,2410.847
+2R-20%,20,prosmarthpa-cv-w20,frontend,supply_cpu_m,225.782
+2R-20%,20,prosmarthpa-cv-w20,currency,supply_cpu_m,757.819
+2R-20%,20,prosmarthpa-cv-w20,cart,supply_cpu_m,262.093
+2R-20%,20,prosmarthpa-cv-w20,checkout,supply_cpu_m,100.0
+2R-20%,20,prosmarthpa-cv-w20,productcatalog,supply_cpu_m,226.065
+2R-20%,20,prosmarthpa-cv-w20,recommendation,supply_cpu_m,194.221
+2R-20%,20,prosmarthpa-cv-w20,adservice,supply_cpu_m,200.0
+2R-20%,20,prosmarthpa-cv-w20,other services,supply_cpu_m,454.458
+2R-20%,20,prosmarthpa-cv-w20,APPLICATION,supply_cpu_m,2420.437
+2R-20%,25,prosmarthpa-cv,frontend,supply_cpu_m,344.47
+2R-20%,25,prosmarthpa-cv,currency,supply_cpu_m,757.685
+2R-20%,25,prosmarthpa-cv,cart,supply_cpu_m,237.667
+2R-20%,25,prosmarthpa-cv,checkout,supply_cpu_m,100.0
+2R-20%,25,prosmarthpa-cv,productcatalog,supply_cpu_m,175.927
+2R-20%,25,prosmarthpa-cv,recommendation,supply_cpu_m,137.969
+2R-20%,25,prosmarthpa-cv,adservice,supply_cpu_m,200.0
+2R-20%,25,prosmarthpa-cv,other services,supply_cpu_m,449.099
+2R-20%,25,prosmarthpa-cv,APPLICATION,supply_cpu_m,2402.819
+2R-20%,30,prosmarthpa-cv-w30,frontend,supply_cpu_m,443.187
+2R-20%,30,prosmarthpa-cv-w30,currency,supply_cpu_m,817.123
+2R-20%,30,prosmarthpa-cv-w30,cart,supply_cpu_m,200.0
+2R-20%,30,prosmarthpa-cv-w30,checkout,supply_cpu_m,100.0
+2R-20%,30,prosmarthpa-cv-w30,productcatalog,supply_cpu_m,100.0
+2R-20%,30,prosmarthpa-cv-w30,recommendation,supply_cpu_m,100.0
+2R-20%,30,prosmarthpa-cv-w30,adservice,supply_cpu_m,200.0
+2R-20%,30,prosmarthpa-cv-w30,other services,supply_cpu_m,432.431
+2R-20%,30,prosmarthpa-cv-w30,APPLICATION,supply_cpu_m,2392.742
+2R-20%,5,prosmarthpa-cv-w5,frontend,cpu_overutilization_pct,153.946
+2R-20%,5,prosmarthpa-cv-w5,currency,cpu_overutilization_pct,35.183
+2R-20%,5,prosmarthpa-cv-w5,cart,cpu_overutilization_pct,39.141
+2R-20%,5,prosmarthpa-cv-w5,checkout,cpu_overutilization_pct,24.731
+2R-20%,5,prosmarthpa-cv-w5,productcatalog,cpu_overutilization_pct,49.036
+2R-20%,5,prosmarthpa-cv-w5,recommendation,cpu_overutilization_pct,58.438
+2R-20%,5,prosmarthpa-cv-w5,adservice,cpu_overutilization_pct,0.0
+2R-20%,5,prosmarthpa-cv-w5,other services,cpu_overutilization_pct,58.94
+2R-20%,5,prosmarthpa-cv-w5,APPLICATION,cpu_overutilization_pct,419.416
+2R-20%,10,prosmarthpa-cv-w10,frontend,cpu_overutilization_pct,124.919
+2R-20%,10,prosmarthpa-cv-w10,currency,cpu_overutilization_pct,50.682
+2R-20%,10,prosmarthpa-cv-w10,cart,cpu_overutilization_pct,56.704
+2R-20%,10,prosmarthpa-cv-w10,checkout,cpu_overutilization_pct,46.92
+2R-20%,10,prosmarthpa-cv-w10,productcatalog,cpu_overutilization_pct,45.243
+2R-20%,10,prosmarthpa-cv-w10,recommendation,cpu_overutilization_pct,51.487
+2R-20%,10,prosmarthpa-cv-w10,adservice,cpu_overutilization_pct,0.0
+2R-20%,10,prosmarthpa-cv-w10,other services,cpu_overutilization_pct,66.955
+2R-20%,10,prosmarthpa-cv-w10,APPLICATION,cpu_overutilization_pct,442.91
+2R-20%,15,prosmarthpa-cv-w15,frontend,cpu_overutilization_pct,123.779
+2R-20%,15,prosmarthpa-cv-w15,currency,cpu_overutilization_pct,49.741
+2R-20%,15,prosmarthpa-cv-w15,cart,cpu_overutilization_pct,57.419
+2R-20%,15,prosmarthpa-cv-w15,checkout,cpu_overutilization_pct,38.966
+2R-20%,15,prosmarthpa-cv-w15,productcatalog,cpu_overutilization_pct,70.339
+2R-20%,15,prosmarthpa-cv-w15,recommendation,cpu_overutilization_pct,48.845
+2R-20%,15,prosmarthpa-cv-w15,adservice,cpu_overutilization_pct,0.0
+2R-20%,15,prosmarthpa-cv-w15,other services,cpu_overutilization_pct,69.012
+2R-20%,15,prosmarthpa-cv-w15,APPLICATION,cpu_overutilization_pct,458.1
+2R-20%,20,prosmarthpa-cv-w20,frontend,cpu_overutilization_pct,127.76
+2R-20%,20,prosmarthpa-cv-w20,currency,cpu_overutilization_pct,27.297
+2R-20%,20,prosmarthpa-cv-w20,cart,cpu_overutilization_pct,41.53
+2R-20%,20,prosmarthpa-cv-w20,checkout,cpu_overutilization_pct,42.478
+2R-20%,20,prosmarthpa-cv-w20,productcatalog,cpu_overutilization_pct,54.389
+2R-20%,20,prosmarthpa-cv-w20,recommendation,cpu_overutilization_pct,49.051
+2R-20%,20,prosmarthpa-cv-w20,adservice,cpu_overutilization_pct,0.0
+2R-20%,20,prosmarthpa-cv-w20,other services,cpu_overutilization_pct,74.758
+2R-20%,20,prosmarthpa-cv-w20,APPLICATION,cpu_overutilization_pct,417.264
+2R-20%,25,prosmarthpa-cv,frontend,cpu_overutilization_pct,102.521
+2R-20%,25,prosmarthpa-cv,currency,cpu_overutilization_pct,42.309
+2R-20%,25,prosmarthpa-cv,cart,cpu_overutilization_pct,49.748
+2R-20%,25,prosmarthpa-cv,checkout,cpu_overutilization_pct,46.707
+2R-20%,25,prosmarthpa-cv,productcatalog,cpu_overutilization_pct,80.268
+2R-20%,25,prosmarthpa-cv,recommendation,cpu_overutilization_pct,75.927
+2R-20%,25,prosmarthpa-cv,adservice,cpu_overutilization_pct,0.333
+2R-20%,25,prosmarthpa-cv,other services,cpu_overutilization_pct,81.351
+2R-20%,25,prosmarthpa-cv,APPLICATION,cpu_overutilization_pct,479.163
+2R-20%,30,prosmarthpa-cv-w30,frontend,cpu_overutilization_pct,81.908
+2R-20%,30,prosmarthpa-cv-w30,currency,cpu_overutilization_pct,36.71
+2R-20%,30,prosmarthpa-cv-w30,cart,cpu_overutilization_pct,52.838
+2R-20%,30,prosmarthpa-cv-w30,checkout,cpu_overutilization_pct,42.696
+2R-20%,30,prosmarthpa-cv-w30,productcatalog,cpu_overutilization_pct,118.962
+2R-20%,30,prosmarthpa-cv-w30,recommendation,cpu_overutilization_pct,90.032
+2R-20%,30,prosmarthpa-cv-w30,adservice,cpu_overutilization_pct,0.107
+2R-20%,30,prosmarthpa-cv-w30,other services,cpu_overutilization_pct,82.261
+2R-20%,30,prosmarthpa-cv-w30,APPLICATION,cpu_overutilization_pct,505.514
+2R-20%,5,prosmarthpa-cv-w5,frontend,cpu_underprovision_m,1026.351
+2R-20%,5,prosmarthpa-cv-w5,currency,cpu_underprovision_m,517.55
+2R-20%,5,prosmarthpa-cv-w5,cart,cpu_underprovision_m,313.814
+2R-20%,5,prosmarthpa-cv-w5,checkout,cpu_underprovision_m,108.405
+2R-20%,5,prosmarthpa-cv-w5,productcatalog,cpu_underprovision_m,328.276
+2R-20%,5,prosmarthpa-cv-w5,recommendation,cpu_underprovision_m,338.298
+2R-20%,5,prosmarthpa-cv-w5,adservice,cpu_underprovision_m,0.0
+2R-20%,5,prosmarthpa-cv-w5,other services,cpu_underprovision_m,268.757
+2R-20%,5,prosmarthpa-cv-w5,APPLICATION,cpu_underprovision_m,2901.452
+2R-20%,10,prosmarthpa-cv-w10,frontend,cpu_underprovision_m,1429.29
+2R-20%,10,prosmarthpa-cv-w10,currency,cpu_underprovision_m,1128.395
+2R-20%,10,prosmarthpa-cv-w10,cart,cpu_underprovision_m,469.752
+2R-20%,10,prosmarthpa-cv-w10,checkout,cpu_underprovision_m,184.014
+2R-20%,10,prosmarthpa-cv-w10,productcatalog,cpu_underprovision_m,458.428
+2R-20%,10,prosmarthpa-cv-w10,recommendation,cpu_underprovision_m,374.272
+2R-20%,10,prosmarthpa-cv-w10,adservice,cpu_underprovision_m,0.0
+2R-20%,10,prosmarthpa-cv-w10,other services,cpu_underprovision_m,307.517
+2R-20%,10,prosmarthpa-cv-w10,APPLICATION,cpu_underprovision_m,4351.668
+2R-20%,15,prosmarthpa-cv-w15,frontend,cpu_underprovision_m,1408.755
+2R-20%,15,prosmarthpa-cv-w15,currency,cpu_underprovision_m,1141.202
+2R-20%,15,prosmarthpa-cv-w15,cart,cpu_underprovision_m,474.426
+2R-20%,15,prosmarthpa-cv-w15,checkout,cpu_underprovision_m,168.172
+2R-20%,15,prosmarthpa-cv-w15,productcatalog,cpu_underprovision_m,473.952
+2R-20%,15,prosmarthpa-cv-w15,recommendation,cpu_underprovision_m,354.724
+2R-20%,15,prosmarthpa-cv-w15,adservice,cpu_underprovision_m,0.0
+2R-20%,15,prosmarthpa-cv-w15,other services,cpu_underprovision_m,309.089
+2R-20%,15,prosmarthpa-cv-w15,APPLICATION,cpu_underprovision_m,4330.321
+2R-20%,20,prosmarthpa-cv-w20,frontend,cpu_underprovision_m,1280.349
+2R-20%,20,prosmarthpa-cv-w20,currency,cpu_underprovision_m,299.913
+2R-20%,20,prosmarthpa-cv-w20,cart,cpu_underprovision_m,342.97
+2R-20%,20,prosmarthpa-cv-w20,checkout,cpu_underprovision_m,162.983
+2R-20%,20,prosmarthpa-cv-w20,productcatalog,cpu_underprovision_m,448.388
+2R-20%,20,prosmarthpa-cv-w20,recommendation,cpu_underprovision_m,352.611
+2R-20%,20,prosmarthpa-cv-w20,adservice,cpu_underprovision_m,0.0
+2R-20%,20,prosmarthpa-cv-w20,other services,cpu_underprovision_m,306.198
+2R-20%,20,prosmarthpa-cv-w20,APPLICATION,cpu_underprovision_m,3193.412
+2R-20%,25,prosmarthpa-cv,frontend,cpu_underprovision_m,1468.867
+2R-20%,25,prosmarthpa-cv,currency,cpu_underprovision_m,907.333
+2R-20%,25,prosmarthpa-cv,cart,cpu_underprovision_m,429.388
+2R-20%,25,prosmarthpa-cv,checkout,cpu_underprovision_m,187.534
+2R-20%,25,prosmarthpa-cv,productcatalog,cpu_underprovision_m,488.509
+2R-20%,25,prosmarthpa-cv,recommendation,cpu_underprovision_m,395.341
+2R-20%,25,prosmarthpa-cv,adservice,cpu_underprovision_m,2.288
+2R-20%,25,prosmarthpa-cv,other services,cpu_underprovision_m,338.118
+2R-20%,25,prosmarthpa-cv,APPLICATION,cpu_underprovision_m,4217.378
+2R-20%,30,prosmarthpa-cv-w30,frontend,cpu_underprovision_m,1384.972
+2R-20%,30,prosmarthpa-cv-w30,currency,cpu_underprovision_m,742.942
+2R-20%,30,prosmarthpa-cv-w30,cart,cpu_underprovision_m,433.711
+2R-20%,30,prosmarthpa-cv-w30,checkout,cpu_underprovision_m,164.484
+2R-20%,30,prosmarthpa-cv-w30,productcatalog,cpu_underprovision_m,541.699
+2R-20%,30,prosmarthpa-cv-w30,recommendation,cpu_underprovision_m,406.253
+2R-20%,30,prosmarthpa-cv-w30,adservice,cpu_underprovision_m,0.972
+2R-20%,30,prosmarthpa-cv-w30,other services,cpu_underprovision_m,332.54
+2R-20%,30,prosmarthpa-cv-w30,APPLICATION,cpu_underprovision_m,4007.572
+2R-20%,5,prosmarthpa-cv-w5,frontend,cpu_overprovision_m,5.651
+2R-20%,5,prosmarthpa-cv-w5,currency,cpu_overprovision_m,5.922
+2R-20%,5,prosmarthpa-cv-w5,cart,cpu_overprovision_m,11.457
+2R-20%,5,prosmarthpa-cv-w5,checkout,cpu_overprovision_m,7.776
+2R-20%,5,prosmarthpa-cv-w5,productcatalog,cpu_overprovision_m,8.08
+2R-20%,5,prosmarthpa-cv-w5,recommendation,cpu_overprovision_m,6.417
+2R-20%,5,prosmarthpa-cv-w5,adservice,cpu_overprovision_m,10.381
+2R-20%,5,prosmarthpa-cv-w5,other services,cpu_overprovision_m,54.091
+2R-20%,5,prosmarthpa-cv-w5,APPLICATION,cpu_overprovision_m,109.776
+2R-20%,10,prosmarthpa-cv-w10,frontend,cpu_overprovision_m,5.161
+2R-20%,10,prosmarthpa-cv-w10,currency,cpu_overprovision_m,6.943
+2R-20%,10,prosmarthpa-cv-w10,cart,cpu_overprovision_m,13.033
+2R-20%,10,prosmarthpa-cv-w10,checkout,cpu_overprovision_m,5.842
+2R-20%,10,prosmarthpa-cv-w10,productcatalog,cpu_overprovision_m,7.111
+2R-20%,10,prosmarthpa-cv-w10,recommendation,cpu_overprovision_m,6.03
+2R-20%,10,prosmarthpa-cv-w10,adservice,cpu_overprovision_m,12.758
+2R-20%,10,prosmarthpa-cv-w10,other services,cpu_overprovision_m,32.229
+2R-20%,10,prosmarthpa-cv-w10,APPLICATION,cpu_overprovision_m,89.108
+2R-20%,15,prosmarthpa-cv-w15,frontend,cpu_overprovision_m,5.318
+2R-20%,15,prosmarthpa-cv-w15,currency,cpu_overprovision_m,5.318
+2R-20%,15,prosmarthpa-cv-w15,cart,cpu_overprovision_m,12.029
+2R-20%,15,prosmarthpa-cv-w15,checkout,cpu_overprovision_m,8.647
+2R-20%,15,prosmarthpa-cv-w15,productcatalog,cpu_overprovision_m,9.709
+2R-20%,15,prosmarthpa-cv-w15,recommendation,cpu_overprovision_m,7.717
+2R-20%,15,prosmarthpa-cv-w15,adservice,cpu_overprovision_m,10.169
+2R-20%,15,prosmarthpa-cv-w15,other services,cpu_overprovision_m,28.797
+2R-20%,15,prosmarthpa-cv-w15,APPLICATION,cpu_overprovision_m,87.703
+2R-20%,20,prosmarthpa-cv-w20,frontend,cpu_overprovision_m,5.339
+2R-20%,20,prosmarthpa-cv-w20,currency,cpu_overprovision_m,4.723
+2R-20%,20,prosmarthpa-cv-w20,cart,cpu_overprovision_m,9.256
+2R-20%,20,prosmarthpa-cv-w20,checkout,cpu_overprovision_m,5.683
+2R-20%,20,prosmarthpa-cv-w20,productcatalog,cpu_overprovision_m,7.336
+2R-20%,20,prosmarthpa-cv-w20,recommendation,cpu_overprovision_m,6.529
+2R-20%,20,prosmarthpa-cv-w20,adservice,cpu_overprovision_m,10.613
+2R-20%,20,prosmarthpa-cv-w20,other services,cpu_overprovision_m,26.654
+2R-20%,20,prosmarthpa-cv-w20,APPLICATION,cpu_overprovision_m,76.134
+2R-20%,25,prosmarthpa-cv,frontend,cpu_overprovision_m,5.237
+2R-20%,25,prosmarthpa-cv,currency,cpu_overprovision_m,7.283
+2R-20%,25,prosmarthpa-cv,cart,cpu_overprovision_m,10.818
+2R-20%,25,prosmarthpa-cv,checkout,cpu_overprovision_m,5.624
+2R-20%,25,prosmarthpa-cv,productcatalog,cpu_overprovision_m,6.044
+2R-20%,25,prosmarthpa-cv,recommendation,cpu_overprovision_m,5.461
+2R-20%,25,prosmarthpa-cv,adservice,cpu_overprovision_m,11.289
+2R-20%,25,prosmarthpa-cv,other services,cpu_overprovision_m,19.866
+2R-20%,25,prosmarthpa-cv,APPLICATION,cpu_overprovision_m,71.623
+2R-20%,30,prosmarthpa-cv-w30,frontend,cpu_overprovision_m,9.666
+2R-20%,30,prosmarthpa-cv-w30,currency,cpu_overprovision_m,8.346
+2R-20%,30,prosmarthpa-cv-w30,cart,cpu_overprovision_m,9.717
+2R-20%,30,prosmarthpa-cv-w30,checkout,cpu_overprovision_m,6.013
+2R-20%,30,prosmarthpa-cv-w30,productcatalog,cpu_overprovision_m,4.581
+2R-20%,30,prosmarthpa-cv-w30,recommendation,cpu_overprovision_m,4.581
+2R-20%,30,prosmarthpa-cv-w30,adservice,cpu_overprovision_m,13.193
+2R-20%,30,prosmarthpa-cv-w30,other services,cpu_overprovision_m,20.244
+2R-20%,30,prosmarthpa-cv-w30,APPLICATION,cpu_overprovision_m,76.339

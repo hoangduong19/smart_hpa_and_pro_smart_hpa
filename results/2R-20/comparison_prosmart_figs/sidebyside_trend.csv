@@ -1,0 +1,17 @@
+metric,prosmart,vs,paper_change_pct,our_change_pct,runs_better,p_mann_whitney,same_direction_as_paper
+supply_cpu_m,prosmarthpa-authors,smarthpa,2.17,3.86,5/5,0.008,True
+supply_cpu_m,prosmarthpa-cv,smarthpa,2.17,-0.24,1/5,0.151,False
+supply_cpu_m,prosmarthpa-authors,k8shpa,20.75,16.87,5/5,0.008,True
+supply_cpu_m,prosmarthpa-cv,k8shpa,20.75,12.25,5/5,0.008,True
+cpu_overutilization_pct,prosmarthpa-authors,smarthpa,-25.4,-43.12,5/5,0.008,True
+cpu_overutilization_pct,prosmarthpa-cv,smarthpa,-25.4,-27.86,5/5,0.008,True
+cpu_overutilization_pct,prosmarthpa-authors,k8shpa,-25.73,-18.65,5/5,0.008,True
+cpu_overutilization_pct,prosmarthpa-cv,k8shpa,-25.73,3.18,2/5,0.841,False
+cpu_underprovision_m,prosmarthpa-authors,smarthpa,-25.34,-32.29,5/5,0.008,True
+cpu_underprovision_m,prosmarthpa-cv,smarthpa,-25.34,-18.72,5/5,0.008,True
+cpu_underprovision_m,prosmarthpa-authors,k8shpa,-26.73,-5.76,4/5,0.151,True
+cpu_underprovision_m,prosmarthpa-cv,k8shpa,-26.73,13.13,1/5,0.151,False
+cpu_overprovision_m,prosmarthpa-authors,smarthpa,-28.24,253.98,0/5,0.008,False
+cpu_overprovision_m,prosmarthpa-cv,smarthpa,-28.24,-7.95,3/5,0.222,True
+cpu_overprovision_m,prosmarthpa-authors,k8shpa,-86.43,-29.65,5/5,0.032,True
+cpu_overprovision_m,prosmarthpa-cv,k8shpa,-86.43,-81.7,5/5,0.008,True

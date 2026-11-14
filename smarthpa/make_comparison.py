@@ -18,10 +18,13 @@
 # 22 released models (control run for retraining), written to results/<scenario>/comparison_prophet_authors.
 # With --prophet-sameday they are ProSmart HPA (our models, 08/10 and 12/10), the same again on the day of the control
 # run (24/10) and the authors' models, written to results/<scenario>/comparison_prophet_sameday.
+# With --prophet-cv they are K8s HPA, Smart HPA and ProSmart HPA with the models tuned by cross-validation on Smart HPA
+# run 1-5 (prosmarthpa-cv, prosmarthpa/models_5runs_cv) and with the authors' models (prosmarthpa-authors), written to
+# results/<scenario>/comparison_prophet_cv.
 # With --no-prosmart they are only K8s HPA and Smart HPA, written to results/<scenario>/comparison_k8s_smart
 # (the 2R-20% figure without ProSmart HPA).
 #
-# Usage: python make_comparison.py <results/<scenario> dir> [--include-trials] [--c3 | --c3-control | --prophet-authors | --prophet-sameday | --no-prosmart]
+# Usage: python make_comparison.py <results/<scenario> dir> [--include-trials] [--c3 | --c3-control | --prophet-authors | --prophet-sameday | --prophet-cv | --no-prosmart]
 
 import csv
 import glob
@@ -42,13 +45,19 @@ C3_CONTROL_AUTOSCALERS = [("smarthpa", "Smart HPA"), ("smarthpa-flat", "Smart HP
 PROPHET_AUTHORS_AUTOSCALERS = [("smarthpa", "Smart HPA"), ("prosmarthpa", "ProSmart HPA"), ("prosmarthpa-authors", "ProSmart HPA, authors' models")]
 PROPHET_SAMEDAY_AUTOSCALERS = [("prosmarthpa", "ProSmart HPA"), ("prosmarthpa-rerun", "ProSmart HPA, rerun 24/10"),
                                ("prosmarthpa-authors", "ProSmart HPA, authors' models")]
-NAME = dict(AUTOSCALERS + C3_AUTOSCALERS + C3_CONTROL_AUTOSCALERS + PROPHET_AUTHORS_AUTOSCALERS + PROPHET_SAMEDAY_AUTOSCALERS)
+# ProSmart HPA with the models tuned by cross-validation on Smart HPA run 1-5 (prosmarthpa/models_5runs_cv, 25 s window)
+PROPHET_CV_AUTOSCALERS = [("k8shpa", "K8s HPA"), ("smarthpa", "Smart HPA"), ("prosmarthpa-cv", "ProSmart HPA (CV models)"),
+                          ("prosmarthpa-authors", "ProSmart HPA, authors' models")]
+NAME = dict(AUTOSCALERS + C3_AUTOSCALERS + C3_CONTROL_AUTOSCALERS + PROPHET_AUTHORS_AUTOSCALERS + PROPHET_SAMEDAY_AUTOSCALERS
+            + PROPHET_CV_AUTOSCALERS)
 # (autoscaler, baseline) pairs for the consistency tables, shown when both have runs
 COMPARISONS = [("smarthpa", "k8shpa"), ("prosmarthpa", "smarthpa"), ("prosmarthpa", "k8shpa"),
                ("smarthpa-prio", "smarthpa"), ("smarthpa-prio", "k8shpa"),
                ("smarthpa-flat", "smarthpa"), ("smarthpa-prio", "smarthpa-flat"),
                ("prosmarthpa", "prosmarthpa-authors"), ("prosmarthpa-authors", "smarthpa"),
-               ("prosmarthpa-rerun", "prosmarthpa-authors"), ("prosmarthpa-rerun", "prosmarthpa")]
+               ("prosmarthpa-rerun", "prosmarthpa-authors"), ("prosmarthpa-rerun", "prosmarthpa"),
+               ("prosmarthpa-cv", "smarthpa"), ("prosmarthpa-cv", "k8shpa"),
+               ("prosmarthpa-authors", "k8shpa"), ("prosmarthpa-cv", "prosmarthpa-authors")]
 # (key, label, True if higher is better)
 METRICS = [
     ("supply_cpu_m", "Supply CPU (m)", True),
@@ -65,9 +74,9 @@ METRICS = [
 # Reference palette (dataviz skill, light mode), categorical slots 1-3.
 SURFACE, INK, INK_2, GRID = "#fcfcfb", "#0b0b0b", "#52514e", "#e6e5e0"
 COLOR = {"k8shpa": "#eb6834", "smarthpa": "#2a78d6", "prosmarthpa": "#1baf7a", "smarthpa-prio": "#1baf7a", "smarthpa-flat": "#eb6834",
-         "prosmarthpa-authors": "#eb6834", "prosmarthpa-rerun": "#2a78d6"}
+         "prosmarthpa-authors": "#8a5cc2", "prosmarthpa-rerun": "#2a78d6", "prosmarthpa-cv": "#1baf7a"}
 MARKER = {"k8shpa": "s", "smarthpa": "o", "prosmarthpa": "^", "smarthpa-prio": "D", "smarthpa-flat": "v",
-          "prosmarthpa-authors": "X", "prosmarthpa-rerun": "P"}   # shape as a second channel, so identity is not color alone
+          "prosmarthpa-authors": "X", "prosmarthpa-rerun": "P", "prosmarthpa-cv": "^"}   # shape as a second channel, so identity is not color alone
 # ProSmart HPA and Smart HPA + priority share the third hue, and the control runs borrow K8s HPA's: they are never
 # drawn together, nor is the same-day rerun with Smart HPA, whose hue it borrows (no fourth hue of the palette stays
 # distinguishable from the first three when every pair of points can meet, as in fig_runs.png)
@@ -78,6 +87,9 @@ def output_folder(argv):
     if "--no-prosmart" in argv:
         AUTOSCALERS[:] = K8S_SMART_AUTOSCALERS
         return "comparison_k8s_smart"
+    if "--prophet-cv" in argv:
+        AUTOSCALERS[:] = PROPHET_CV_AUTOSCALERS
+        return "comparison_prophet_cv"
     if "--prophet-sameday" in argv:
         AUTOSCALERS[:] = PROPHET_SAMEDAY_AUTOSCALERS
         return "comparison_prophet_sameday"

@@ -1,0 +1,4 @@
+model,service,train_runs,points,mae_replicas,inside_band_pct,interval_width
+authors,recommendationservice,authors' 10,1810,0.779,81.7,0.8
+models,recommendationservice,1 2 3,543,0.293,67.0,0.8
+models_5runs_cv,recommendationservice,1 2 3 4 5,905,0.338,67.2,0.8
