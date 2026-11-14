@@ -11,8 +11,10 @@
     "shape":  "ramp",
     "host":  "http://192.168.161.10",
     "kube_context":  "k3s-lab",
-    "started_at":  "2026-10-24 10:58:50",
+    "started_at":  "2026-11-13 03:49:58",
+    "prediction_window_sec":  25,
+    "prophet_models":  "authors",
     "monitor_kubectl_errors":  0,
-    "finished_at":  "2026-10-24 11:14:20",
+    "finished_at":  "2026-11-13 04:05:28",
     "controller_exit_code":  0
 }

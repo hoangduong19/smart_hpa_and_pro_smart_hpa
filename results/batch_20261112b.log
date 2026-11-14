@@ -1,0 +1,208 @@
+﻿[20:18:54] [batch] Pairs: 2R-20%:1, 2R-20%:2, 2R-20%:3, 2R-20%:4, 2R-20%:5 | autoscalers: prosmarthpa-cv | shape: ramp 
+| deadline: none | ~21 min per pair
+[20:19:14] [batch] === prosmarthpa-cv | 2R-20% | run 1 | attempt 1/3 ===
+[20:19:15] Context k3s-lab | prosmarthpa-cv | 2R-20% (maxR=2, threshold=20%) | run 1 | 200 users @ 0.67/s | 900s
+[20:19:15] Reset: deleting HPAs, scaling all deployments to 1
+[20:19:26] Cluster clean: 11 deployments x 1 replica. Cooling down 300s
+[20:24:26] Starting ..\prosmarthpa\prosmart_hpa.py, cluster_recorder.py and Locust
+[20:24:56]   30s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=2 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[20:25:26]   60s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[20:25:57]   90s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[20:26:27]  121s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[20:26:57]  151s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[20:27:27]  181s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[20:27:57]  211s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[20:28:27]  241s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[20:28:57]  271s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[20:29:27]  301s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[20:29:58]  331s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[20:30:28]  362s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[20:30:58]  392s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[20:31:28]  422s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[20:31:58]  452s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[20:32:28]  482s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[20:32:58]  512s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[20:33:28]  542s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[20:33:58]  572s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[20:34:28]  602s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[20:34:59]  632s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[20:35:29]  663s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[20:35:59]  693s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[20:36:29]  723s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[20:36:59]  753s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[20:37:29]  783s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[20:37:59]  813s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[20:38:29]  843s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[20:39:00]  873s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[20:39:30]  904s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[20:39:30] Controller exited with code 0
+[20:39:57] Run check passed
+[20:39:57] Results saved to D:\Nam 4 - HK1\Các Chuyên đề\Demo\smarthpa\..\results\2R-20\prosmarthpa-cv\run1
+Report written to D:\Nam 4 - HK1\Các Chuyên đề\Demo\smarthpa\..\results\2R-20\prosmarthpa-cv\run1
+Comparison written to D:\Nam 4 - HK1\Các Chuyên đề\Demo\results\2R-20\comparison_prophet_cv
+User-side metrics written to D:\Nam 4 - HK1\Các Chuyên đề\Demo\results\2R-20\comparison_prophet_cv
+[20:40:24] [batch] === prosmarthpa-cv | 2R-20% | run 2 | attempt 1/3 ===
+[20:40:24] Context k3s-lab | prosmarthpa-cv | 2R-20% (maxR=2, threshold=20%) | run 2 | 200 users @ 0.67/s | 900s
+[20:40:24] Reset: deleting HPAs, scaling all deployments to 1
+[20:40:36] Cluster clean: 11 deployments x 1 replica. Cooling down 300s
+[20:45:36] Starting ..\prosmarthpa\prosmart_hpa.py, cluster_recorder.py and Locust
+[20:46:06]   30s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=2 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:46:36]   60s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:47:06]   90s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:47:36]  120s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:48:06]  151s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:48:37]  181s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:49:07]  211s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:49:37]  241s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:50:07]  271s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:50:37]  301s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:51:07]  331s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:51:37]  362s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:52:07]  392s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:52:38]  422s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:53:08]  452s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:53:38]  482s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:54:08]  512s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:54:38]  542s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:55:08]  572s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:55:38]  602s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:56:08]  633s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:56:38]  663s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:57:09]  693s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:57:39]  723s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:58:09]  753s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:58:39]  783s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:59:09]  813s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[20:59:39]  843s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:00:09]  873s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:00:39]  903s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:00:39] Controller exited with code 0
+[21:01:07] Run check passed
+[21:01:07] Results saved to D:\Nam 4 - HK1\Các Chuyên đề\Demo\smarthpa\..\results\2R-20\prosmarthpa-cv\run2
+Report written to D:\Nam 4 - HK1\Các Chuyên đề\Demo\smarthpa\..\results\2R-20\prosmarthpa-cv\run2
+Comparison written to D:\Nam 4 - HK1\Các Chuyên đề\Demo\results\2R-20\comparison_prophet_cv
+User-side metrics written to D:\Nam 4 - HK1\Các Chuyên đề\Demo\results\2R-20\comparison_prophet_cv
+[21:01:34] [batch] === prosmarthpa-cv | 2R-20% | run 3 | attempt 1/3 ===
+[21:01:34] Context k3s-lab | prosmarthpa-cv | 2R-20% (maxR=2, threshold=20%) | run 3 | 200 users @ 0.67/s | 900s
+[21:01:34] Reset: deleting HPAs, scaling all deployments to 1
+[21:01:45] Cluster clean: 11 deployments x 1 replica. Cooling down 300s
+[21:06:45] Starting ..\prosmarthpa\prosmart_hpa.py, cluster_recorder.py and Locust
+[21:07:15]   30s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=1 emailservice=1 frontend=2 paymentservice=1 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:07:46]   60s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:08:16]   90s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:08:46]  120s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:09:16]  151s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:09:46]  181s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:10:16]  211s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:10:46]  241s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:11:16]  271s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:11:46]  301s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:12:16]  331s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:12:47]  361s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:13:17]  391s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:13:47]  422s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:14:17]  452s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:14:47]  482s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:15:17]  512s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:15:47]  542s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:16:17]  572s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:16:48]  602s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:17:18]  632s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:17:48]  663s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:18:18]  693s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:18:48]  723s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:19:18]  753s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:19:48]  783s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:20:18]  813s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:20:48]  843s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:21:19]  873s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:21:49]  903s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=8 emailservice=1 frontend=5 paymentservice=2 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:21:49] Controller exited with code 0
+[21:22:17] Run check passed
+[21:22:17] Results saved to D:\Nam 4 - HK1\Các Chuyên đề\Demo\smarthpa\..\results\2R-20\prosmarthpa-cv\run3
+Report written to D:\Nam 4 - HK1\Các Chuyên đề\Demo\smarthpa\..\results\2R-20\prosmarthpa-cv\run3
+Comparison written to D:\Nam 4 - HK1\Các Chuyên đề\Demo\results\2R-20\comparison_prophet_cv
+User-side metrics written to D:\Nam 4 - HK1\Các Chuyên đề\Demo\results\2R-20\comparison_prophet_cv
+[21:22:43] [batch] === prosmarthpa-cv | 2R-20% | run 4 | attempt 1/3 ===
+[21:22:44] Context k3s-lab | prosmarthpa-cv | 2R-20% (maxR=2, threshold=20%) | run 4 | 200 users @ 0.67/s | 900s
+[21:22:44] Reset: deleting HPAs, scaling all deployments to 1
+[21:22:55] Cluster clean: 11 deployments x 1 replica. Cooling down 300s
+[21:27:55] Starting ..\prosmarthpa\prosmart_hpa.py, cluster_recorder.py and Locust
+[21:28:25]   30s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=3 emailservice=1 frontend=2 paymentservice=1 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:28:55]   60s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:29:25]   90s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:29:55]  120s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:30:25]  151s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:30:56]  181s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:31:26]  211s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:31:56]  241s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:32:26]  271s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:32:56]  301s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:33:26]  331s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:33:56]  362s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:34:27]  392s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:34:57]  422s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:35:27]  452s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:35:57]  482s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:36:27]  512s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:36:57]  542s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:37:27]  572s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:37:57]  602s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:38:27]  633s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:38:58]  663s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:39:28]  693s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:39:58]  723s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:40:28]  753s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:40:58]  783s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:41:28]  813s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:41:58]  843s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:42:28]  873s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:42:59]  904s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=7 emailservice=1 frontend=3 paymentservice=2 productcatalogservice=3 recommendationservice=2 redis-cart=1 shippingservice=1 
+[21:42:59] Controller exited with code 0
+[21:43:26] Run check passed
+[21:43:26] Results saved to D:\Nam 4 - HK1\Các Chuyên đề\Demo\smarthpa\..\results\2R-20\prosmarthpa-cv\run4
+Report written to D:\Nam 4 - HK1\Các Chuyên đề\Demo\smarthpa\..\results\2R-20\prosmarthpa-cv\run4
+Comparison written to D:\Nam 4 - HK1\Các Chuyên đề\Demo\results\2R-20\comparison_prophet_cv
+User-side metrics written to D:\Nam 4 - HK1\Các Chuyên đề\Demo\results\2R-20\comparison_prophet_cv
+[21:43:53] [batch] === prosmarthpa-cv | 2R-20% | run 5 | attempt 1/3 ===
+[21:43:54] Context k3s-lab | prosmarthpa-cv | 2R-20% (maxR=2, threshold=20%) | run 5 | 200 users @ 0.67/s | 900s
+[21:43:54] Reset: deleting HPAs, scaling all deployments to 1
+[21:44:05] Cluster clean: 11 deployments x 1 replica. Cooling down 300s
+[21:49:05] Starting ..\prosmarthpa\prosmart_hpa.py, cluster_recorder.py and Locust
+[21:49:35]   30s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=6 emailservice=1 frontend=3 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:50:05]   60s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:50:36]   90s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:51:06]  121s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:51:36]  151s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:52:06]  181s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:52:36]  211s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:53:06]  241s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:53:36]  271s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:54:06]  301s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:54:37]  331s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:55:07]  362s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:55:37]  392s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:56:07]  422s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:56:37]  452s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:57:07]  482s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:57:37]  512s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:58:07]  542s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:58:38]  572s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:59:08]  603s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[21:59:38]  633s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[22:00:08]  663s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[22:00:38]  693s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[22:01:08]  723s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[22:01:38]  753s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[22:02:08]  783s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[22:02:39]  813s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[22:03:09]  843s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[22:03:39]  874s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[22:04:09]  904s | adservice=1 cartservice=2 checkoutservice=1 currencyservice=7 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=2 recommendationservice=1 redis-cart=1 shippingservice=1 
+[22:04:09] Controller exited with code 0
+[22:04:36] Run check passed
+[22:04:36] Results saved to D:\Nam 4 - HK1\Các Chuyên đề\Demo\smarthpa\..\results\2R-20\prosmarthpa-cv\run5
+Report written to D:\Nam 4 - HK1\Các Chuyên đề\Demo\smarthpa\..\results\2R-20\prosmarthpa-cv\run5
+Comparison written to D:\Nam 4 - HK1\Các Chuyên đề\Demo\results\2R-20\comparison_prophet_cv
+User-side metrics written to D:\Nam 4 - HK1\Các Chuyên đề\Demo\results\2R-20\comparison_prophet_cv
+[22:04:43] [batch] Batch finished

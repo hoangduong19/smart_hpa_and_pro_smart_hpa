@@ -1,4 +1,4 @@
-<#
+﻿<#
 Runs ONE experiment run end to end (plan.md, section 6 "Quy trinh mot lan chay"):
   1. Check kubectl targets the k3s lab cluster
   2. Reset: delete HPAs, scale every deployment to 1, wait until clean, cool down
@@ -9,6 +9,10 @@ Runs ONE experiment run end to end (plan.md, section 6 "Quy trinh mot lan chay")
        prosmarthpa -> ..\prosmarthpa\prosmart_hpa.py with D:\prosmart-venv (PROPHET models in ..\prosmarthpa\models)
        prosmarthpa-authors -> the same with the authors' 22 released models (PROSMART_MODELS=authors), control run
        prosmarthpa-rerun -> prosmarthpa again (our models), run on the day of the control run to measure the day effect
+       prosmarthpa-cv -> ProSmart HPA with the models tuned by cross-validation on Smart HPA run 1-5
+                         (PROSMART_MODELS=cv, ..\prosmarthpa\models_5runs_cv, tune_prophet.py), 25 s window
+       prosmarthpa-cv-w<N> -> prosmarthpa-cv with a prediction window of N s (PROSMART_WINDOW), the window sweep of
+                         paper Fig. 9; the 25 s point is the prosmarthpa-cv runs
        k8shpa   -> kubectl autoscale for all deployments + k8shpa_observer.py (records only)
   4. Start cluster_recorder.py and Locust at the same time
        -Shape ramp  -> locustfile.py, -Users rising at -SpawnRate then held (the paper's load)
@@ -21,7 +25,7 @@ Example:
   .\run_experiment.ps1 -Autoscaler smarthpa -Scenario 5R-50% -Run 1 -Shape spike
 #>
 param(
-    [Parameter(Mandatory = $true)][ValidateSet("smarthpa", "smarthpa-prio", "smarthpa-flat", "prosmarthpa", "prosmarthpa-authors", "prosmarthpa-rerun", "k8shpa")][string]$Autoscaler,
+    [Parameter(Mandatory = $true)][ValidateSet("smarthpa", "smarthpa-prio", "smarthpa-flat", "prosmarthpa", "prosmarthpa-authors", "prosmarthpa-rerun", "prosmarthpa-cv", "prosmarthpa-cv-w5", "prosmarthpa-cv-w10", "prosmarthpa-cv-w15", "prosmarthpa-cv-w20", "prosmarthpa-cv-w30", "k8shpa")][string]$Autoscaler,
     [Parameter(Mandatory = $true)][ValidatePattern('^\d+R-\d+%$')][string]$Scenario,
     [Parameter(Mandatory = $true)][int]$Run,
     [int]$Users = 200,
@@ -58,9 +62,12 @@ function Get-DeploymentNames { Invoke-Kubectl get deployments -o "jsonpath={.ite
 $ctx = (Invoke-Kubectl config current-context).Trim()
 if ($ctx -ne $ExpectedContext) { throw "kubectl context is '$ctx', expected '$ExpectedContext'. Aborting." }
 if ((Test-Path $OutDir) -and -not $Force) { throw "$OutDir already exists. Use -Force to overwrite or pick another -Run." }
-if ($Autoscaler -eq "prosmarthpa") {
-    $models = @(Get-ChildItem (Join-Path $CodeDir "..\prosmarthpa\models") -Filter *.pkl -ErrorAction SilentlyContinue).Count
-    if ($models -ne 22) { throw "Expected 22 PROPHET models in ..\prosmarthpa\models, found $models. Run train_prophet.py first." }
+# which PROPHET models the ProSmart controller loads (prosmart_hpa.py, PROSMART_MODELS)
+$ModelSet = if ($Autoscaler -eq "prosmarthpa-authors") { "authors" } elseif ($Autoscaler -like "prosmarthpa-cv*") { "cv" } else { "ours" }
+if ($Autoscaler -like "prosmarthpa*" -and $ModelSet -ne "authors") {
+    $modelDir = if ($ModelSet -eq "cv") { "models_5runs_cv" } else { "models" }
+    $models = @(Get-ChildItem (Join-Path $CodeDir "..\prosmarthpa\$modelDir") -Filter *.pkl -ErrorAction SilentlyContinue).Count
+    if ($models -ne 22) { throw "Expected 22 PROPHET models in ..\prosmarthpa\$modelDir, found $models. Run train_prophet.py / tune_prophet.py first." }
 }
 $m = [regex]::Match($Scenario, '^(\d+)R-(\d+)%$')
 $MaxR = [int]$m.Groups[1].Value
@@ -71,23 +78,44 @@ Log "Context $ctx | $Autoscaler | $Scenario (maxR=$MaxR, threshold=$Threshold%) 
 
 $procs = @()
 $failed = $false
+$quotaBug = $false
 try {
     # ------------------------------------------------------------ 2. Reset
     Log "Reset: deleting HPAs, scaling all deployments to 1"
     & kubectl delete hpa --all --ignore-not-found | Out-Null
     Invoke-Kubectl scale deployment --all --replicas=1 | Out-Null
 
-    $deadline = (Get-Date).AddSeconds(600)
-    while ($true) {
-        $deps = (Invoke-Kubectl get deployments -o json | Out-String | ConvertFrom-Json).items
-        $pods = (Invoke-Kubectl get pods -o json | Out-String | ConvertFrom-Json).items
-        $notReady = @($deps | Where-Object { $_.spec.replicas -ne 1 -or $_.status.readyReplicas -ne 1 }).Count
-        $terminating = @($pods | Where-Object { $_.metadata.deletionTimestamp }).Count
-        $pending = @($pods | Where-Object { $_.status.phase -eq "Pending" }).Count
-        if ($notReady -eq 0 -and $terminating -eq 0 -and $pending -eq 0 -and $pods.Count -eq $deps.Count) { break }
-        if ((Get-Date) -gt $deadline) { throw "Cluster did not settle within 600s (notReady=$notReady terminating=$terminating pending=$pending)" }
-        Start-Sleep -Seconds 5
+    function Wait-Clean {
+        $deadline = (Get-Date).AddSeconds(600)
+        while ($true) {
+            $script:deps = (Invoke-Kubectl get deployments -o json | Out-String | ConvertFrom-Json).items
+            $script:pods = (Invoke-Kubectl get pods -o json | Out-String | ConvertFrom-Json).items
+            $notReady = @($deps | Where-Object { $_.spec.replicas -ne 1 -or $_.status.readyReplicas -ne 1 }).Count
+            $terminating = @($pods | Where-Object { $_.metadata.deletionTimestamp }).Count
+            $pending = @($pods | Where-Object { $_.status.phase -eq "Pending" }).Count
+            if ($notReady -eq 0 -and $terminating -eq 0 -and $pending -eq 0 -and $pods.Count -eq $deps.Count) { break }
+            if ((Get-Date) -gt $deadline) { throw "Cluster did not settle within 600s (notReady=$notReady terminating=$terminating pending=$pending)" }
+            Start-Sleep -Seconds 5
+        }
     }
+    Wait-Clean
+
+    # A pod near its memory limit is restarted before the cooldown (12/11: paymentservice, 128Mi limit, was OOMKilled
+    # mid-run after ~5 h and 13 load tests on the same pod, and the controller stopped). Other pods are left as they
+    # are, as in all earlier runs.
+    $toMi = @{ "Ki" = 1 / 1024; "Mi" = 1; "Gi" = 1024 }
+    $restart = @()
+    foreach ($line in @(& kubectl top pods --no-headers 2>$null)) {
+        $c = $line -split '\s+'
+        $pod = $pods | Where-Object { $_.metadata.name -eq $c[0] }
+        $limit = $pod.spec.containers[0].resources.limits.memory
+        if (-not $pod -or -not $limit -or $c[2] -notmatch '^(\d+)(Ki|Mi|Gi)$') { continue }
+        $used = [double]$Matches[1] * $toMi[$Matches[2]]
+        if ($limit -notmatch '^(\d+)(Ki|Mi|Gi)$') { continue }
+        $max = [double]$Matches[1] * $toMi[$Matches[2]]
+        if ($used -ge 0.75 * $max) { $restart += "$($pod.metadata.labels.app) ($([math]::Round($used))/$([math]::Round($max))Mi)" ; Invoke-Kubectl delete pod $c[0] --wait=false | Out-Null }
+    }
+    if ($restart) { Log "Restarted pods near their memory limit: $($restart -join ', ')"; Start-Sleep -Seconds 5; Wait-Clean }
     Log "Cluster clean: $($deps.Count) deployments x 1 replica. Cooling down ${CooldownSec}s"
     Start-Sleep -Seconds $CooldownSec
 
@@ -100,7 +128,10 @@ try {
 
     $env:SMARTHPA_SCENARIO = $Scenario
     $env:SMARTHPA_DURATION = "$DurationSec"
-    $env:PROSMART_MODELS = if ($Autoscaler -eq "prosmarthpa-authors") { "authors" } else { "ours" }
+    $env:PROSMART_MODELS = $ModelSet
+    # always set, so a window from an earlier run in the same batch session never leaks into this one
+    $Window = if ($Autoscaler -match '^prosmarthpa-cv-w(\d+)$') { [int]$Matches[1] } else { 25 }
+    $env:PROSMART_WINDOW = "$Window"
     $env:SMARTHPA_ARM = switch ($Autoscaler) { "smarthpa-prio" { "priority" } "smarthpa-flat" { "flat" } default { "paper" } }
 
     if ($Autoscaler -eq "k8shpa") {
@@ -122,6 +153,7 @@ try {
         users = $Users; spawn_rate = $SpawnRate; duration_sec = $DurationSec; cooldown_sec = $CooldownSec; shape = $Shape
         host = $TargetHost; kube_context = $ctx; started_at = (Get-Date -Format "yyyy-MM-dd HH:mm:ss")
     }
+    if ($Autoscaler -like "prosmarthpa*") { $info.prediction_window_sec = $Window; $info.prophet_models = $ModelSet }
 
     # ------------------------------------------------------------ 4. Start recorder, Locust and controller together
     Log "Starting $controllerScript, cluster_recorder.py and Locust"
@@ -175,6 +207,8 @@ finally {
             # a run the controller survived can still be damaged by the laptop losing the cluster (no load, failures)
             & $Python (Join-Path $CodeDir "check_run.py") $OutDir | ForEach-Object { Log $_ }
             if ($LASTEXITCODE -ne 0) { $failed = $true }
+            # exit 2 = replicas above the scenario quota: a controller bug, run_batch.ps1 stops instead of retrying
+            if ($LASTEXITCODE -eq 2) { $quotaBug = $true }
         }
         if ($failed) {
             # keep the data for diagnosis, but out of the run<N> folders the reports and comparison read
@@ -198,7 +232,7 @@ finally {
             # (and, with the same-day rerun of our models, in comparison_prophet_sameday)
             $sets = switch ($Autoscaler) { "smarthpa-prio" { @("--c3", "--c3-control") } "smarthpa-flat" { @("--c3-control") }
                       "prosmarthpa-authors" { @("--prophet-authors", "--prophet-sameday") }
-                      "prosmarthpa-rerun" { @("--prophet-sameday") } default { @("") } }
+                      "prosmarthpa-rerun" { @("--prophet-sameday") } "prosmarthpa-cv" { @("--prophet-cv") } default { @("") } }
             foreach ($set in $sets) {
                 $setArgs = @(); if ($set) { $setArgs += $set }
                 & $Python @compareArgs @setArgs
@@ -208,4 +242,4 @@ finally {
         }
     }
 }
-if ($failed) { exit 1 }
+if ($failed) { if ($quotaBug) { exit 2 }; exit 1 }

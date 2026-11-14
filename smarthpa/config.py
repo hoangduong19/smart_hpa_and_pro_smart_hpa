@@ -42,8 +42,9 @@ import sys
 import time
 
 _original_check_output = subprocess.check_output
-KUBECTL_RETRIES = 5
-KUBECTL_RETRY_DELAY_SEC = 2
+# 20 x 3 s: a pod restarted mid-run (e.g. OOMKilled) has no `kubectl top` metrics for about a minute (12/11)
+KUBECTL_RETRIES = 20
+KUBECTL_RETRY_DELAY_SEC = 3
 
 
 def _check_output_with_retry(cmd, *args, **kwargs):

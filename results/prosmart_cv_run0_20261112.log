@@ -1,0 +1,24 @@
+﻿[14:16:56] Context k3s-lab | prosmarthpa-cv-w5 | 2R-20% (maxR=2, threshold=20%) | run 0 | 100 users @ 0.67/s | 180s
+[14:16:56] Reset: deleting HPAs, scaling all deployments to 1
+[14:17:08] Cluster clean: 11 deployments x 1 replica. Cooling down 60s
+[14:18:08] Starting ..\prosmarthpa\prosmart_hpa.py, cluster_recorder.py and Locust
+[14:18:38]   30s | adservice=2 cartservice=1 checkoutservice=1 currencyservice=1 emailservice=1 frontend=1 
+paymentservice=1 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[14:19:08]   60s | adservice=2 cartservice=2 checkoutservice=2 currencyservice=4 emailservice=1 frontend=2 
+paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[14:19:38]   90s | adservice=2 cartservice=2 checkoutservice=2 currencyservice=8 emailservice=1 frontend=3 
+paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[14:20:08]  120s | adservice=2 cartservice=2 checkoutservice=2 currencyservice=9 emailservice=1 frontend=3 
+paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[14:20:38]  151s | adservice=2 cartservice=2 checkoutservice=2 currencyservice=9 emailservice=1 frontend=3 
+paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[14:21:08]  181s | adservice=2 cartservice=2 checkoutservice=2 currencyservice=9 emailservice=1 frontend=3 
+paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[14:21:39]  211s | adservice=2 cartservice=2 checkoutservice=2 currencyservice=9 emailservice=1 frontend=3 
+paymentservice=2 productcatalogservice=2 recommendationservice=2 redis-cart=1 shippingservice=1 
+[14:21:39] Controller exited with code 0
+[14:21:39] Run check passed
+[14:21:39] Results saved to D:\Nam 4 - HK1\Các Chuyên đề\Demo\smarthpa\..\results\2R-20\prosmarthpa-cv-w5\run0
+Report written to D:\Nam 4 - HK1\Các Chuyên đề\Demo\smarthpa\..\results\2R-20\prosmarthpa-cv-w5\run0
+Comparison written to D:\Nam 4 - HK1\Các Chuyên đề\Demo\results\2R-20\comparison
+User-side metrics written to D:\Nam 4 - HK1\Các Chuyên đề\Demo\results\2R-20\comparison

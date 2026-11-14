@@ -1,0 +1,59 @@
+Importing plotly failed. Interactive plots will not work.
+Importing plotly failed. Interactive plots will not work.
+Importing plotly failed. Interactive plots will not work.
+Importing plotly failed. Interactive plots will not work.
+Importing plotly failed. Interactive plots will not work.
+Importing plotly failed. Interactive plots will not work.
+Importing plotly failed. Interactive plots will not work.
+Importing plotly failed. Interactive plots will not work.
+Importing plotly failed. Interactive plots will not work.
+Importing plotly failed. Interactive plots will not work.
+Importing plotly failed. Interactive plots will not work.
+Importing plotly failed. Interactive plots will not work.
+error: Metrics not available for pod default/paymentservice-75cb85754f-wbt4x, age: 5h12m41.0108s
+[retry] 19:31:33 attempt 1 failed (exit 1): kubectl top pods -l app=paymentservice
+error: Metrics not available for pod default/paymentservice-75cb85754f-wbt4x, age: 5h12m43.0989959s
+[retry] 19:31:35 attempt 2 failed (exit 1): kubectl top pods -l app=paymentservice
+error: Metrics not available for pod default/paymentservice-75cb85754f-wbt4x, age: 5h12m45.1818008s
+[retry] 19:31:37 attempt 3 failed (exit 1): kubectl top pods -l app=paymentservice
+error: Metrics not available for pod default/paymentservice-75cb85754f-wbt4x, age: 5h12m47.2612448s
+[retry] 19:31:39 attempt 4 failed (exit 1): kubectl top pods -l app=paymentservice
+error: Metrics not available for pod default/paymentservice-75cb85754f-wbt4x, age: 5h12m49.3448062s
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "C:\Users\DuongHehehe\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+                    ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DuongHehehe\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\pool.py", line 48, in mapstar
+    return list(map(*args))
+           ^^^^^^^^^^^^^^^^
+  File "D:\Nam 4 - HK1\Các Chuyên đề\Demo\prosmarthpa\prosmart_hpa.py", line 105, in microservice_manager
+    name, spec_replicas, current_replicas, current_cpu, target_cpu, cpu_request, max_replica, min_replica = manager.Monitor()
+                                                                                                            ^^^^^^^^^^^^^^^^^
+  File "D:\Nam 4 - HK1\Các Chuyên đề\Demo\prosmarthpa\..\smarthpa\paymentservice.py", line 37, in Monitor
+    Replicas_CPU_usage = subprocess.check_output(Replicas_CPU_usage.split()).decode('utf-8')
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Nam 4 - HK1\Các Chuyên đề\Demo\prosmarthpa\..\smarthpa\config.py", line 52, in _check_output_with_retry
+    return _original_check_output(cmd, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DuongHehehe\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DuongHehehe\AppData\Local\Programs\Python\Python311\Lib\subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['kubectl', 'top', 'pods', '-l', 'app=paymentservice']' returned non-zero exit status 1.
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Nam 4 - HK1\Các Chuyên đề\Demo\prosmarthpa\prosmart_hpa.py", line 259, in <module>
+    ms = pool.map(microservice_manager, [(module, test_time) for module in MANAGERS])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DuongHehehe\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DuongHehehe\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\pool.py", line 774, in get
+    raise self._value
+subprocess.CalledProcessError: Command '['kubectl', 'top', 'pods', '-l', 'app=paymentservice']' returned non-zero exit status 1.

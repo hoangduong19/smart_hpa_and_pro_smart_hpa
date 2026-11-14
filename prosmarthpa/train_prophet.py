@@ -63,13 +63,16 @@ def load_run(scenario, run, service):
     return out
 
 
-def fit(train, kind, mode):
+def fit(train, kind, mode, params=None):
+    """params (tune_prophet.py): changepoint_prior_scale, regressor_prior_scale; None = Prophet defaults (0.05, 10),
+    as in the released models and our first models (models_3runs)"""
     spec = MODELS[kind]
-    model = Prophet()                                   # default hyper-parameters, as in the released models
+    params = params or {}
+    model = Prophet(changepoint_prior_scale=params.get("changepoint_prior_scale", 0.05))
     columns = ["ds", spec["y"]]
     if mode == "reg":
         for reg in spec["regressors"]:
-            model.add_regressor(reg)
+            model.add_regressor(reg, prior_scale=params.get("regressor_prior_scale", 10.0))
         columns += spec["regressors"]
     model.fit(train[columns].rename(columns={spec["y"]: "y"}))
     return model

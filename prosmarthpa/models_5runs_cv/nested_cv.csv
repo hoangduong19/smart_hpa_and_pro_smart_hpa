@@ -1,0 +1,331 @@
+service,kind,test_run,model,mae,under_pct,n,changepoint_prior_scale,regressor_prior_scale
+adservice,demand,1,tuned (nested CV),0.45273712109585584,0.0,179,0.5,1.0
+adservice,demand,1,Prophet defaults,0.6259214786377553,0.0,179,,
+adservice,demand,1,same as now,0.03888299063598773,2.2346368715083798,179,,
+adservice,demand,2,tuned (nested CV),0.48097128310337617,0.0,179,0.5,1.0
+adservice,demand,2,Prophet defaults,0.5647701657849404,0.0,179,,
+adservice,demand,2,same as now,0.2392333460835066,13.966480446927374,179,,
+adservice,demand,3,tuned (nested CV),0.6828066601396108,1.1173184357541899,179,0.5,10.0
+adservice,demand,3,Prophet defaults,0.7107396210334656,0.5586592178770949,179,,
+adservice,demand,3,same as now,0.09931624488832216,5.027932960893855,179,,
+adservice,demand,4,tuned (nested CV),0.4189177410494932,4.4692737430167595,179,0.5,1.0
+adservice,demand,4,Prophet defaults,0.41333114887072225,2.2346368715083798,179,,
+adservice,demand,4,same as now,0.18871433564906523,10.614525139664805,179,,
+adservice,demand,5,tuned (nested CV),0.7044621744740931,1.1173184357541899,179,0.5,10.0
+adservice,demand,5,Prophet defaults,0.7268085431891769,1.1173184357541899,179,,
+adservice,demand,5,same as now,0.10111021916683052,5.58659217877095,179,,
+adservice,capacity,1,tuned (nested CV),0.659217877094972,0.0,179,0.05,1.0
+adservice,capacity,1,Prophet defaults,0.659217877094972,0.0,179,,
+adservice,capacity,1,same as now,0.027932960893854747,0.0,179,,
+adservice,capacity,2,tuned (nested CV),0.5027932960893855,0.0,179,0.1,0.1
+adservice,capacity,2,Prophet defaults,0.49162011173184356,0.0,179,,
+adservice,capacity,2,same as now,0.01675977653631285,0.0,179,,
+adservice,capacity,3,tuned (nested CV),0.6759776536312849,0.0,179,0.1,0.1
+adservice,capacity,3,Prophet defaults,0.5921787709497207,0.0,179,,
+adservice,capacity,3,same as now,0.01675977653631285,0.0,179,,
+adservice,capacity,4,tuned (nested CV),0.49162011173184356,0.0,179,0.1,0.1
+adservice,capacity,4,Prophet defaults,0.3854748603351955,0.0,179,,
+adservice,capacity,4,same as now,0.027932960893854747,0.0,179,,
+adservice,capacity,5,tuned (nested CV),0.22346368715083798,0.0,179,0.5,10.0
+adservice,capacity,5,Prophet defaults,0.3463687150837989,0.0,179,,
+adservice,capacity,5,same as now,0.027932960893854747,0.0,179,,
+cartservice,demand,1,tuned (nested CV),0.3864831056698591,4.4692737430167595,179,0.5,0.01
+cartservice,demand,1,Prophet defaults,0.3864831056698591,7.262569832402235,179,,
+cartservice,demand,1,same as now,0.287527066211021,18.994413407821227,179,,
+cartservice,demand,2,tuned (nested CV),0.6090701193736852,9.497206703910614,179,0.05,0.01
+cartservice,demand,2,Prophet defaults,0.6258298959099979,8.938547486033519,179,,
+cartservice,demand,2,same as now,0.46705817727037674,26.81564245810056,179,,
+cartservice,demand,3,tuned (nested CV),0.5040213532702377,3.910614525139665,179,0.05,0.1
+cartservice,demand,3,Prophet defaults,0.5040213532702377,3.910614525139665,179,,
+cartservice,demand,3,same as now,0.3763660289686282,25.139664804469277,179,,
+cartservice,demand,4,tuned (nested CV),0.7925265691103139,12.849162011173185,179,0.001,1.0
+cartservice,demand,4,Prophet defaults,0.8216346797408096,13.40782122905028,179,,
+cartservice,demand,4,same as now,0.6617955314636615,32.960893854748605,179,,
+cartservice,demand,5,tuned (nested CV),0.40755697506007066,5.027932960893855,179,0.01,0.1
+cartservice,demand,5,Prophet defaults,0.39079719852375777,5.027932960893855,179,,
+cartservice,demand,5,same as now,0.39545446383180394,22.905027932960895,179,,
+cartservice,capacity,1,tuned (nested CV),0.5698324022346368,0.0,179,0.05,0.1
+cartservice,capacity,1,Prophet defaults,0.5698324022346368,0.0,179,,
+cartservice,capacity,1,same as now,0.01675977653631285,0.0,179,,
+cartservice,capacity,2,tuned (nested CV),0.6871508379888268,0.0,179,0.05,1.0
+cartservice,capacity,2,Prophet defaults,0.45251396648044695,0.0,179,,
+cartservice,capacity,2,same as now,0.01675977653631285,0.0,179,,
+cartservice,capacity,3,tuned (nested CV),0.7653631284916201,0.0,179,0.05,1.0
+cartservice,capacity,3,Prophet defaults,0.4860335195530726,0.0,179,,
+cartservice,capacity,3,same as now,0.01675977653631285,0.0,179,,
+cartservice,capacity,4,tuned (nested CV),0.329608938547486,0.0,179,0.05,0.1
+cartservice,capacity,4,Prophet defaults,0.36312849162011174,0.0,179,,
+cartservice,capacity,4,same as now,0.0111731843575419,0.0,179,,
+cartservice,capacity,5,tuned (nested CV),0.46368715083798884,0.0,179,0.05,0.1
+cartservice,capacity,5,Prophet defaults,0.2905027932960894,0.0,179,,
+cartservice,capacity,5,same as now,0.0111731843575419,0.0,179,,
+checkoutservice,demand,1,tuned (nested CV),0.3890738486670358,3.910614525139665,179,0.5,0.1
+checkoutservice,demand,1,Prophet defaults,0.4002470330245777,3.910614525139665,179,,
+checkoutservice,demand,1,same as now,0.5013010844966383,30.726256983240223,179,,
+checkoutservice,demand,2,tuned (nested CV),0.3625786229284089,3.910614525139665,179,0.01,0.1
+checkoutservice,demand,2,Prophet defaults,0.3737518072859508,5.027932960893855,179,,
+checkoutservice,demand,2,same as now,0.3739320390080361,21.22905027932961,179,,
+checkoutservice,demand,3,tuned (nested CV),0.4038373125450022,5.58659217877095,179,0.5,10.0
+checkoutservice,demand,3,Prophet defaults,0.431770273438857,5.58659217877095,179,,
+checkoutservice,demand,3,same as now,0.37418390940180757,24.581005586592177,179,,
+checkoutservice,demand,4,tuned (nested CV),0.7557142575762773,11.1731843575419,179,0.1,10.0
+checkoutservice,demand,4,Prophet defaults,0.7557142575762773,11.1731843575419,179,,
+checkoutservice,demand,4,same as now,0.5071669402086774,25.69832402234637,179,,
+checkoutservice,demand,5,tuned (nested CV),0.5294979651813386,1.675977653631285,179,0.5,0.01
+checkoutservice,demand,5,Prophet defaults,0.37307338417575203,2.793296089385475,179,,
+checkoutservice,demand,5,same as now,0.1368841784274514,10.05586592178771,179,,
+checkoutservice,capacity,1,tuned (nested CV),0.48044692737430167,0.0,179,0.1,0.01
+checkoutservice,capacity,1,Prophet defaults,0.659217877094972,0.0,179,,
+checkoutservice,capacity,1,same as now,0.027932960893854747,0.0,179,,
+checkoutservice,capacity,2,tuned (nested CV),0.5278707393652738,0.0,179,0.1,1.0
+checkoutservice,capacity,2,Prophet defaults,0.5446305159015866,0.0,179,,
+checkoutservice,capacity,2,same as now,0.030664035454659278,0.0,179,,
+checkoutservice,capacity,3,tuned (nested CV),0.5581778897379007,0.0,179,0.1,0.01
+checkoutservice,capacity,3,Prophet defaults,0.5693510740954426,0.0,179,,
+checkoutservice,capacity,3,same as now,0.03303822493343138,0.0,179,,
+checkoutservice,capacity,4,tuned (nested CV),0.33519553072625696,0.0,179,0.05,0.1
+checkoutservice,capacity,4,Prophet defaults,0.33519553072625696,0.0,179,,
+checkoutservice,capacity,4,same as now,0.027932960893854747,0.0,179,,
+checkoutservice,capacity,5,tuned (nested CV),0.055865921787709494,0.0,179,0.1,10.0
+checkoutservice,capacity,5,Prophet defaults,0.05027932960893855,0.0,179,,
+checkoutservice,capacity,5,same as now,0.027932960893854747,0.0,179,,
+currencyservice,demand,1,tuned (nested CV),2.349481267964487,9.497206703910614,179,0.001,0.1
+currencyservice,demand,1,Prophet defaults,2.2824421618192354,9.497206703910614,179,,
+currencyservice,demand,1,same as now,1.344257329300392,12.290502793296088,179,,
+currencyservice,demand,2,tuned (nested CV),1.5188398101621088,59.217877094972074,179,0.01,1.0
+currencyservice,demand,2,Prophet defaults,1.5579459554135053,60.33519553072626,179,,
+currencyservice,demand,2,same as now,0.9490074079274717,12.849162011173185,179,,
+currencyservice,demand,3,tuned (nested CV),1.3754874622946915,20.670391061452513,179,0.001,10.0
+currencyservice,demand,3,Prophet defaults,1.330794724864524,18.994413407821227,179,,
+currencyservice,demand,3,same as now,1.107331037713686,13.966480446927374,179,,
+currencyservice,demand,4,tuned (nested CV),6.174429206111252,31.28491620111732,179,0.5,0.01
+currencyservice,demand,4,Prophet defaults,5.52079792119505,31.28491620111732,179,,
+currencyservice,demand,4,same as now,1.8189845411391097,34.07821229050279,179,,
+currencyservice,demand,5,tuned (nested CV),1.9924243902850411,6.145251396648044,179,0.001,0.1
+currencyservice,demand,5,Prophet defaults,2.04270371989398,6.145251396648044,179,,
+currencyservice,demand,5,same as now,1.556670200340907,23.463687150837988,179,,
+currencyservice,capacity,1,tuned (nested CV),0.30726256983240224,4.4692737430167595,179,0.5,0.01
+currencyservice,capacity,1,Prophet defaults,0.3854748603351955,5.027932960893855,179,,
+currencyservice,capacity,1,same as now,0.2569832402234637,3.35195530726257,179,,
+currencyservice,capacity,2,tuned (nested CV),1.145002510533721,4.4692737430167595,179,0.1,0.1
+currencyservice,capacity,2,Prophet defaults,1.150589102712492,4.4692737430167595,179,,
+currencyservice,capacity,2,same as now,0.1450025105337209,3.35195530726257,179,,
+currencyservice,capacity,3,tuned (nested CV),0.20015466215736555,4.4692737430167595,179,0.5,0.1
+currencyservice,capacity,3,Prophet defaults,0.2951267291964717,3.35195530726257,179,,
+currencyservice,capacity,3,same as now,0.16663510908473986,2.793296089385475,179,,
+currencyservice,capacity,4,tuned (nested CV),1.3575418994413408,5.027932960893855,179,0.1,10.0
+currencyservice,capacity,4,Prophet defaults,1.3575418994413408,5.027932960893855,179,,
+currencyservice,capacity,4,same as now,0.13966480446927373,2.793296089385475,179,,
+currencyservice,capacity,5,tuned (nested CV),0.3242270283880548,3.910614525139665,179,0.5,0.1
+currencyservice,capacity,5,Prophet defaults,0.408025911069619,3.910614525139665,179,,
+currencyservice,capacity,5,same as now,0.25160133006403246,2.793296089385475,179,,
+emailservice,demand,1,tuned (nested CV),0.41821442563699673,0.0,179,0.5,0.01
+emailservice,demand,1,Prophet defaults,0.4126278334582258,0.0,179,,
+emailservice,demand,1,same as now,0.2951602418261207,16.201117318435752,179,,
+emailservice,demand,2,tuned (nested CV),0.320842852273932,0.0,179,0.5,0.01
+emailservice,demand,2,Prophet defaults,0.30408307573761917,0.0,179,,
+emailservice,demand,2,same as now,0.2426989449324468,11.1731843575419,179,,
+emailservice,demand,3,tuned (nested CV),0.4183103569305722,0.0,179,0.5,0.01
+emailservice,demand,3,Prophet defaults,0.49093605525459455,0.0,179,,
+emailservice,demand,3,same as now,0.39339951108544663,21.787709497206702,179,,
+emailservice,demand,4,tuned (nested CV),0.1400931574927909,0.0,179,0.5,0.01
+emailservice,demand,4,Prophet defaults,0.48815195032410297,3.35195530726257,179,,
+emailservice,demand,4,same as now,0.1138502743464493,7.262569832402235,179,,
+emailservice,demand,5,tuned (nested CV),0.055491645783195695,0.0,179,0.5,0.01
+emailservice,demand,5,Prophet defaults,0.21750281896755325,0.0,179,,
+emailservice,demand,5,same as now,0.022720644719597602,2.793296089385475,179,,
+emailservice,capacity,1,tuned (nested CV),0.4134078212290503,0.0,179,0.1,10.0
+emailservice,capacity,1,Prophet defaults,0.4972067039106145,0.0,179,,
+emailservice,capacity,1,same as now,0.027932960893854747,0.0,179,,
+emailservice,capacity,2,tuned (nested CV),0.35468638182337436,0.0,179,0.1,10.0
+emailservice,capacity,2,Prophet defaults,0.4887645941138771,0.0,179,,
+emailservice,capacity,2,same as now,0.030664035454659278,0.0,179,,
+emailservice,capacity,3,tuned (nested CV),0.3067812416932079,0.0,179,0.1,0.1
+emailservice,capacity,3,Prophet defaults,0.2788482807993532,0.0,179,,
+emailservice,capacity,3,same as now,0.03303822493343138,0.0,179,,
+emailservice,capacity,4,tuned (nested CV),0.44692737430167595,0.0,179,0.05,0.01
+emailservice,capacity,4,Prophet defaults,0.39664804469273746,0.0,179,,
+emailservice,capacity,4,same as now,0.027932960893854747,0.0,179,,
+emailservice,capacity,5,tuned (nested CV),0.4581005586592179,0.0,179,0.1,0.01
+emailservice,capacity,5,Prophet defaults,0.4692737430167598,0.0,179,,
+emailservice,capacity,5,same as now,0.027932960893854747,0.0,179,,
+frontend,demand,1,tuned (nested CV),4.407908330330561,13.966480446927374,179,0.1,0.01
+frontend,demand,1,Prophet defaults,4.977740732565198,16.75977653631285,179,,
+frontend,demand,1,same as now,0.7878676384411253,36.87150837988827,179,,
+frontend,demand,2,tuned (nested CV),1.860454495430063,20.11173184357542,179,0.01,0.01
+frontend,demand,2,Prophet defaults,2.26501735354879,7.262569832402235,179,,
+frontend,demand,2,same as now,1.5102489033155522,48.04469273743017,179,,
+frontend,demand,3,tuned (nested CV),0.8075190369950156,32.402234636871505,179,0.05,0.01
+frontend,demand,3,Prophet defaults,0.9464932850388587,41.340782122905026,179,,
+frontend,demand,3,same as now,1.1926640392677181,49.72067039106145,179,,
+frontend,demand,4,tuned (nested CV),1.898884279723354,59.217877094972074,179,0.05,0.01
+frontend,demand,4,Prophet defaults,1.8814935497454794,55.865921787709496,179,,
+frontend,demand,4,same as now,1.9725954487021893,51.955307262569825,179,,
+frontend,demand,5,tuned (nested CV),1.117162741167576,50.83798882681564,179,0.1,0.01
+frontend,demand,5,Prophet defaults,1.0468589388228773,56.424581005586596,179,,
+frontend,demand,5,same as now,1.1505426448086602,48.04469273743017,179,,
+frontend,capacity,1,tuned (nested CV),0.9497206703910615,0.0,179,0.01,0.01
+frontend,capacity,1,Prophet defaults,0.9497206703910615,0.0,179,,
+frontend,capacity,1,same as now,0.0,0.0,179,,
+frontend,capacity,2,tuned (nested CV),0.1787709497206704,4.4692737430167595,179,0.01,1.0
+frontend,capacity,2,Prophet defaults,0.10614525139664804,4.4692737430167595,179,,
+frontend,capacity,2,same as now,0.0670391061452514,2.793296089385475,179,,
+frontend,capacity,3,tuned (nested CV),0.7541899441340782,3.35195530726257,179,0.001,1.0
+frontend,capacity,3,Prophet defaults,0.9608938547486033,3.35195530726257,179,,
+frontend,capacity,3,same as now,0.01675977653631285,1.675977653631285,179,,
+frontend,capacity,4,tuned (nested CV),0.6368715083798883,2.793296089385475,179,0.5,1.0
+frontend,capacity,4,Prophet defaults,0.5307262569832403,2.793296089385475,179,,
+frontend,capacity,4,same as now,0.0335195530726257,2.2346368715083798,179,,
+frontend,capacity,5,tuned (nested CV),0.698119340327029,0.5586592178770949,179,0.5,1.0
+frontend,capacity,5,Prophet defaults,0.7763316308298224,0.0,179,,
+frontend,capacity,5,same as now,0.022551050734423518,2.793296089385475,179,,
+paymentservice,demand,1,tuned (nested CV),0.5427715354375454,2.793296089385475,179,0.001,0.1
+paymentservice,demand,1,Prophet defaults,0.5260117589012326,2.793296089385475,179,,
+paymentservice,demand,1,same as now,0.3809287035022545,25.139664804469277,179,,
+paymentservice,demand,2,tuned (nested CV),0.5550256827173009,5.027932960893855,179,0.05,0.01
+paymentservice,demand,2,Prophet defaults,0.5492807567240808,6.70391061452514,179,,
+paymentservice,demand,2,same as now,0.3897289142204252,25.139664804469277,179,,
+paymentservice,demand,3,tuned (nested CV),0.5547762378471365,6.145251396648044,179,0.01,0.01
+paymentservice,demand,3,Prophet defaults,0.573469410237643,9.497206703910614,179,,
+paymentservice,demand,3,same as now,0.333345197198546,21.22905027932961,179,,
+paymentservice,demand,4,tuned (nested CV),0.5657420090421301,12.290502793296088,179,0.5,0.1
+paymentservice,demand,4,Prophet defaults,0.5825496200698872,11.1731843575419,179,,
+paymentservice,demand,4,same as now,0.5317277759234935,25.69832402234637,179,,
+paymentservice,demand,5,tuned (nested CV),0.543748461138058,2.2346368715083798,179,0.5,0.01
+paymentservice,demand,5,Prophet defaults,0.5046423158866614,2.2346368715083798,179,,
+paymentservice,demand,5,same as now,0.25868836583632715,17.318435754189945,179,,
+paymentservice,capacity,1,tuned (nested CV),0.27932960893854747,0.0,179,0.1,0.01
+paymentservice,capacity,1,Prophet defaults,0.30726256983240224,0.0,179,,
+paymentservice,capacity,1,same as now,0.027932960893854747,0.0,179,,
+paymentservice,capacity,2,tuned (nested CV),0.27647409132058104,0.0,179,0.1,0.01
+paymentservice,capacity,2,Prophet defaults,0.3044070522144358,0.0,179,,
+paymentservice,capacity,2,same as now,0.030664035454659278,0.0,179,,
+paymentservice,capacity,3,tuned (nested CV),0.1340782122905028,0.0,179,0.1,0.01
+paymentservice,capacity,3,Prophet defaults,0.07262569832402235,0.0,179,,
+paymentservice,capacity,3,same as now,0.01675977653631285,0.0,179,,
+paymentservice,capacity,4,tuned (nested CV),0.7262569832402235,0.0,179,0.05,10.0
+paymentservice,capacity,4,Prophet defaults,0.7262569832402235,0.0,179,,
+paymentservice,capacity,4,same as now,0.027932960893854747,0.0,179,,
+paymentservice,capacity,5,tuned (nested CV),0.13966480446927373,0.0,179,0.05,0.1
+paymentservice,capacity,5,Prophet defaults,0.1340782122905028,0.0,179,,
+paymentservice,capacity,5,same as now,0.027932960893854747,0.0,179,,
+productcatalogservice,demand,1,tuned (nested CV),0.6897975337136993,7.262569832402235,179,0.1,10.0
+productcatalogservice,demand,1,Prophet defaults,0.6578915100564173,8.938547486033519,179,,
+productcatalogservice,demand,1,same as now,0.613438489224475,37.988826815642454,179,,
+productcatalogservice,demand,2,tuned (nested CV),0.41279084603812155,7.262569832402235,179,0.05,10.0
+productcatalogservice,demand,2,Prophet defaults,0.41279084603812155,7.262569832402235,179,,
+productcatalogservice,demand,2,same as now,0.5027138918308481,32.960893854748605,179,,
+productcatalogservice,demand,3,tuned (nested CV),0.4556346452900064,11.1731843575419,179,0.05,1.0
+productcatalogservice,demand,3,Prophet defaults,0.4556346452900064,11.1731843575419,179,,
+productcatalogservice,demand,3,same as now,0.5356168895425908,34.07821229050279,179,,
+productcatalogservice,demand,4,tuned (nested CV),3.5215521477205853,93.29608938547486,179,0.001,0.01
+productcatalogservice,demand,4,Prophet defaults,0.8568739257718369,53.63128491620112,179,,
+productcatalogservice,demand,4,same as now,0.7662855756166368,35.754189944134076,179,,
+productcatalogservice,demand,5,tuned (nested CV),0.6078865267453495,13.40782122905028,179,0.05,1.0
+productcatalogservice,demand,5,Prophet defaults,0.6078865267453495,13.40782122905028,179,,
+productcatalogservice,demand,5,same as now,0.5469658809623289,33.5195530726257,179,,
+productcatalogservice,capacity,1,tuned (nested CV),0.4972067039106145,0.0,179,0.001,10.0
+productcatalogservice,capacity,1,Prophet defaults,0.26256983240223464,0.0,179,,
+productcatalogservice,capacity,1,same as now,0.027932960893854747,0.0,179,,
+productcatalogservice,capacity,2,tuned (nested CV),0.9329608938547486,0.0,179,0.5,0.1
+productcatalogservice,capacity,2,Prophet defaults,0.664804469273743,0.0,179,,
+productcatalogservice,capacity,2,same as now,0.027932960893854747,0.0,179,,
+productcatalogservice,capacity,3,tuned (nested CV),0.8044692737430168,0.0,179,0.05,1.0
+productcatalogservice,capacity,3,Prophet defaults,0.8044692737430168,0.0,179,,
+productcatalogservice,capacity,3,same as now,0.01675977653631285,0.0,179,,
+productcatalogservice,capacity,4,tuned (nested CV),0.0111731843575419,1.1173184357541899,179,0.1,1.0
+productcatalogservice,capacity,4,Prophet defaults,0.0111731843575419,1.1173184357541899,179,,
+productcatalogservice,capacity,4,same as now,0.0,0.0,179,,
+productcatalogservice,capacity,5,tuned (nested CV),0.33519553072625696,0.0,179,0.5,10.0
+productcatalogservice,capacity,5,Prophet defaults,0.7150837988826816,0.0,179,,
+productcatalogservice,capacity,5,same as now,0.027932960893854747,0.0,179,,
+recommendationservice,demand,1,tuned (nested CV),0.5739646848145296,12.290502793296088,179,0.5,0.01
+recommendationservice,demand,1,Prophet defaults,0.5460317239206748,13.966480446927374,179,,
+recommendationservice,demand,1,same as now,0.46620047178123936,31.28491620111732,179,,
+recommendationservice,demand,2,tuned (nested CV),0.49921724021152764,10.05586592178771,179,0.5,0.01
+recommendationservice,demand,2,Prophet defaults,0.5886027150718628,15.083798882681565,179,,
+recommendationservice,demand,2,same as now,0.495244930539055,35.19553072625698,179,,
+recommendationservice,demand,3,tuned (nested CV),0.5651307451621368,8.938547486033519,179,0.1,0.01
+recommendationservice,demand,3,Prophet defaults,0.5148514155531982,12.290502793296088,179,,
+recommendationservice,demand,3,same as now,0.41278825648411555,30.726256983240223,179,,
+recommendationservice,demand,4,tuned (nested CV),0.7922157151383433,23.463687150837988,179,0.001,0.01
+recommendationservice,demand,4,Prophet defaults,0.7866291229595723,21.787709497206702,179,,
+recommendationservice,demand,4,same as now,0.7828153277656429,38.547486033519554,179,,
+recommendationservice,demand,5,tuned (nested CV),0.48423616841299283,10.614525139664805,179,0.5,0.01
+recommendationservice,demand,5,Prophet defaults,0.46747639187667994,11.1731843575419,179,,
+recommendationservice,demand,5,same as now,0.5229395439769767,36.312849162011176,179,,
+recommendationservice,capacity,1,tuned (nested CV),0.19553072625698323,0.0,179,0.5,1.0
+recommendationservice,capacity,1,Prophet defaults,0.329608938547486,0.0,179,,
+recommendationservice,capacity,1,same as now,0.027932960893854747,0.0,179,,
+recommendationservice,capacity,2,tuned (nested CV),0.35195530726256985,0.0,179,0.5,1.0
+recommendationservice,capacity,2,Prophet defaults,0.44692737430167595,0.0,179,,
+recommendationservice,capacity,2,same as now,0.027932960893854747,0.0,179,,
+recommendationservice,capacity,3,tuned (nested CV),0.16201117318435754,0.0,179,0.5,0.1
+recommendationservice,capacity,3,Prophet defaults,0.24022346368715083,0.0,179,,
+recommendationservice,capacity,3,same as now,0.01675977653631285,0.0,179,,
+recommendationservice,capacity,4,tuned (nested CV),0.43575418994413406,0.0,179,0.5,1.0
+recommendationservice,capacity,4,Prophet defaults,0.5810055865921788,0.0,179,,
+recommendationservice,capacity,4,same as now,0.027932960893854747,0.0,179,,
+recommendationservice,capacity,5,tuned (nested CV),0.329608938547486,0.0,179,0.5,10.0
+recommendationservice,capacity,5,Prophet defaults,0.48044692737430167,0.0,179,,
+recommendationservice,capacity,5,same as now,0.027932960893854747,0.0,179,,
+redis-cart,demand,1,tuned (nested CV),0.2375467823379592,2.793296089385475,179,0.05,0.01
+redis-cart,demand,1,Prophet defaults,0.22078700580164634,2.793296089385475,179,,
+redis-cart,demand,1,same as now,0.07875225090101842,3.910614525139665,179,,
+redis-cart,demand,2,tuned (nested CV),0.40782122905027934,2.793296089385475,179,0.5,0.1
+redis-cart,demand,2,Prophet defaults,0.4022346368715084,1.675977653631285,179,,
+redis-cart,demand,2,same as now,0.027932960893854747,2.793296089385475,179,,
+redis-cart,demand,3,tuned (nested CV),0.21663468064251212,0.0,179,0.5,0.1
+redis-cart,demand,3,Prophet defaults,0.21663468064251212,0.0,179,,
+redis-cart,demand,3,same as now,0.023588783044638715,2.793296089385475,179,,
+redis-cart,demand,4,tuned (nested CV),0.6191446070020907,4.4692737430167595,179,0.1,0.1
+redis-cart,demand,4,Prophet defaults,0.6526641600747165,4.4692737430167595,179,,
+redis-cart,demand,4,same as now,0.07917941534427791,5.58659217877095,179,,
+redis-cart,demand,5,tuned (nested CV),0.2122905027932961,0.0,179,0.5,0.01
+redis-cart,demand,5,Prophet defaults,0.2122905027932961,0.0,179,,
+redis-cart,demand,5,same as now,0.027932960893854747,2.793296089385475,179,,
+redis-cart,capacity,1,tuned (nested CV),0.0,0.0,179,0.001,0.01
+redis-cart,capacity,1,Prophet defaults,0.0,0.0,179,,
+redis-cart,capacity,1,same as now,0.0,0.0,179,,
+redis-cart,capacity,2,tuned (nested CV),0.0,0.0,179,0.001,0.01
+redis-cart,capacity,2,Prophet defaults,0.0,0.0,179,,
+redis-cart,capacity,2,same as now,0.0,0.0,179,,
+redis-cart,capacity,3,tuned (nested CV),0.0,0.0,179,0.001,0.01
+redis-cart,capacity,3,Prophet defaults,0.0,0.0,179,,
+redis-cart,capacity,3,same as now,0.0,0.0,179,,
+redis-cart,capacity,4,tuned (nested CV),0.0,0.0,179,0.001,0.01
+redis-cart,capacity,4,Prophet defaults,0.0,0.0,179,,
+redis-cart,capacity,4,same as now,0.0,0.0,179,,
+redis-cart,capacity,5,tuned (nested CV),0.0,0.0,179,0.001,0.01
+redis-cart,capacity,5,Prophet defaults,0.0,0.0,179,,
+redis-cart,capacity,5,same as now,0.0,0.0,179,,
+shippingservice,demand,1,tuned (nested CV),0.785183503165273,0.0,179,0.01,10.0
+shippingservice,demand,1,Prophet defaults,0.7013846204837088,0.0,179,,
+shippingservice,demand,1,same as now,0.11984442979562084,7.82122905027933,179,,
+shippingservice,demand,2,tuned (nested CV),0.31553520601985613,0.0,179,0.05,0.1
+shippingservice,demand,2,Prophet defaults,0.30436202166231424,0.0,179,,
+shippingservice,demand,2,same as now,0.3131117301224423,16.75977653631285,179,,
+shippingservice,demand,3,tuned (nested CV),0.40741630464106576,0.0,179,0.05,1.0
+shippingservice,demand,3,Prophet defaults,0.4130028968198367,0.0,179,,
+shippingservice,demand,3,same as now,0.3334429974394407,18.435754189944134,179,,
+shippingservice,demand,4,tuned (nested CV),0.5035758485702383,7.82122905027933,179,0.1,0.1
+shippingservice,demand,4,Prophet defaults,0.39184400499481925,6.70391061452514,179,,
+shippingservice,demand,4,same as now,0.24659260834677454,14.52513966480447,179,,
+shippingservice,demand,5,tuned (nested CV),0.6810040030622831,0.0,179,0.001,0.1
+shippingservice,demand,5,Prophet defaults,0.6418978578108865,0.0,179,,
+shippingservice,demand,5,same as now,0.3013798852525382,16.75977653631285,179,,
+shippingservice,capacity,1,tuned (nested CV),0.9385474860335196,0.0,179,0.01,0.01
+shippingservice,capacity,1,Prophet defaults,0.1452513966480447,0.0,179,,
+shippingservice,capacity,1,same as now,0.027932960893854747,0.0,179,,
+shippingservice,capacity,2,tuned (nested CV),0.5390439237228157,0.0,179,0.1,1.0
+shippingservice,capacity,2,Prophet defaults,0.5502171080803576,0.0,179,,
+shippingservice,capacity,2,same as now,0.030664035454659278,0.0,179,,
+shippingservice,capacity,3,tuned (nested CV),0.45251396648044695,0.0,179,0.1,1.0
+shippingservice,capacity,3,Prophet defaults,0.5865921787709497,0.0,179,,
+shippingservice,capacity,3,same as now,0.01675977653631285,0.0,179,,
+shippingservice,capacity,4,tuned (nested CV),0.5810055865921788,0.0,179,0.1,0.01
+shippingservice,capacity,4,Prophet defaults,0.6033519553072626,0.0,179,,
+shippingservice,capacity,4,same as now,0.027932960893854747,0.0,179,,
+shippingservice,capacity,5,tuned (nested CV),0.770949720670391,0.0,179,0.01,0.01
+shippingservice,capacity,5,Prophet defaults,0.22905027932960895,0.0,179,,
+shippingservice,capacity,5,same as now,0.027932960893854747,0.0,179,,

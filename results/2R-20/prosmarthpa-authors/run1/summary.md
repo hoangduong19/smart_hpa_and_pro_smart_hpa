@@ -1,43 +1,43 @@
 # Run report: prosmarthpa-authors | 2R-20% | run 1
 
-- Started 2026-10-24 10:16:31 - finished 2026-10-24 10:32:05
+- Started 2026-11-13 03:28:44 - finished 2026-11-13 03:44:14
 - Scenario 2R-20%: maxR = 2, CPU threshold = 20%
 - Load: 200 users, spawn rate 0.67/s, 900 s
-- Knowledge Base rows: 425 loop iterations
+- Knowledge Base rows: 419 loop iterations
 - Max unschedulable pods during run: 0
 
 ## Application level (Table 1 metrics)
 
 | Metric | Value |
 |---|---|
-| Supply CPU (m) - higher is better | 2,693.27 |
-| CPU Overutilization (%) - lower | 397.29 |
-| Overutilization Time (min) - lower | 14.76 |
-| CPU Overprovision (m) - lower | 308.02 |
-| Overprovision Time (min) - higher | 0.21 |
-| CPU Underprovision (m) - lower | 4,030.82 |
-| Underprovision Time (min) - lower | 14.76 |
+| Supply CPU (m) - higher is better | 2,500.74 |
+| CPU Overutilization (%) - lower | 369.26 |
+| Overutilization Time (min) - lower | 14.46 |
+| CPU Overprovision (m) - lower | 287.85 |
+| Overprovision Time (min) - higher | 0.53 |
+| CPU Underprovision (m) - lower | 3,401.91 |
+| Underprovision Time (min) - lower | 14.46 |
 
 ## Load test totals (Locust)
 
 | Requests | Failures | Median (ms) | p95 (ms) | p99 (ms) | Requests/s |
 |---|---|---|---|---|---|
-| 62289 | 0 | 300 | 1000 | 1400 | 69.31 |
+| 62421 | 0 | 300 | 980 | 1400 | 69.44 |
 
 ## Per microservice
 
 | Microservice | Supply (m) | Overutil (%) | Overutil time (min) | Overprov (m) | Overprov time (min) | Underprov (m) | Underprov time (min) |
 |---|---|---|---|---|---|---|---|
-| frontend | 292.71 | 120.41 | 14.51 | 2.82 | 0.47 | 1,612.71 | 14.51 |
-| currencyservice | 294.35 | 66.15 | 14.76 | 2.35 | 0.21 | 868.94 | 14.76 |
-| cartservice | 394.35 | 25.08 | 12.51 | 9.88 | 0.47 | 242.82 | 12.27 |
-| adservice | 394.35 | 0.00 | 0.00 | 204.24 | 14.98 | 0.00 | 0.00 |
-| checkoutservice | 197.18 | 21.72 | 12.23 | 6.82 | 0.95 | 92.00 | 12.23 |
-| productcatalogservice | 197.41 | 70.10 | 13.76 | 2.59 | 0.28 | 553.65 | 13.76 |
-| recommendationservice | 197.18 | 56.43 | 13.58 | 4.24 | 0.91 | 422.59 | 13.58 |
-| paymentservice | 197.18 | 35.68 | 13.58 | 2.82 | 0.47 | 216.47 | 13.58 |
-| shippingservice | 197.41 | 0.64 | 0.53 | 16.00 | 2.45 | 3.06 | 0.53 |
-| emailservice | 194.12 | 1.09 | 0.34 | 44.24 | 5.57 | 18.59 | 2.09 |
-| redis-cart | 137.04 | 0.00 | 0.00 | 12.02 | 2.11 | 0.00 | 0.00 |
+| frontend | 293.79 | 108.07 | 13.96 | 4.06 | 0.53 | 1,380.43 | 13.96 |
+| currencyservice | 293.79 | 65.58 | 14.46 | 4.06 | 0.53 | 767.54 | 14.46 |
+| cartservice | 393.79 | 24.32 | 12.46 | 18.14 | 1.52 | 230.55 | 12.46 |
+| adservice | 393.79 | 0.18 | 0.50 | 198.57 | 14.48 | 1.43 | 0.50 |
+| checkoutservice | 100.00 | 42.51 | 13.46 | 2.15 | 0.17 | 161.58 | 13.46 |
+| productcatalogservice | 197.14 | 53.97 | 13.46 | 3.82 | 1.03 | 398.81 | 13.46 |
+| recommendationservice | 196.90 | 42.44 | 13.22 | 3.82 | 1.03 | 292.60 | 13.22 |
+| paymentservice | 196.90 | 32.19 | 13.46 | 5.73 | 0.77 | 168.97 | 13.46 |
+| shippingservice | 197.14 | 0.00 | 0.00 | 23.15 | 3.03 | 0.00 | 0.00 |
+| emailservice | 100.00 | 0.00 | 0.00 | 2.15 | 0.17 | 0.00 | 0.00 |
+| redis-cart | 137.49 | 0.00 | 0.00 | 22.22 | 3.92 | 0.00 | 0.00 |
 
 Figures: `fig_demand_capacity.png`, `fig_cpu_utilization.png`, `fig_load.png`.

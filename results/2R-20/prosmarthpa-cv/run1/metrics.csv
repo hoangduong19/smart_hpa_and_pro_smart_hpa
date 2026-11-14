@@ -1,0 +1,13 @@
+autoscaler,scenario,run,microservice,supply_cpu_m,cpu_overutilization_pct,overutilization_time_min,cpu_overprovision_m,overprovision_time_min,cpu_underprovision_m,underprovision_time_min
+prosmarthpa-cv,2R-20%,1,frontend,287.968,121.302,14.675,3.748,0.317,1573.767,14.476
+prosmarthpa-cv,2R-20%,1,currencyservice,944.97,37.988,14.422,8.679,0.471,908.679,14.269
+prosmarthpa-cv,2R-20%,1,cartservice,200,54.538,13.928,9.467,0.427,441.42,13.675
+prosmarthpa-cv,2R-20%,1,adservice,200,1.664,0.997,7.495,0.317,11.44,0.997
+prosmarthpa-cv,2R-20%,1,checkoutservice,100,47.294,13.675,5.523,0.516,186.588,13.675
+prosmarthpa-cv,2R-20%,1,productcatalogservice,100,120.452,14.411,4.734,0.427,555.819,14.411
+prosmarthpa-cv,2R-20%,1,recommendationservice,100,94.988,13.928,4.734,0.427,426.43,13.928
+prosmarthpa-cv,2R-20%,1,paymentservice,194.28,30.901,13.675,5.72,0.581,169.822,13.675
+prosmarthpa-cv,2R-20%,1,shippingservice,100,24.736,12.179,4.734,0.427,76.331,12.179
+prosmarthpa-cv,2R-20%,1,emailservice,100,0,0.0,4.734,0.427,0,0.0
+prosmarthpa-cv,2R-20%,1,redis-cart,88.777,9.662,5.786,4.418,0.646,26.509,5.752
+prosmarthpa-cv,2R-20%,1,APPLICATION,2415.996,543.525,14.675,63.984,0.406,4376.805,14.586

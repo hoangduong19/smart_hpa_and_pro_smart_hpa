@@ -1,4 +1,4 @@
-<#
+﻿<#
 Runs several experiment pairs (K8s HPA then Smart HPA, same scenario and run number) back to back with
 run_experiment.ps1, following the interleaved order of plan.md section 6.
 
@@ -27,6 +27,7 @@ $Autoscalers = @($Autoscalers | ForEach-Object { $_ -split ',' } | ForEach-Objec
 if ($PairMinutes -le 0) { $PairMinutes = 21 * $Autoscalers.Count }
 $Script = Join-Path $PSScriptRoot "run_experiment.ps1"
 $end = if ($Deadline) { [datetime]::ParseExact($Deadline, "HH:mm", $null) } else { [datetime]::MaxValue }
+if ($end -lt (Get-Date)) { $end = $end.AddDays(1) }     # a deadline earlier than now is tomorrow (overnight batch started before midnight)
 
 function Log($msg) { Write-Host ("[{0}] [batch] {1}" -f (Get-Date -Format "HH:mm:ss"), $msg) }
 
@@ -60,8 +61,10 @@ foreach ($p in $Pairs) {
             Wait-Cluster
             Log "=== $a | $scenario | run $run | attempt $attempt/$MaxAttempts ==="
             & powershell -NoProfile -ExecutionPolicy Bypass -File $Script -Autoscaler $a -Scenario $scenario -Run ([int]$run) -Shape $Shape
-            if ($LASTEXITCODE -eq 0) { break }
-            Log "Run failed (exit $LASTEXITCODE)"
+            $code = $LASTEXITCODE
+            if ($code -eq 0) { break }
+            Log "Run failed (exit $code)"
+            if ($code -eq 2) { Log "Replicas above the quota (check_run.py): controller bug, stopping batch without retrying"; exit 2 }
             if ($attempt -eq $MaxAttempts) { Log "All $MaxAttempts attempts failed, stopping batch"; exit 1 }
         }
     }

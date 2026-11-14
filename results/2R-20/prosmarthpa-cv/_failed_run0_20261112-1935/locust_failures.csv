@@ -1,0 +1,2 @@
+Method,Name,Error,Occurrences,First Seen,Last Seen
+POST,/cart/checkout,HTTPError('500 Server Error: Internal Server Error for url: /cart/checkout'),40,2026-11-12T12:31:25Z,2026-11-12T12:31:28Z

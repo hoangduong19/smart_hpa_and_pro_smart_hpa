@@ -1,0 +1,13 @@
+autoscaler,scenario,run,microservice,supply_cpu_m,cpu_overutilization_pct,overutilization_time_min,cpu_overprovision_m,overprovision_time_min,cpu_underprovision_m,underprovision_time_min
+prosmarthpa-cv-w15,2R-20%,2,frontend,554.098,48.552,14.612,7.104,0.26,1056.831,14.349
+prosmarthpa-cv-w15,2R-20%,2,currencyservice,748.087,51.781,14.349,14.208,0.524,1901.093,14.349
+prosmarthpa-cv-w15,2R-20%,2,cartservice,287.432,33.492,13.581,29.508,0.559,398.907,13.581
+prosmarthpa-cv-w15,2R-20%,2,adservice,200,0.251,0.249,28.415,0.524,2.186,0.249
+prosmarthpa-cv-w15,2R-20%,2,checkoutservice,118.033,33.087,13.077,16.393,0.864,165.574,13.077
+prosmarthpa-cv-w15,2R-20%,2,productcatalogservice,184.699,53.913,13.351,15.301,0.791,422.951,13.351
+prosmarthpa-cv-w15,2R-20%,2,recommendationservice,184.699,38.361,13.33,15.301,0.791,268.306,13.33
+prosmarthpa-cv-w15,2R-20%,2,paymentservice,181.421,32.464,13.325,18.579,1.044,209.29,13.325
+prosmarthpa-cv-w15,2R-20%,2,shippingservice,115.847,15.738,7.621,15.301,0.791,53.005,10.958
+prosmarthpa-cv-w15,2R-20%,2,emailservice,120.219,0.443,0.495,29.508,5.888,1.639,0.495
+prosmarthpa-cv-w15,2R-20%,2,redis-cart,110.929,0,0.0,13.77,1.131,0,0.0
+prosmarthpa-cv-w15,2R-20%,2,APPLICATION,2805.464,308.082,14.612,203.388,0.524,4479.781,14.349

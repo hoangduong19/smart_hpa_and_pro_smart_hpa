@@ -1,0 +1,78 @@
+Importing plotly failed. Interactive plots will not work.
+Importing plotly failed. Interactive plots will not work.
+Importing plotly failed. Interactive plots will not work.
+Importing plotly failed. Interactive plots will not work.
+Importing plotly failed. Interactive plots will not work.
+Importing plotly failed. Interactive plots will not work.
+Importing plotly failed. Interactive plots will not work.
+Importing plotly failed. Interactive plots will not work.
+Importing plotly failed. Interactive plots will not work.
+Importing plotly failed. Interactive plots will not work.
+Importing plotly failed. Interactive plots will not work.
+Importing plotly failed. Interactive plots will not work.
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+[retry] 10:49:24 attempt 1 failed (exit 1): kubectl get deployment adservice -o=jsonpath='{.status.availableReplicas}'
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+[retry] 10:49:24 attempt 1 failed (exit 1): kubectl get deployment productcatalogservice -o=jsonpath='{.status.availableReplicas}'
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+[retry] 10:49:24 attempt 1 failed (exit 1): kubectl get deployment shippingservice -o=jsonpath='{.status.availableReplicas}'
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+[retry] 10:49:24 attempt 1 failed (exit 1): kubectl get deployment checkoutservice -o=jsonpath='{.status.availableReplicas}'
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+[retry] 10:49:24 attempt 1 failed (exit 1): kubectl get deployment frontend -o=jsonpath='{.status.availableReplicas}'
+[retry] 10:49:24 attempt 1 failed (exit 1): kubectl get deployment recommendationservice -o=jsonpath='{.status.availableReplicas}'
+[retry] 10:49:24 attempt 1 failed (exit 1): kubectl get deployment paymentservice -o=jsonpath='{.status.availableReplicas}'
+[retry] 10:49:24 attempt 1 failed (exit 1): kubectl get deployment redis-cart -o=jsonpath='{.status.availableReplicas}'
+[retry] 10:49:24 attempt 1 failed (exit 1): kubectl get deployment currencyservice -o=jsonpath='{.status.availableReplicas}'
+[retry] 10:49:24 attempt 1 failed (exit 1): kubectl get deployment cartservice -o=jsonpath='{.status.availableReplicas}'
+[retry] 10:49:24 attempt 1 failed (exit 1): kubectl get deployment emailservice -o=jsonpath='{.status.availableReplicas}'
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+[retry] 10:49:47 attempt 2 failed (exit 1): kubectl get deployment adservice -o=jsonpath='{.status.availableReplicas}'
+[retry] 10:49:47 attempt 2 failed (exit 1): kubectl get deployment productcatalogservice -o=jsonpath='{.status.availableReplicas}'
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+[retry] 10:49:47 attempt 2 failed (exit 1): kubectl get deployment shippingservice -o=jsonpath='{.status.availableReplicas}'
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+[retry] 10:49:47 attempt 2 failed (exit 1): kubectl get deployment checkoutservice -o=jsonpath='{.status.availableReplicas}'
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+[retry] 10:49:47 attempt 2 failed (exit 1): kubectl get deployment emailservice -o=jsonpath='{.status.availableReplicas}'
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+[retry] 10:49:47 attempt 2 failed (exit 1): kubectl get deployment cartservice -o=jsonpath='{.status.availableReplicas}'
+[retry] 10:49:47 attempt 2 failed (exit 1): kubectl get deployment paymentservice -o=jsonpath='{.status.availableReplicas}'
+[retry] 10:49:47 attempt 2 failed (exit 1): kubectl get deployment redis-cart -o=jsonpath='{.status.availableReplicas}'
+[retry] 10:49:47 attempt 2 failed (exit 1): kubectl get deployment frontend -o=jsonpath='{.status.availableReplicas}'
+[retry] 10:49:47 attempt 2 failed (exit 1): kubectl get deployment currencyservice -o=jsonpath='{.status.availableReplicas}'
+[retry] 10:49:47 attempt 2 failed (exit 1): kubectl get deployment recommendationservice -o=jsonpath='{.status.availableReplicas}'
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+[retry] 10:50:10 attempt 3 failed (exit 1): kubectl get deployment productcatalogservice -o=jsonpath='{.status.availableReplicas}'
+[retry] 10:50:10 attempt 3 failed (exit 1): kubectl get deployment adservice -o=jsonpath='{.status.availableReplicas}'
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+[retry] 10:50:10 attempt 3 failed (exit 1): kubectl get deployment shippingservice -o=jsonpath='{.status.availableReplicas}'
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+[retry] 10:50:11 attempt 3 failed (exit 1): kubectl get deployment checkoutservice -o=jsonpath='{.status.availableReplicas}'
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+[retry] 10:50:11 attempt 3 failed (exit 1): kubectl get deployment emailservice -o=jsonpath='{.status.availableReplicas}'
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+[retry] 10:50:11 attempt 3 failed (exit 1): kubectl get deployment redis-cart -o=jsonpath='{.status.availableReplicas}'
+[retry] 10:50:11 attempt 3 failed (exit 1): kubectl get deployment cartservice -o=jsonpath='{.status.availableReplicas}'
+[retry] 10:50:11 attempt 3 failed (exit 1): kubectl get deployment recommendationservice -o=jsonpath='{.status.availableReplicas}'
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+Unable to connect to the server: dial tcp 192.168.161.10:6443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+[retry] 10:50:11 attempt 3 failed (exit 1): kubectl get deployment paymentservice -o=jsonpath='{.status.availableReplicas}'
+[retry] 10:50:11 attempt 3 failed (exit 1): kubectl get deployment currencyservice -o=jsonpath='{.status.availableReplicas}'
+[retry] 10:50:11 attempt 3 failed (exit 1): kubectl get deployment frontend -o=jsonpath='{.status.availableReplicas}'

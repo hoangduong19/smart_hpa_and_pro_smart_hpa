@@ -1,0 +1,4 @@
+[2026-11-12 19:23:18,341] DESKTOP-1G7ONFQ/INFO/locust.main: Starting Locust 2.46.6
+[2026-11-12 19:23:18,345] DESKTOP-1G7ONFQ/INFO/locust.main: Run time limit set to 900 seconds
+[2026-11-12 19:23:18,348] DESKTOP-1G7ONFQ/INFO/locust.runners: Ramping to 200 users at a rate of 0.67 per second
+[2026-11-12 19:28:16,530] DESKTOP-1G7ONFQ/INFO/locust.runners: All users spawned: {"WebsiteUser": 200} (200 total users)

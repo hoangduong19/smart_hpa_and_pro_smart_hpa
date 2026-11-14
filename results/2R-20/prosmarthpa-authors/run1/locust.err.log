@@ -1,45 +1,45 @@
-[2026-10-24 10:16:33,047] DESKTOP-1G7ONFQ/INFO/locust.main: Starting Locust 2.46.6
-[2026-10-24 10:16:33,051] DESKTOP-1G7ONFQ/INFO/locust.main: Run time limit set to 900 seconds
-[2026-10-24 10:16:33,056] DESKTOP-1G7ONFQ/INFO/locust.runners: Ramping to 200 users at a rate of 0.67 per second
-[2026-10-24 10:21:31,372] DESKTOP-1G7ONFQ/INFO/locust.runners: All users spawned: {"WebsiteUser": 200} (200 total users)
-[2026-10-24 10:31:32,172] DESKTOP-1G7ONFQ/INFO/locust.main: --run-time limit reached, shutting down
-[2026-10-24 10:31:32,386] DESKTOP-1G7ONFQ/INFO/locust.main: Shutting down (exit code 0)
+[2026-11-13 03:28:45,576] DESKTOP-1G7ONFQ/INFO/locust.main: Starting Locust 2.46.6
+[2026-11-13 03:28:45,580] DESKTOP-1G7ONFQ/INFO/locust.main: Run time limit set to 900 seconds
+[2026-11-13 03:28:45,583] DESKTOP-1G7ONFQ/INFO/locust.runners: Ramping to 200 users at a rate of 0.67 per second
+[2026-11-13 03:33:43,927] DESKTOP-1G7ONFQ/INFO/locust.runners: All users spawned: {"WebsiteUser": 200} (200 total users)
+[2026-11-13 03:43:45,160] DESKTOP-1G7ONFQ/INFO/locust.main: --run-time limit reached, shutting down
+[2026-11-13 03:43:45,453] DESKTOP-1G7ONFQ/INFO/locust.main: Shutting down (exit code 0)
 Type     Name                                                                          # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
 --------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
-GET      /                                                                              10600     0(0.00%) |    681      12    2965    640 |   11.79        0.00
-GET      /cart                                                                          10300     0(0.00%) |    241       9    8921    180 |   11.45        0.00
-POST     /cart                                                                          10448     0(0.00%) |    317      15    8878    290 |   11.62        0.00
-POST     /cart/checkout                                                                 10444     0(0.00%) |    338      17    8921    300 |   11.61        0.00
-GET      /product/0PUK6V6EV0                                                             1162     0(0.00%) |    254      11    8969    200 |    1.29        0.00
-GET      /product/1YMWWN1N4O                                                             1180     0(0.00%) |    263      13    8620    200 |    1.31        0.00
-GET      /product/2ZYFJ3GM2N                                                             1194     0(0.00%) |    267      13    8499    190 |    1.33        0.00
-GET      /product/66VCHSJNUP                                                             1177     0(0.00%) |    268      13    8352    200 |    1.31        0.00
-GET      /product/6E92ZMYYFZ                                                             1140     0(0.00%) |    251      15    9061    190 |    1.27        0.00
-GET      /product/9SIQT8TOJO                                                             1143     0(0.00%) |    272      14    8683    190 |    1.27        0.00
-GET      /product/L9ECAV7KIM                                                             1172     0(0.00%) |    280      14    9065    190 |    1.30        0.00
-GET      /product/LS4PSXUNUM                                                             1141     0(0.00%) |    253      12    8783    190 |    1.27        0.00
-GET      /product/OLJCESPC7Z                                                             1148     0(0.00%) |    240      12    8410    190 |    1.28        0.00
-POST     /setCurrency                                                                   10097     0(0.00%) |    691      13    2670    660 |   11.23        0.00
+GET      /                                                                              10670     0(0.00%) |    657      12    2340    610 |   11.86        0.00
+GET      /cart                                                                          10566     0(0.00%) |    201       9    1281    170 |   11.74        0.00
+POST     /cart                                                                          10300     0(0.00%) |    298      11    1822    290 |   11.45        0.00
+POST     /cart/checkout                                                                 10293     0(0.00%) |    323      15    1497    300 |   11.44        0.00
+GET      /product/0PUK6V6EV0                                                             1134     0(0.00%) |    199      12    1344    170 |    1.26        0.00
+GET      /product/1YMWWN1N4O                                                             1136     0(0.00%) |    210      18    1229    180 |    1.26        0.00
+GET      /product/2ZYFJ3GM2N                                                             1127     0(0.00%) |    204       9    1258    180 |    1.25        0.00
+GET      /product/66VCHSJNUP                                                             1152     0(0.00%) |    194      11    1165    180 |    1.28        0.00
+GET      /product/6E92ZMYYFZ                                                             1149     0(0.00%) |    198      11    1218    180 |    1.28        0.00
+GET      /product/9SIQT8TOJO                                                             1170     0(0.00%) |    199      10    1098    170 |    1.30        0.00
+GET      /product/L9ECAV7KIM                                                             1205     0(0.00%) |    200      10    1301    180 |    1.34        0.00
+GET      /product/LS4PSXUNUM                                                             1064     0(0.00%) |    204       8    1054    180 |    1.18        0.00
+GET      /product/OLJCESPC7Z                                                             1164     0(0.00%) |    200      12    1123    170 |    1.29        0.00
+POST     /setCurrency                                                                   10345     0(0.00%) |    672      16    2364    620 |   11.50        0.00
 --------|----------------------------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
-         Aggregated                                                                     62346     0(0.00%) |    421       9    9065    300 |   69.33        0.00
+         Aggregated                                                                     62475     0(0.00%) |    393       8    2364    300 |   69.43        0.00
 
 Response time percentiles (approximated)
 Type     Name                                                                                  50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
 --------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
-GET      /                                                                                     640    760    840    890   1100   1200   1500   1700   2200   2700   3000  10600
-GET      /cart                                                                                 180    200    240    270    350    470    820   1000   7900   8700   8900  10300
-POST     /cart                                                                                 290    300    370    380    470    570    980   1200   1500   8700   8900  10448
-POST     /cart/checkout                                                                        300    310    390    400    500    610   1000   1200   2200   8800   8900  10444
-GET      /product/0PUK6V6EV0                                                                   200    220    260    290    360    540    940   1100   5600   9000   9000   1162
-GET      /product/1YMWWN1N4O                                                                   200    230    260    290    390    550    870   1100   8500   8600   8600   1180
-GET      /product/2ZYFJ3GM2N                                                                   190    220    260    280    370    490    850   1100   8400   8500   8500   1194
-GET      /product/66VCHSJNUP                                                                   200    230    260    280    380    530    890   1100   7900   8400   8400   1177
-GET      /product/6E92ZMYYFZ                                                                   190    220    260    280    370    580    920   1100   7000   9100   9100   1140
-GET      /product/9SIQT8TOJO                                                                   190    220    260    290    370    520    990   1100   8000   8700   8700   1143
-GET      /product/L9ECAV7KIM                                                                   190    230    270    290    390    600    980   1200   8500   9100   9100   1172
-GET      /product/LS4PSXUNUM                                                                   190    230    260    280    370    560    940   1100   8700   8800   8800   1141
-GET      /product/OLJCESPC7Z                                                                   190    230    250    280    360    480    810    970   6500   8400   8400   1148
-POST     /setCurrency                                                                          660    770    850    900   1100   1200   1400   1700   2100   2600   2700  10097
+GET      /                                                                                     610    730    810    860   1000   1200   1400   1500   2100   2200   2300  10670
+GET      /cart                                                                                 170    200    220    250    320    400    570    760   1100   1200   1300  10566
+POST     /cart                                                                                 290    290    320    380    430    500    680    890   1500   1600   1800  10300
+POST     /cart/checkout                                                                        300    300    320    400    490    590    810   1100   1400   1500   1500  10293
+GET      /product/0PUK6V6EV0                                                                   170    210    230    260    320    420    620    850   1300   1300   1300   1134
+GET      /product/1YMWWN1N4O                                                                   180    210    250    270    340    420    750    900   1200   1200   1200   1136
+GET      /product/2ZYFJ3GM2N                                                                   180    210    240    260    320    410    610    860   1200   1300   1300   1127
+GET      /product/66VCHSJNUP                                                                   180    200    230    250    310    380    520    730   1100   1200   1200   1152
+GET      /product/6E92ZMYYFZ                                                                   180    210    230    260    320    390    530    780   1100   1200   1200   1149
+GET      /product/9SIQT8TOJO                                                                   170    210    230    260    330    410    710    830   1100   1100   1100   1170
+GET      /product/L9ECAV7KIM                                                                   180    210    240    270    320    400    650    850   1000   1300   1300   1205
+GET      /product/LS4PSXUNUM                                                                   180    210    240    260    320    410    550    800   1000   1100   1100   1064
+GET      /product/OLJCESPC7Z                                                                   170    210    230    260    320    390    680    860   1100   1100   1100   1164
+POST     /setCurrency                                                                          620    740    820    880   1100   1200   1400   1600   2100   2300   2400  10345
 --------|--------------------------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
-         Aggregated                                                                            300    430    550    630    840   1000   1200   1400   6300   8800   9100  62346
+         Aggregated                                                                            300    400    510    590    800    980   1200   1400   1900   2200   2400  62475
 

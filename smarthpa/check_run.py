@@ -9,16 +9,41 @@
 #   - failed requests > 1%
 #   - more than 4 failed cluster_recorder snapshots (about 1 minute of missing cluster metrics)
 #
+# Quota check (added 12/11 after ProSmart HPA ran 30.5 pods on a 22-pod quota for a whole batch): the replicas the
+# auto-scaler runs (Knowledge Base column C x CPU request, summed over the services) must stay within the scenario
+# quota (maxR x request summed). Above it in more than 5% of the controller iterations = a controller bug, not a
+# connection problem: exit code 2, so run_batch.ps1 stops at once instead of retrying the same bug.
+#
 # Usage: python check_run.py <run_dir>
 
 import csv
 import os
+import re
 import statistics
 import sys
+
+from make_run_report import CPU_REQUEST, SERVICES, load_kb
 
 WINDOW_SEC = 10
 MAX_FAIL_PCT = 1.0
 MAX_RECORDER_FAILURES = 4
+MAX_ABOVE_QUOTA_PCT = 5.0
+
+
+def check_quota(run_dir):
+    m = re.search(r"(\d+)R-\d+", os.path.abspath(run_dir).replace("\\", "/"))
+    if not m or not os.path.isdir(os.path.join(run_dir, "knowledge_base")):
+        return []
+    quota = sum(int(m.group(1)) * CPU_REQUEST.get(s, 100) for s in SERVICES)
+    kb = {s: load_kb(run_dir, s) for s in SERVICES}
+    n = min(len(v["t"]) for v in kb.values())
+    if n == 0:
+        return []
+    running = [sum(kb[s]["supply"][i] for s in SERVICES) for i in range(n)]
+    above = sum(r > quota for r in running)
+    if 100 * above / n > MAX_ABOVE_QUOTA_PCT:
+        return [f"QUOTA: replicas above the {quota} m quota in {above}/{n} iterations (max {max(running):.0f} m)"]
+    return []
 
 
 def check(run_dir):
@@ -60,9 +85,10 @@ def check(run_dir):
 
 
 if __name__ == "__main__":
-    problems = check(sys.argv[1])
+    quota_problems = check_quota(sys.argv[1])
+    problems = check(sys.argv[1]) + quota_problems
     for p in problems:
         print(f"INVALID: {p}")
     if not problems:
         print("Run check passed")
-    sys.exit(1 if problems else 0)
+    sys.exit(2 if quota_problems else 1 if problems else 0)

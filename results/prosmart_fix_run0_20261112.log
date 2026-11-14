@@ -1,0 +1,25 @@
+﻿[19:18:16] Context k3s-lab | prosmarthpa-cv | 2R-20% (maxR=2, threshold=20%) | run 0 | 200 users @ 0.67/s | 900s
+[19:18:16] Reset: deleting HPAs, scaling all deployments to 1
+[19:18:17] Cluster clean: 11 deployments x 1 replica. Cooling down 300s
+[19:23:17] Starting ..\prosmarthpa\prosmart_hpa.py, cluster_recorder.py and Locust
+[19:23:47]   30s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=1 emailservice=1 frontend=2 paymentservice=1 productcatalogservice=1 recommendationservice=1 redis-cart=1 shippingservice=1 
+[19:24:17]   60s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[19:24:47]   90s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[19:25:17]  120s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[19:25:48]  151s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[19:26:18]  181s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[19:26:48]  211s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[19:27:18]  241s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[19:27:48]  271s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[19:28:18]  301s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[19:28:48]  331s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[19:29:18]  361s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[19:29:49]  391s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[19:30:19]  422s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[19:30:49]  452s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[19:31:19]  482s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[19:31:49]  512s | adservice=1 cartservice=1 checkoutservice=1 currencyservice=10 emailservice=1 frontend=4 paymentservice=1 productcatalogservice=1 recommendationservice=1 redis-cart=2 shippingservice=1 
+[19:31:49] Controller exited with code 1
+[19:35:49] Stopping PID 23332
+[19:35:49] Stopping PID 36892
+[19:35:50] RUN FAILED - data moved to D:\Nam 4 - HK1\Các Chuyên đề\Demo\smarthpa\..\results\2R-20\prosmarthpa-cv\_failed_run0_20261112-1935 (see controller.err.log). Rerun this run number.

@@ -29,12 +29,19 @@ import sys
 import time
 
 SMARTHPA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "smarthpa")
-MODEL_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models")
-# PROSMART_MODELS=authors: control run with the authors' 22 released models (time only, trained on their cluster)
+# PROSMART_MODELS (set by run_experiment.ps1 from the autoscaler name):
+#   ours    -> models/          Smart HPA run 1-3, Prophet defaults (prosmarthpa, prosmarthpa-rerun)
+#   cv      -> models_5runs_cv/ Smart HPA run 1-5, tuned by cross-validation (prosmarthpa-cv, prosmarthpa-cv-w<N>)
+#   authors -> control run with the authors' 22 released models (time only, trained on their cluster)
+OUR_MODEL_DIRS = {"ours": "models", "cv": "models_5runs_cv"}
+MODEL_SET = os.environ.get("PROSMART_MODELS", "ours")
+MODEL_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), OUR_MODEL_DIRS.get(MODEL_SET, "models"))
 AUTHOR_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "Pro_Smart_HPA", "ProSmart_HPA", "ProSmart HPA Codebase")
 AUTHOR_MODEL_DIRS = {"demand": os.path.join(AUTHOR_DIR, "Microservice Managers", "Trained PROPHET models - Resource Demand Prediction"),
                      "capacity": os.path.join(AUTHOR_DIR, "Trained PROPHET models - Resource Capacity Prediction")}
-USE_AUTHOR_MODELS = os.environ.get("PROSMART_MODELS", "ours") == "authors"
+USE_AUTHOR_MODELS = MODEL_SET == "authors"
+if MODEL_SET not in ("ours", "cv", "authors"):
+    raise SystemExit(f"PROSMART_MODELS={MODEL_SET!r}: expected ours, cv or authors")
 sys.path.insert(0, SMARTHPA_DIR)
 
 import pandas as pd
@@ -49,7 +56,9 @@ MANAGERS = {"frontend": "frontend", "adservice": "adservice", "cartservice": "ca
             "productcatalogservice": "productcatalogservice", "recommendationservice": "recommendationservice",
             "rediscart": "redis-cart"}
 
-PREDICTION_WINDOW_SEC = 25          # best window in the paper (Section 5.3)
+# 25 s = best window in the paper (Section 5.3); PROSMART_WINDOW is set by run_experiment.ps1 for the window sweep
+# (paper Fig. 9: 5-30 s). The models need no retraining per window: they predict y at any time, the window only moves it.
+PREDICTION_WINDOW_SEC = int(os.environ.get("PROSMART_WINDOW", "25"))
 PREDICTION_STEP_SEC = 5             # models are trained on a 5 s grid
 PREDICTION_START_SEC = 10           # as in the released code: predict only after 10 s of load
 
@@ -102,7 +111,10 @@ def microservice_manager(args):
     # Analyze_M, line 1: PDR = PROPHET(RM, RMT, CR); RMT is constant in a scenario so it is not a model input
     p_time = predicted_time(test_time)
     if test_time > PREDICTION_START_SEC:
-        pdr = predict(_demand_models[name], p_time, cpu_pct=cpu_percentage, current_replicas=current_replicas)
+        # PROPHET can return 0 or less for an idle service; Algorithm 3 then says "No Scale" (PDR < minR), so a service
+        # holding quota from an earlier exchange would never give it back (found 12/11 by a randomized check of the
+        # quota). Fewer than minR replicas means minR.
+        pdr = max(min_replica, predict(_demand_models[name], p_time, cpu_pct=cpu_percentage, current_replicas=current_replicas))
     else:
         pdr = current_replicas
 
@@ -114,7 +126,7 @@ def microservice_manager(args):
     else:
         sd = "no scale"
 
-    return {"name": name, "cpu_pct": cpu_percentage, "cr": current_replicas, "reactive_dr": reactive_dr,
+    return {"name": name, "cpu_pct": cpu_percentage, "cr": current_replicas, "spec": int(spec_replicas), "reactive_dr": reactive_dr,
             "pdr": pdr, "sd": sd, "maxr": max_replica, "minr": min_replica, "req": cpu_request, "p_time": p_time}
 
 
@@ -124,6 +136,16 @@ def _added_removed(ms):
     added = sum((m["pmaxr"] - m["maxr"]) * m["req"] for m in ms if m["pmaxr"] > m["maxr"])
     removed = sum((m["maxr"] - m["pmaxr"]) * m["req"] for m in ms if m["pmaxr"] < m["maxr"])
     return added, removed
+
+
+def committed(m):
+    """Replicas a service keeps after Execute whatever PmaxR it gets: Algorithm 4 lines 19-20 answer PmaxR < CR with
+    "No Scale", so only a service that scales down (Algorithm 3: PDR < CR and PDR >= minR) frees pods. Quota below
+    this value frees nothing and must not be counted as removed and handed to another service (12/11: that leak let
+    ProSmart run 30.5 pods on a 22-pod quota)."""
+    if m["sd"] == "scale down":
+        return max(m["pdr"], m["minr"])
+    return max(m["cr"], m["spec"], m["minr"])
 
 
 def balance(ms):
@@ -136,17 +158,21 @@ def balance(ms):
         # line 9: extract from over-provisioned services, most over-provisioned first
         for m in sorted(ms, key=lambda m: (m["pmaxr"] - m["pdr"]) * m["req"], reverse=True):
             need = added - removed
-            spare = m["pmaxr"] - max(m["pdr"], m["minr"])
+            spare = m["pmaxr"] - max(m["pdr"], committed(m))
             if need <= 0 or spare <= 0:
                 continue
             m["pmaxr"] -= min(spare, math.ceil(need / m["req"]))
             added, removed = _added_removed(ms)
-        # still unbalanced: PROPHET added more than the others can give; trim the additions of the least
-        # under-provisioned services first, keeping the most under-provisioned ones (paper: "prioritizing highly
-        # under-provisioned microservices")
+        # still unbalanced: PROPHET added more than the others can give (the paper does not say what to do here).
+        # Trim the least under-provisioned services first, keeping the most under-provisioned ones (paper:
+        # "prioritizing highly under-provisioned microservices"), but never below the replicas a service already
+        # has: Algorithm 4 lines 19-20 answer PmaxR < CR with "No Scale", so a quota cut below CR frees no pod while
+        # the receiver scales up, and the application runs above its total quota (12/11: 30.5 pods vs 22 with the
+        # old floor of maxR). With the floor at the running replicas the quota held by running pods is kept and only
+        # quota nobody runs yet is moved, as in Smart HPA, which only takes capacity a service does not use.
         for m in sorted(ms, key=lambda m: (m["pdr"] - m["maxr"]) * m["req"]):
             need = added - removed
-            extra = m["pmaxr"] - m["maxr"]
+            extra = m["pmaxr"] - committed(m)
             if need <= 0 or extra <= 0:
                 continue
             m["pmaxr"] -= min(extra, math.ceil(need / m["req"]))
@@ -172,8 +198,10 @@ def balance(ms):
 
 def application_resource_manager(ms, capacity_models):
     # Analyze_A, line 1: PmaxR = PROPHET(PDR, maxR, CR); maxR is the constant SLA value so it is not a model input
+    # A prediction below the replicas the service keeps (committed) is raised to it: otherwise the difference counts as
+    # removed quota and goes to another service while no pod is freed (see committed()).
     for m in ms:
-        m["pmaxr"] = max(m["minr"], predict(capacity_models[m["name"]], m["p_time"], desired=m["pdr"], current_replicas=m["cr"]))
+        m["pmaxr"] = max(committed(m), predict(capacity_models[m["name"]], m["p_time"], desired=m["pdr"], current_replicas=m["cr"]))
 
     balance(ms)
 
