@@ -1,0 +1,5 @@
+lab_pct,metric,pair,paper_pct,lab_KHPA,lab_SHPA,same_direction
+9.48,supply,SHPA vs KHPA,18.19,2224.7,2435.7,True
+26.1,overutil,SHPA vs KHPA,-0.44,367.7,463.6,False
+-83.49,overprov,SHPA vs KHPA,-81.1,367.3,60.6,True
+20.75,underprov,SHPA vs KHPA,-1.87,4173.8,5039.8,False

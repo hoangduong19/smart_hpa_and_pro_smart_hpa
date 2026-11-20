@@ -61,6 +61,9 @@ MANAGERS = {"frontend": "frontend", "adservice": "adservice", "cartservice": "ca
 PREDICTION_WINDOW_SEC = int(os.environ.get("PROSMART_WINDOW", "25"))
 PREDICTION_STEP_SEC = 5             # models are trained on a 5 s grid
 PREDICTION_START_SEC = 10           # as in the released code: predict only after 10 s of load
+ROUNDING = os.environ.get("PROSMART_ROUNDING", "round")   # "ceil" = released code (runs before 20/11), see predict()
+if ROUNDING not in ("round", "ceil"):
+    raise SystemExit(f"PROSMART_ROUNDING={ROUNDING!r}: expected round or ceil")
 
 
 def load_model(service, kind):
@@ -82,9 +85,15 @@ def predicted_time(test_time):
 
 
 def predict(model, at_sec, **regressors):
+    """PROPHET prediction as a replica count. Rounded to the nearest integer (PROSMART_ROUNDING=round, default since
+    20/11, E13); the released code uses math.ceil. Algorithms 3 and 4 do not say how PDR / PmaxR are rounded. With
+    ceil the authors' own models contradict the data they were trained on: their capacity models give a total PmaxR
+    of 23.5 replicas on a 22-replica quota (currency 3 vs 2.1 recorded, email 1.48 vs 1.0), and their demand models
+    put adservice above maxR 39 % of the time (recorded 2 %), emailservice 94 % (7 %), redis-cart 17 % (0 %).
+    With round both match the recorded data (total 22, the same per-service split, 0 / 0 / 0 %)."""
     future = pd.DataFrame({"ds": [pd.to_datetime(at_sec, unit="s")], **{k: [v] for k, v in regressors.items()}})
     yhat = model.predict(future)["yhat"].iloc[0]
-    return math.ceil(yhat)
+    return math.ceil(yhat) if ROUNDING == "ceil" else int(round(yhat))
 
 
 #************************************************************************** Microservice Manager (Algorithm 3) **************************************************************************

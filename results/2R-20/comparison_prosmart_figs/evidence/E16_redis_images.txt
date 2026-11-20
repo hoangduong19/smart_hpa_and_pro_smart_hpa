@@ -1,0 +1,10 @@
+E16 - redis-cart image digests -> Redis version (Docker Hub image config, queried 2026-11-20)
+lab running (all tags v080*, c4fresh, pilot2s): docker.io/library/redis@sha256:3811787313eba226a2ef38658c6ccb91cd5e110edc89c37767de373120a0e5a0
+   created 2026-09-21T17:37:00Z  REDIS_VERSION=8.10.2  Cmd [redis-server]
+   amd64 layer 4 (35 MB): usr/local/lib/redis/modules/rejson.so (45 MB), redisearch.so (20 MB), redistimeseries.so (3.5 MB), redisbloom.so (0.6 MB)
+   docker-entrypoint.sh lines 151-180: for every .so in /usr/local/lib/redis/modules/ -> set -- "$@" --loadmodule "$module"
+Smart HPA package helm-chart/templates/redis.yaml:54  redis:alpine@sha256:121bac949fb5f623b9fa0b4e4c9fb358ffd045966e754cfa3eb9963f3af2fe3b
+   created 2023-06-14T21:57:50Z  REDIS_VERSION=7.0.11  layer 4 (8.7 MB): redis-server, redis-cli, redis-benchmark only; entrypoint has no 'module'
+ProSmart package helm-chart/templates/redis.yaml:68  redis:alpine@sha256:a3e82d34456f5d012dcbf542b564c39697c14dc4225cf3d29b3278fca041ad15
+   created 2023-12-08T04:19:49Z  REDIS_VERSION=7.2.3
+kubernetes-manifests/redis.yaml (both packages, used by the lab): image: redis:alpine  (unpinned -> whatever is latest at pull time)

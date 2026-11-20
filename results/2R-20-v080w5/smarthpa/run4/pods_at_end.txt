@@ -1,0 +1,25 @@
+NAME                                     READY   STATUS    RESTARTS   AGE   IP           NODE          NOMINATED NODE   READINESS GATES
+adservice-59c6ddff47-7jw9g               1/1     Running   0          26m   10.42.2.62   k3s-worker1   <none>           <none>
+cartservice-b4d848c78-mg5fl              1/1     Running   0          26m   10.42.0.91   k3s-master    <none>           <none>
+checkoutservice-957c48769-2rrtb          1/1     Running   0          26m   10.42.2.63   k3s-worker1   <none>           <none>
+checkoutservice-957c48769-g8s2j          1/1     Running   0          14m   10.42.4.41   k3s-worker2   <none>           <none>
+currencyservice-555b54f769-fd9tr         1/1     Running   0          14m   10.42.4.40   k3s-worker2   <none>           <none>
+currencyservice-555b54f769-gffj4         1/1     Running   0          14m   10.42.0.97   k3s-master    <none>           <none>
+currencyservice-555b54f769-mgtwx         1/1     Running   0          26m   10.42.2.64   k3s-worker1   <none>           <none>
+emailservice-86d6d96cdf-6qnbk            1/1     Running   0          26m   10.42.0.92   k3s-master    <none>           <none>
+frontend-7469d78468-42wc6                1/1     Running   0          15m   10.42.2.67   k3s-worker1   <none>           <none>
+frontend-7469d78468-gqnnl                1/1     Running   0          15m   10.42.2.69   k3s-worker1   <none>           <none>
+frontend-7469d78468-h6f2d                1/1     Running   0          15m   10.42.2.68   k3s-worker1   <none>           <none>
+frontend-7469d78468-jvktc                1/1     Running   0          15m   10.42.4.39   k3s-worker2   <none>           <none>
+frontend-7469d78468-lj887                1/1     Running   0          15m   10.42.0.95   k3s-master    <none>           <none>
+frontend-7469d78468-mz5bd                1/1     Running   0          15m   10.42.4.37   k3s-worker2   <none>           <none>
+frontend-7469d78468-pfq5r                1/1     Running   0          15m   10.42.4.36   k3s-worker2   <none>           <none>
+frontend-7469d78468-s6zg2                1/1     Running   0          15m   10.42.4.38   k3s-worker2   <none>           <none>
+frontend-7469d78468-v42rq                1/1     Running   0          15m   10.42.0.96   k3s-master    <none>           <none>
+frontend-7469d78468-vp648                1/1     Running   0          26m   10.42.0.93   k3s-master    <none>           <none>
+paymentservice-779fbc9bb5-fd2gm          1/1     Running   0          26m   10.42.2.65   k3s-worker1   <none>           <none>
+productcatalogservice-7d5f66bffc-bwj2n   1/1     Running   0          26m   10.42.4.34   k3s-worker2   <none>           <none>
+recommendationservice-f8c6bcf79-2m6rq    1/1     Running   0          26m   10.42.2.66   k3s-worker1   <none>           <none>
+redis-cart-5c985f4998-n9245              1/1     Running   0          26m   10.42.0.94   k3s-master    <none>           <none>
+redis-cart-5c985f4998-tbr4v              1/1     Running   0          14m   10.42.4.42   k3s-worker2   <none>           <none>
+shippingservice-86bc869bbf-pzd7z         1/1     Running   0          26m   10.42.4.35   k3s-worker2   <none>           <none>

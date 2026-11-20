@@ -1,0 +1,3 @@
+scenario,autoscaler,run,p50_high_ms,p95_high_ms,p99_high_ms,p95_ramp_ms,slo_violation_pct,rps_high,failed_requests,p95_home_high_ms,p95_checkout_high_ms
+2R-20-pilot2s-d5%,k8shpa,1,266.958,828.286,1170.118,859.799,11.261,85.923,0,1054.0,481.042
+2R-20-pilot2s-d5%,smarthpa,1,201.846,659.95,956.443,465.017,9.396,89.39,0,808.591,442.567

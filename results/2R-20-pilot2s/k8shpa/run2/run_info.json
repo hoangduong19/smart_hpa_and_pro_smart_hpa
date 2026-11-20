@@ -1,0 +1,22 @@
+{
+    "autoscaler": "k8shpa",
+    "scenario": "2R-20%",
+    "run": 2,
+    "max_replicas": 2,
+    "cpu_threshold": 20,
+    "users": 200,
+    "spawn_rate": 2.0,
+    "duration_sec": 900,
+    "cooldown_sec": 300,
+    "shape": "ramp",
+    "host": "http://192.168.161.10",
+    "kube_context": "k3s-lab",
+    "started_at": "2026-11-19 10:04:26",
+    "runner": "exp-runner VM (run_experiment.sh)",
+    "tag": "pilot2s",
+    "kubectl_delay_sec": 0.0,
+    "arm_warmup_sec": 120.0,
+    "monitor_kubectl_errors": 0,
+    "finished_at": "2026-11-19 10:19:57",
+    "controller_exit_code": 0
+}

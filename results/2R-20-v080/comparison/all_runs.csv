@@ -1,0 +1,3 @@
+scenario,autoscaler,run,supply_cpu_m,cpu_overutilization_pct,overutilization_time_min,cpu_overprovision_m,overprovision_time_min,cpu_underprovision_m,underprovision_time_min,p95_ms,failure_pct
+2R-20-v080%,k8shpa,1,2257.759,478.49,14.583,421.95,0.402,3986.1,14.583,700.0,0.0
+2R-20-v080%,k8shpa,2,2309.188,469.819,14.656,355.192,0.333,3942.094,14.656,880.0,0.0

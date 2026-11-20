@@ -1,0 +1,27 @@
+Q1-Q3. When ARM first moves quota, how often, how concentrated (maxR after 120 s, median over services/runs)
+              group  n first_change_s moves_per_run moves_first_120s peak_maxR svc_at_maxR1  currency frontend
+Authors (.pkl, AWS) 10     10 (10-10)            69               10   3 (3-3)            1   2 (2-2)  3 (3-3)
+Lab original 0.67/s  5     21 (18-24)            11               10 11 (7-12)            8 11 (7-12)  3 (2-5)
+   Lab original 2/s  1     18 (18-18)             9                9   7 (7-7)            6   7 (7-7)  5 (5-5)
+         Lab C4 2/s  9  121 (120-520)             4                0   5 (4-5)            2   2 (2-5)  5 (2-5)
+
+Q4. Median maxR per service after 120 s, and distance to the authors (sum |diff| over 11 services)
+                       Authors (.pkl, AWS)  Lab original 0.67/s  Lab original 2/s  Lab C4 2/s
+service                                                                                      
+adservice                              2.0                  1.0               1.0         1.0
+cartservice                            2.0                  1.0               1.0         2.0
+checkoutservice                        2.0                  1.0               1.0         2.0
+currencyservice                        2.0                 11.0               7.0         2.0
+emailservice                           1.0                  1.0               1.0         1.0
+frontend                               3.0                  3.0               5.0         5.0
+paymentservice                         2.0                  1.0               2.0         2.0
+productcatalogservice                  2.0                  1.0               2.0         2.0
+recommendationservice                  2.0                  1.0               1.0         2.0
+redis-cart                             2.0                  2.0               2.0         2.0
+shippingservice                        2.0                  1.0               1.0         2.0
+DISTANCE to authors                    0.0                 16.0              12.0         3.0
+
+Q5. Authors' data: Algorithm 2 says 'move quota' -> did it? split by time
+  t   0-60 s: required  89, not moved within 15 s  62
+  t  60-120s: required  37, not moved within 15 s  27
+  t 120-901s: required  14, not moved within 15 s  13

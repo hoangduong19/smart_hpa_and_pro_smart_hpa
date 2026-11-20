@@ -1,0 +1,24 @@
+NAME                                     READY   STATUS    RESTARTS   AGE   IP            NODE          NOMINATED NODE   READINESS GATES
+adservice-5fdf655b6b-pt5lp               1/1     Running   0          26m   10.42.0.145   k3s-master    <none>           <none>
+cartservice-76449cb7cf-h8qfd             1/1     Running   0          26m   10.42.2.129   k3s-worker1   <none>           <none>
+checkoutservice-b4765d96b-kc842          1/1     Running   0          26m   10.42.2.130   k3s-worker1   <none>           <none>
+checkoutservice-b4765d96b-zt5tq          1/1     Running   0          14m   10.42.4.101   k3s-worker2   <none>           <none>
+currencyservice-6977d99b8b-79fzr         1/1     Running   0          14m   10.42.4.100   k3s-worker2   <none>           <none>
+currencyservice-6977d99b8b-bhpmp         1/1     Running   0          15m   10.42.4.97    k3s-worker2   <none>           <none>
+currencyservice-6977d99b8b-hk4vb         1/1     Running   0          15m   10.42.2.134   k3s-worker1   <none>           <none>
+currencyservice-6977d99b8b-svrgr         1/1     Running   0          26m   10.42.0.146   k3s-master    <none>           <none>
+currencyservice-6977d99b8b-xn5ml         1/1     Running   0          14m   10.42.2.136   k3s-worker1   <none>           <none>
+emailservice-64799884dd-kdthc            1/1     Running   0          26m   10.42.2.131   k3s-worker1   <none>           <none>
+frontend-5b76bf799-6tqh9                 1/1     Running   0          15m   10.42.4.98    k3s-worker2   <none>           <none>
+frontend-5b76bf799-h9gtt                 1/1     Running   0          26m   10.42.2.132   k3s-worker1   <none>           <none>
+frontend-5b76bf799-qgk6d                 1/1     Running   0          15m   10.42.0.149   k3s-master    <none>           <none>
+frontend-5b76bf799-x9gjq                 1/1     Running   0          15m   10.42.4.96    k3s-worker2   <none>           <none>
+paymentservice-5dd74b7476-6zprv          1/1     Running   0          26m   10.42.0.147   k3s-master    <none>           <none>
+productcatalogservice-6978d6c5d-jpjkt    1/1     Running   0          14m   10.42.4.99    k3s-worker2   <none>           <none>
+productcatalogservice-6978d6c5d-psjx4    1/1     Running   0          26m   10.42.4.94    k3s-worker2   <none>           <none>
+productcatalogservice-6978d6c5d-qh7k5    1/1     Running   0          14m   10.42.0.150   k3s-master    <none>           <none>
+productcatalogservice-6978d6c5d-rdv9p    1/1     Running   0          15m   10.42.2.135   k3s-worker1   <none>           <none>
+recommendationservice-6b8f657df6-7f4mm   1/1     Running   0          26m   10.42.0.148   k3s-master    <none>           <none>
+redis-cart-55f867b7f9-5svjx              1/1     Running   0          13m   10.42.4.102   k3s-worker2   <none>           <none>
+redis-cart-55f867b7f9-rq2mp              1/1     Running   0          26m   10.42.2.133   k3s-worker1   <none>           <none>
+shippingservice-6cccf77f8-rkhjt          1/1     Running   0          26m   10.42.4.95    k3s-worker2   <none>           <none>

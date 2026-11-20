@@ -1,0 +1,19 @@
+NAME                                     READY   STATUS    RESTARTS   AGE   IP           NODE          NOMINATED NODE   READINESS GATES
+adservice-79db97977d-r5zcj               1/1     Running   0          26m   10.42.4.14   k3s-worker2   <none>           <none>
+cartservice-6bd96d9cf-4pvt5              1/1     Running   0          14m   10.42.2.43   k3s-worker1   <none>           <none>
+cartservice-6bd96d9cf-tqhb6              1/1     Running   0          26m   10.42.4.15   k3s-worker2   <none>           <none>
+checkoutservice-6d596888f8-cs9ll         1/1     Running   0          26m   10.42.2.38   k3s-worker1   <none>           <none>
+checkoutservice-6d596888f8-xj2pq         1/1     Running   0          14m   10.42.0.76   k3s-master    <none>           <none>
+currencyservice-78754b56b6-cgvmm         1/1     Running   0          15m   10.42.2.41   k3s-worker1   <none>           <none>
+currencyservice-78754b56b6-dpgvt         1/1     Running   0          26m   10.42.4.16   k3s-worker2   <none>           <none>
+emailservice-59b49d5668-p5rsj            1/1     Running   0          26m   10.42.2.39   k3s-worker1   <none>           <none>
+frontend-76d69f687-67xr9                 1/1     Running   0          15m   10.42.2.42   k3s-worker1   <none>           <none>
+frontend-76d69f687-6qj6l                 1/1     Running   0          26m   10.42.4.17   k3s-worker2   <none>           <none>
+paymentservice-85cdfb6c64-qnlcd          1/1     Running   0          26m   10.42.0.72   k3s-master    <none>           <none>
+productcatalogservice-59f59d767d-kl9s5   1/1     Running   0          26m   10.42.4.18   k3s-worker2   <none>           <none>
+productcatalogservice-59f59d767d-wx8wj   1/1     Running   0          15m   10.42.0.74   k3s-master    <none>           <none>
+recommendationservice-6689b64b88-xcrf4   1/1     Running   0          26m   10.42.2.40   k3s-worker1   <none>           <none>
+recommendationservice-6689b64b88-zxh89   1/1     Running   0          14m   10.42.0.75   k3s-master    <none>           <none>
+redis-cart-5449dfcff9-n47f7              1/1     Running   0          26m   10.42.4.19   k3s-worker2   <none>           <none>
+shippingservice-785c9c8c8b-fv9bm         1/1     Running   0          26m   10.42.0.73   k3s-master    <none>           <none>
+shippingservice-785c9c8c8b-wznxm         1/1     Running   0          14m   10.42.2.44   k3s-worker1   <none>           <none>

@@ -72,9 +72,23 @@ if __name__ == '__main__':
        
         
         
-        # **********************************************************************  Microservice Capacity Analyzer ********************************************************************** 
+        # Improvement C4 (config.ARM_WARMUP_SEC, 0 = authors' behaviour): during the warm-up no ARM call and no quota
+        # exchange; each desired replica count is capped at the SLA maxR, so the managers act like K8s HPA.
+        in_warmup = Test_Time < config.ARM_WARMUP_SEC
+        if in_warmup:
+            for d in microservices_data:                 # d = [name, SD, DR, CR, CPU request, maxR]
+                capped = min(d[2], d[5])
+                if capped > d[3]:
+                    d[1] = "scale up"
+                elif capped < d[3] and capped >= config.MIN_REPLICA:
+                    d[1] = "scale down"
+                else:
+                    d[1] = "no scale"
+                d[2] = capped
 
-        for i in range(len(microservices_data)):
+        # **********************************************************************  Microservice Capacity Analyzer **********************************************************************
+
+        for i in range(0 if in_warmup else len(microservices_data)):
             if (microservices_data[i][2]>microservices_data[i][5]):        # desirsed replica count > max. replica count, for microservice i;  this represents Resource Constrained Situation
 
                 for i in range(len(microservices_data)):

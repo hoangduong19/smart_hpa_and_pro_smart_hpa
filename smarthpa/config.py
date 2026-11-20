@@ -25,6 +25,12 @@ MIN_REPLICA = 1
 
 TEST_DURATION = int(os.environ.get("SMARTHPA_DURATION", "900"))
 
+#   SMARTHPA_ARM_WARMUP_SEC  improvement C4 (19/11), default 0 = the authors' Smart HPA. For the first N seconds of a
+#                       run the Adaptive Resource Manager is not called: every manager scales within its SLA maxR (like
+#                       K8s HPA) and no quota moves. Reason: with the authors' code the ARM splits the whole quota at
+#                       t = 20-45 s while most services are still idle, and that split stays until the end (2R-20%).
+ARM_WARMUP_SEC = float(os.environ.get("SMARTHPA_ARM_WARMUP_SEC", "0"))
+
 ARM_VARIANT = os.environ.get("SMARTHPA_ARM", "paper")
 if ARM_VARIANT not in ("paper", "priority", "flat"):
     raise ValueError(f"SMARTHPA_ARM must be 'paper', 'priority' or 'flat', got {ARM_VARIANT!r}")
@@ -47,8 +53,16 @@ KUBECTL_RETRIES = 20
 KUBECTL_RETRY_DELAY_SEC = 3
 
 
+#   SMARTHPA_KUBECTL_DELAY_SEC  extra seconds added before every kubectl call of the Monitor (default 0 = off).
+#   Emulates the authors' setup (Smart HPA on a local machine calling Amazon EKS over the internet), where each
+#   kubectl round trip is far slower than on the lab LAN (~0.1 s). Changes only the loop period, not the algorithm.
+KUBECTL_DELAY_SEC = float(os.environ.get("SMARTHPA_KUBECTL_DELAY_SEC", "0"))
+
+
 def _check_output_with_retry(cmd, *args, **kwargs):
     for attempt in range(1, KUBECTL_RETRIES + 1):
+        if KUBECTL_DELAY_SEC > 0:
+            time.sleep(KUBECTL_DELAY_SEC)
         try:
             return _original_check_output(cmd, *args, **kwargs)
         except subprocess.CalledProcessError as exc:

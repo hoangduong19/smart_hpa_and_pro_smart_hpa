@@ -1,0 +1,5 @@
+source,value_m
+paper Fig. 8 K8s HPA frontend demand,2692.6
+max possible: ceil(2 x 200 / 20) x 100 m,2000.0
+implied by paper frontend Overutilization 147.2 %: ceil(2 x 147.2 / 20) x 100 m,1500.0
+"lab K8s HPA, 5 runs",1578.6

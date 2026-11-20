@@ -1,0 +1,21 @@
+{
+    "autoscaler": "smarthpa",
+    "scenario": "2R-20%",
+    "run": 1,
+    "max_replicas": 2,
+    "cpu_threshold": 20,
+    "users": 200,
+    "spawn_rate": 2.0,
+    "duration_sec": 900,
+    "cooldown_sec": 300,
+    "shape": "ramp",
+    "host": "http://192.168.161.10",
+    "kube_context": "k3s-lab",
+    "started_at": "2026-11-19 08:56:23",
+    "runner": "exp-runner VM (run_experiment.sh)",
+    "tag": "pilot2s-d5",
+    "kubectl_delay_sec": 0.9,
+    "monitor_kubectl_errors": 0,
+    "finished_at": "2026-11-19 09:11:53",
+    "controller_exit_code": 0
+}

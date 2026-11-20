@@ -1,0 +1,3 @@
+scenario,autoscaler,run,p50_high_ms,p95_high_ms,p99_high_ms,p95_ramp_ms,slo_violation_pct,rps_high,failed_requests,p95_home_high_ms,p95_checkout_high_ms
+2R-20-v080%,k8shpa,1,289.302,911.806,1171.124,587.593,8.177,85.119,0,993.288,485.383
+2R-20-v080%,k8shpa,2,353.635,1032.389,1387.577,737.27,27.816,83.184,0,1154.488,648.976

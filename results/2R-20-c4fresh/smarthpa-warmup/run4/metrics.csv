@@ -1,0 +1,13 @@
+autoscaler,scenario,run,microservice,supply_cpu_m,cpu_overutilization_pct,overutilization_time_min,cpu_overprovision_m,overprovision_time_min,cpu_underprovision_m,underprovision_time_min
+smarthpa-warmup,2R-20%,4,frontend,418.127,73.711,14.642,3.187,0.327,1089.442,14.642
+smarthpa-warmup,2R-20%,4,currencyservice,195.219,97.586,14.394,3.984,0.575,844.024,14.394
+smarthpa-warmup,2R-20%,4,cartservice,392.032,29.413,13.892,6.375,0.327,280.08,13.644
+smarthpa-warmup,2R-20%,4,adservice,256.574,4.004,2.987,6.375,0.327,32.271,2.23
+smarthpa-warmup,2R-20%,4,checkoutservice,195.418,34.392,14.088,4.183,0.881,192.829,14.032
+smarthpa-warmup,2R-20%,4,productcatalogservice,196.215,66.361,14.163,3.187,0.327,512.948,14.088
+smarthpa-warmup,2R-20%,4,recommendationservice,195.219,66.618,14.394,3.984,0.575,513.147,14.088
+smarthpa-warmup,2R-20%,4,paymentservice,195.219,39.084,14.394,3.984,0.575,245.418,14.088
+smarthpa-warmup,2R-20%,4,shippingservice,194.223,0.229,0.124,4.781,1.325,0,0.0
+smarthpa-warmup,2R-20%,4,emailservice,100,2.942,2.087,9.562,2.011,13.745,2.087
+smarthpa-warmup,2R-20%,4,redis-cart,132.749,0.091,0.052,6.972,2.062,0,0.0
+smarthpa-warmup,2R-20%,4,APPLICATION,2470.996,414.431,14.642,56.574,0.327,3723.904,14.642

@@ -1,0 +1,8 @@
+scenario,autoscaler,run,supply_cpu_m,cpu_overutilization_pct,overutilization_time_min,cpu_overprovision_m,overprovision_time_min,cpu_underprovision_m,underprovision_time_min,p95_ms,failure_pct
+2R-20-c4fresh%,k8shpa,1,2443.979,610.556,14.859,149.649,0.387,5165.773,14.593,870.0,0.0
+2R-20-c4fresh%,k8shpa,2,2386.441,489.782,14.69,190.174,0.286,3917.408,14.69,990.0,0.0
+2R-20-c4fresh%,k8shpa,3,2362.146,600.736,14.813,203.142,0.181,5021.648,14.813,760.0,0.0
+2R-20-c4fresh%,k8shpa,4,2362.717,491.559,14.624,274.921,0.353,3974.803,14.624,980.0,0.0
+2R-20-c4fresh%,k8shpa,5,2337.377,469.217,14.726,257.179,0.27,3692.505,14.726,870.0,0.0
+2R-20-c4fresh%,k8shpa,6,2324.482,484.127,14.791,265.02,0.411,3868.327,14.56,970.0,0.0
+2R-20-c4fresh%,k8shpa,7,2355.992,450.555,14.666,233.813,0.304,3522.179,14.666,970.0,0.0
