@@ -1,0 +1,13 @@
+lab_pct,metric,pair,paper_pct,lab_KHPA,lab_ProSHPA,lab_SHPA,same_direction
+9.92,supply,SHPA vs KHPA,18.19,2208.8,,2427.8,True
+3.07,supply,ProSHPA vs SHPA,2.17,,2502.4,2427.8,True
+13.29,supply,ProSHPA vs KHPA,20.75,2208.8,2502.4,,True
+23.45,overutil,SHPA vs KHPA,-0.44,363.1,,448.3,False
+-22.83,overutil,ProSHPA vs SHPA,-25.41,,345.9,448.3,True
+-4.73,overutil,ProSHPA vs KHPA,-25.74,363.1,345.9,,True
+-83.52,overprov,SHPA vs KHPA,-81.1,370.6,,61.1,True
+243.45,overprov,ProSHPA vs SHPA,-28.26,,209.8,61.1,False
+-43.39,overprov,ProSHPA vs KHPA,-86.44,370.6,209.8,,True
+20.73,underprov,SHPA vs KHPA,-1.87,4126.8,,4982.5,False
+-8.66,underprov,ProSHPA vs SHPA,-25.35,,4550.8,4982.5,True
+10.27,underprov,ProSHPA vs KHPA,-26.74,4126.8,4550.8,,False

@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Pod
+metadata: {name: r7, labels: {app: redis-ab, ab: r7}}
+spec:
+  nodeName: k3s-worker1
+  containers:
+  - name: redis
+    image: redis@sha256:121bac949fb5f623b9fa0b4e4c9fb358ffd045966e754cfa3eb9963f3af2fe3b
+    command: ["redis-server"]
+    securityContext: {allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}, privileged: false, readOnlyRootFilesystem: true}
+    ports: [{containerPort: 6379}]
+    volumeMounts: [{mountPath: /data, name: redis-data}]
+    resources: {limits: {memory: 256Mi, cpu: 125m}, requests: {cpu: 70m, memory: 200Mi}}
+  volumes: [{name: redis-data, emptyDir: {}}]
+---
+apiVersion: v1
+kind: Pod
+metadata: {name: r8, labels: {app: redis-ab, ab: r8}}
+spec:
+  nodeName: k3s-worker1
+  containers:
+  - name: redis
+    image: redis@sha256:3811787313eba226a2ef38658c6ccb91cd5e110edc89c37767de373120a0e5a0
+
+    securityContext: {allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}, privileged: false, readOnlyRootFilesystem: true}
+    ports: [{containerPort: 6379}]
+    volumeMounts: [{mountPath: /data, name: redis-data}]
+    resources: {limits: {memory: 256Mi, cpu: 125m}, requests: {cpu: 70m, memory: 200Mi}}
+  volumes: [{name: redis-data, emptyDir: {}}]
+---
+apiVersion: v1
+kind: Pod
+metadata: {name: r8nomod, labels: {app: redis-ab, ab: r8nomod}}
+spec:
+  nodeName: k3s-worker1
+  containers:
+  - name: redis
+    image: redis@sha256:3811787313eba226a2ef38658c6ccb91cd5e110edc89c37767de373120a0e5a0
+    command: ["redis-server"]
+    securityContext: {allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}, privileged: false, readOnlyRootFilesystem: true}
+    ports: [{containerPort: 6379}]
+    volumeMounts: [{mountPath: /data, name: redis-data}]
+    resources: {limits: {memory: 256Mi, cpu: 125m}, requests: {cpu: 70m, memory: 200Mi}}
+  volumes: [{name: redis-data, emptyDir: {}}]

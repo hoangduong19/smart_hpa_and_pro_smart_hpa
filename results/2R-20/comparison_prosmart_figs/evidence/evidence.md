@@ -130,3 +130,19 @@ Bảng tổng hợp có trạng thái: `plan.md` mục 13b. Script chấm Fig. 8
   helm chart gói Smart HPA ghim 7.0.11 (06/2023), gói ProSmart ghim 7.2.3 (12/2023), không module.
 - **Chưa chứng minh** Redis 8 + module là lý do redis nặng hơn: cần A/B `scripts/redis_ab.sh` (chưa chạy).
 - **adservice:** run2/run3 lên 2 pod ở giây 129–132 (một mẫu 24%), làm ấm (E11) chỉ đỡ 1/3 run.
+
+## E17 (22/11): ProSmart `v081w5pro` so với dữ liệu tác giả
+- maxR theo service của lab ProSmart = dữ liệu capacity của tác giả (ad/cart/checkout/payment/prodcat/recom/redis/shipping 2,0; currency 2,0/2,1; email 1,02/1,01; frontend 2,98/2,89). Supply lab 2502 / bài 2480.
+- Demand (DR, cột D) lab / tác giả: adservice 1,20/2,00, frontend 20,49/16,78, checkout 3,84/2,73, payment 4,19/3,07, prodcat 8,09/6,62, recom 7,50/6,50, cart 3,41/3,57, currency 10,60/10,69, email 1,58/1,28, shipping 1,99/1,87.
+- Overprov ProSmart lab 210,6 / tác giả 44,3 / bài 59,3; adservice lab 162,2 / tác giả 4,6. Underprov lab 4545,6 / tác giả 3707,9 / bài 3728,8.
+- Dữ liệu: `results/2R-20-v081w5pro/pro_vs_authors_pkl_7runs.csv`, `pro_persvc_7runs.csv`. Script: `scripts/pro_persvc.py`; `scripts/pro_vs_authors_pkl.py` (đọc `history` của model tác giả, có bảng theo thời gian); `scripts/pro_rawcap.py`: PmaxR thô của model capacity tác giả = cột E lab ở mọi dòng.
+- locustfile lab = `Benchmark Application/Load Test Script/Load Test Script.py` của cả hai gói (md5 3a31575c).
+
+## E18 (22/11): L12/L13 tách ramp / số user / CPU mỗi request
+Script `scripts/l12_l13_cpu_per_req.py`, CSV `results/2R-20-v081w5pro/l12_l13_cpu_per_req.csv`. Mức ổn định t ≥ 300 s.
+- Ramp (lab 2/s so với tác giả): phần chênh DR nằm ở t < 300 s ≤ 17% (frontend 0,65 / 3,73), checkout 0,02, payment −0,27.
+- Số user: cùng locustfile → cùng tỉ lệ request; lab 82,5 req/s, bài ~235 req/s → đổi số user nhân đều mọi service.
+- CPU mỗi request lab ÷ tác giả: ad 1,78, redis 2,34, currency 2,70, cart 2,73, recom 3,11, frontend 3,33, prodcat 3,41, shipping 3,41, email 3,47, checkout 4,17, payment 4,47.
+- adservice lab 37,6m / 2 pod → DR 1; DR 2 cần ≥ 44m; tác giả 40–80m.
+- Cùng lab, cùng 200 user/83 req/s: bộ 0,67/s so với 2/s prodcat 133/159m, recom 109/146m.
+- Giới hạn: millicore tác giả suy từ DR (khoảng ±1 bậc); req/s tác giả từ Fig. 4.

@@ -1,0 +1,4 @@
+# Commandstats
+cmdstat_module|list:calls=1,usec=10,usec_per_call=10.00,rejected_calls=0,failed_calls=0
+cmdstat_config|get:calls=2,usec=10,usec_per_call=5.00,rejected_calls=0,failed_calls=0
+cmdstat_info:calls=8,usec=192,usec_per_call=24.00,rejected_calls=0,failed_calls=0

@@ -3,7 +3,8 @@
 # entrypoint) use more CPU per cart operation than the image the Smart HPA package pins (redis:alpine@sha256:121bac94 =
 # Redis 7.0.11, no modules)?
 # Three standalone Redis pods on ONE node, same manifest as redis-cart (requests 70m, limits 125m, emptyDir /data):
-#   r7     = 7.0.11 (Smart HPA helm chart digest)
+#   r7     = 7.0.11 (Smart HPA helm chart digest), command redis-server directly: the 7.0.11 entrypoint only chowns /data
+#            and drops to the redis user (no modules), and its chown fails under capabilities: drop ALL (22/11: exit 1)
 #   r8     = 8.10.2 (digest running in the lab), default entrypoint -> loads rejson, redisearch, redistimeseries, redisbloom
 #   r8nomod= 8.10.2, command redis-server directly (entrypoint bypassed -> no modules): separates "modules" from "version"
 # One client pod (emailservice:v0.8.0 image, already on the nodes, has python) keeps ONE persistent connection per target,
@@ -47,7 +48,7 @@ $cmd
   volumes: [{name: redis-data, emptyDir: {}}]
 EOF
 }
-{ redis_pod r7 $R7 no; echo ---; redis_pod r8 $R8 no; echo ---; redis_pod r8nomod $R8 yes; } > "$OUT/pods.yaml"
+{ redis_pod r7 $R7 yes; echo ---; redis_pod r8 $R8 no; echo ---; redis_pod r8nomod $R8 yes; } > "$OUT/pods.yaml"
 kubectl apply -f "$OUT/pods.yaml" | tee -a "$OUT/log.txt"
 kubectl wait --for=condition=Ready pod/r7 pod/r8 pod/r8nomod --timeout=300s | tee -a "$OUT/log.txt" || exit 1
 for p in r7 r8 r8nomod; do
